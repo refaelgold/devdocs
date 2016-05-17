@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Magento CE 2.0.5 Release Notes</title>
+	<title>Magento CE 2.0.6 Release Notes</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/release-notes/ReleaseNotes2.0.5CE.html">
+	<link rel="canonical" href="//guides/v2.0/release-notes/ReleaseNotes2.0.6CE.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Magento CE 2.0.5 Release Notes</h1>
+		<h1 class="page-heading">Magento CE 2.0.6 Release Notes</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/release-notes/ReleaseNotes2.0.5CE.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/release-notes/ReleaseNotes2.0.6CE.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -308,7 +308,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/release-notes/ReleaseNotes2.0.5CE.html">Magento CE 2.0.5 Release Notes</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/release-notes/ReleaseNotes2.0.5CE.html">Magento CE 2.0.5 Release Notes</a></li>
 
 									
 
@@ -324,7 +324,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/release-notes/ReleaseNotes2.0.6CE.html">Magento CE 2.0.6 Release Notes</a></li>
+									<li class="level-2  active "><a href="/guides/v2.0/release-notes/ReleaseNotes2.0.6CE.html">Magento CE 2.0.6 Release Notes</a></li>
 
 									
 
@@ -536,90 +536,93 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 28 April 2016 (PDT)</i></p>
-		<h2>Magento Community Edition 2.0.5</h2>
-<p>We are pleased to present Magento Community Edition 2.0.5. This release includes miscellaneous functional fixes. </p>
+      <p align="right"><i>Updated: 17 May 2016 (PDT)</i></p>
+		<h2>Magento Community Edition 2.0.6</h2>
+<p>We are pleased to present Magento Community Edition 2.0.6. This release includes security enhancements as well as several functional fixes and enhancements. </p>
+
+<div class="bs-callout bs-callout-warning">
+    <p>2.0.6 contains important security updates. Please update to this version or use the latest available Magento version when starting a new project.</p>
+</div>
 
 <p>Backward-incompatible changes are documented in <a href="http://devdocs.magento.com/guides/v2.0/release-notes/changes_2.0.html" target="_blank">Magento 2.0 Backward Incompatible Changes</a>.</p>
 
 <h3>Fixed issues</h3>
 
-<h4> Upgrade and Installation</h4>
-
-<!-- 50224 -->
+<!--- 51847 -->
 <ul>
-  <li>Magento no longer assumes hard-coded root category IDs or default category IDs. Previously, Magento used hard-coded IDs for these values, which could produce inconsistent data during store installation.</li>
+  <li>Varnish no longer returns a 400 bad request error message when clearing its cache. Previously, this issue occurred with Magento instances running on GoDaddy. </li>
 </ul>
 
-<h4>Import/Export</h4>
+<h3>Functional enhancements</h3>
 
-<!-- 46245 -->
+<!-- 52322 -->
 <ul>
-  <li>Product import now works successfully in a multi-store environment. Previously, Magento would display the following error message,  “URL key for specified store already exists”, when importing products into a multi-store configuration. </li>
+  <li>Starting with Magento 2.0.6, Magento provides a more flexible way for you to set file ownership and permissions. Instead of setting permissions explicitly, you only need to make sure files and directories are writable for installation. We provide different suggestions for doing this, depending on whether you access your Magento server with one user account (typical of shared hosting) or two user accounts (typical of private hosting or having your own server). After installation, to further restrict access to files and directories, you can optionally create a file named <code>magento_umask</code> in your Magento root directory. By default, the <code>umask</code> is 002, which means that directories have 775 permissions and files have 664 permissions. For more details, see <a href="http://devdocs.magento.com/prereq/apache-user.html">Magento file system ownership and permissions</a>. </li>
 </ul>
 
-<!-- 48722 -->
+<!-- 51809 -->
 <ul>
-  <li>Export performance has been enhanced.  Pages no longer hang randomly, and CPU usage is no longer pegged.  <a href="https://github.com/magento/magento2/issues/3217" target="_blank">(GITHUB-3217)</a></li>
+  <li>You can now use the Redis adapter to provide session storage in Magento 2.0.6. For more information, see <a href="http://devdocs.magento.com/guides/v2.0/config-guide/redis/config-redis.html">Redis for session storage</a>. </li>
 </ul>
 
-<h4>Database</h4>
+<h4>Security enhancements</h4>
+<p>This release includes  enhancements to improve the security of your Magento installation. While there are no confirmed attacks related to these issues to date, certain vulnerabilities can potentially be exploited to access customer information or take over administrator sessions. We recommend that you upgrade your existing Magento installation to the latest version as soon as possible.</p>
 
-<!-- 49004 -->
+<p>The following list provides an overview of the security issues fixed in this release. We describe each issue in greater detail in the <a href="https://magento.com/security" target="_blank">Magento Security Center</a>. </p>
+
+<!-- 51806 -->
 <ul>
-  <li>Magento no longer duplicates queries to the database from the Catalog page. Instead, if Magento has already loaded specific data during request processing, it re-uses it instead of duplicating the query. </li>
+  <li>Magento no longer permits an unauthenticated user to remotely execute code on the server through APIs. </li>
 </ul>
 
-<!-- 49003 -->
+<!-- 51808 -->
 <ul>
-  <li>Magento no longer duplicates SQL queries on CMS and Category pages. Previously, significant duplications occurred. </li>
+  <li>Magento no longer allows authenticated customers to change other customers’ account information using either SOAP or REST calls.  Magento  now confirms that the ID of the customer whose account is being edited matches the authentication token in use. </li>
 </ul>
 
-<h4>Miscellaneous</h4>
-
-<!-- 47255 -->
+<!-- 51390 -->
 <ul>
-  <li>Selecting the Use Aggregated Data option now correctly displays Dashboard data. <a href="https://github.com/magento/magento2/issues/3459" target="_blank">(GITHUB-3459)</a></li>
+  <li>Anonymous users can no longer retrieve the private data of registered customers. To prevent malicious attacks of this type, the <code>quote_id_mask</code> table of the Quote API no longer includes a <code>cart id mask</code> value. </li>
 </ul>
 
-<!-- 51074 -->
+<!-- 51461 -->
 <ul>
-  <li>Magento now displays the expected color swatch when you select a color swatch for a configurable product. Previously, Magento did not change the color when you selected a swatch.</li>
+  <li>Several parameters in the Authorize.net payment module are vulnerable to reflected Cross-Site Scripting (XSS) attacks. Existing protection against such malicious parameters is not enough to stop all types of attacks. </li>
 </ul>
 
-<!-- 48659 -->
+<!-- 52187 -->
 <ul>
-  <li>HTML template minification now properly handles commented code.</li>
+  <li>Magento no longer allows users with minimum privileges (for example,  access to the dashboard only) to force re-installation of Magento, which could allow them to potentially execute malicious code.</li>
 </ul>
 
-<!-- 48760 -->
+<!-- 51807 -->
 <ul>
-  <li>Deleting one of several custom options no longer deletes all options. Previously, deleting one option from the Product page also deleted all other custom options. <a href="https://github.com/magento/magento2/issues/2989" target="_blank">(GITHUB-2989)</a>  </li>
+  <li>The Magento installation code is no longer accessible once the installation process has completed.  </li>
 </ul>
 
-<!-- 50279 -->
+<!-- 51292 -->
 <ul>
-  <li>When Full Page Cache (FPC) is enabled, the CAPTCHA image differs for every user. Previously, the CAPTCHA image on the registration page remained the same for every customer after FPC was enabled.</li>
+  <li>When an integration is created, Magento now bases the OAuth consumer key expiration from when the token exchange begins instead of when the consumer key is created. <a href="https://github.com/magento/magento2/issues/3449" target="_blank">(GITHUB-3449)</a></li>
 </ul>
 
-<!-- 50195 -->
+<!-- 51392 -->
 <ul>
-  <li>Google no longer indexes the Admin URL. Previously, Google indexed the Admin side meta tag. The frontend meta tag was not affected. </li>
+  <li>Only a registered customer can assign a guest cart to himself. Previously, an anonymous user could modify the state  (that is, set an active quote) of a registered customer. </li>
 </ul>
 
-<!-- 43959 -->
+<!-- 51370 -->
 <ul>
-  <li>Magento no longer sends a subscription success email whenever a customer enters his email address to subscribe to a newsletter. Users receive a “thank you for your subscription” message and a subscription success email only when registering for the first time. </li>
+  <li>Magento no longer discloses information about its internal path during installation. </li>
 </ul>
 
-<!-- 47458 -->
+<!-- 51376 -->
 <ul>
-  <li>Guests can now successfully click on the product page link for any item in an emailed shared wishlist. </li>
+  <li>Magento no longer discloses the administrator URL to an unauthenticated user during setup. </li>
 </ul>
 
-<!-- 50912 -->
+<!-- 50955 -->
 <ul>
-  <li>Custom customer attributes are now saved at checkout. </li>
+  <li>Application error messages no longer include the path to the file where the error occurred.  </li>
 </ul>
 
 <h3>System requirements</h3>
@@ -629,7 +632,7 @@
 <h3>Installation instructions</h3>
 
 <h4>New installations</h4>
-<p>New users can now complete a full installation of Magento Community Edition 2.0.5 from an archive file on the <a href="https://www.magentocommerce.com/download" target="_blank">Download</a> page.</p>
+<p>New users can now complete a full installation of Magento Community Edition 2.0.6 from an archive file on the <a href="https://www.magentocommerce.com/download" target="_blank">Download</a> page.</p>
 
 <h5 id="bdownload-a-new-installationb"><b>Download a new installation</b></h5>
 
@@ -660,7 +663,7 @@
 </ol>
 
 <h4><b>Upgrade existing installations</b></h4>
-<p>If you installed Magento Community Edition 2.0.0 from an archive, you must perform some additional tasks before you can upgrade your installation. Current users of Magento 2.0.0/2.0.1/2.0.2/2.0.3/2.0.4 must first update the installer from the command line. Then, update the installation from the <a href="http://docs.magento.com/m2/ce/user_guide/system/web-setup-wizard.html" target="_blank">Web Setup Wizard</a> or command line. For detailed instructions, see the <a href="http://devdocs.magento.com/guides/v2.0/release-notes/tech_bull_201-upgrade.html" target="_blank">technical bulletin</a>.</p>
+<p>If you installed Magento Community Edition 2.0.0 from an archive, you must perform some additional tasks before you can upgrade your installation. Current users of Magento 2.0.0/2.0.1/2.0.2/2.0.3/2.0.4/2.0.5 must first update the installer from the command line. Then, update the installation from the <a href="http://docs.magento.com/m2/ce/user_guide/system/web-setup-wizard.html" target="_blank">Web Setup Wizard</a> or command line. For detailed instructions, see the <a href="http://devdocs.magento.com/guides/v2.0/release-notes/tech_bull_201-upgrade.html" target="_blank">technical bulletin</a>.</p>
 
 <h5 id="bupgrade-an-existing-installation-from-the-setup-wizardb"><b>Upgrade an existing installation from the Setup Wizard</b></h5>
 
