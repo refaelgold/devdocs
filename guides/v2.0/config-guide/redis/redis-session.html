@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Prepare Solr for production</title>
+	<title>Use Redis for session storage</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/config-guide/solr/solr-script.html">
+	<link rel="canonical" href="//guides/v2.0/config-guide/redis/redis-session.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Prepare Solr for production</h1>
+		<h1 class="page-heading">Use Redis for session storage</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/config-guide/solr/solr-script.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/config-guide/redis/redis-session.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -707,7 +707,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/config-guide/redis/redis-session.html">Use Redis for session storage</a></li>
+									<li class="level-2  active "><a href="/guides/v2.0/config-guide/redis/redis-session.html">Use Redis for session storage</a></li>
 
 									
 
@@ -927,7 +927,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/config-guide/solr/solr-script.html">Prepare Solr for production</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/config-guide/solr/solr-script.html">Prepare Solr for production</a></li>
 
 									
 
@@ -1164,178 +1164,164 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 30 March 2016 (PDT)</i></p>
-		<p><img src="/common/images/ee-only_large.png" alt="This topic applies to Enterprise Edition only" /></p>
-
-<h2 id="solr-prod">Prepare Solr for production</h2>
-<p>After you’ve tested the Solr solution, you should perform the following tasks to get it ready for production:</p>
-
+      <p align="right"><i>Updated: 17 May 2016 (PDT)</i></p>
+		<h4 id="contents">Contents</h4>
 <ul>
-  <li>See more Solr configuration options in the Magento EE User Guide (available with the Magento 2 EE release)</li>
-  <li>Set up <a href="https://fedoraproject.org/wiki/How_to_edit_iptables_rules" target="_blank">firewall rules</a> to enable Solr and Magento to communicate</li>
-  <li>Implement a custom web application deployed to a scalable application server</li>
-  <li>Consider a dedicated Solr server, or at least deploying Solr to a different server than Magento</li>
-  <li>Consider scalability by <a href="https://cwiki.apache.org/confluence/display/solr/SolrCloud" target="_blank">clustering Solr</a></li>
-  <li>
-    <p><a href="http://wiki.apache.org/solr" target="_blank">Customize Solr</a></p>
-
-    <div class="bs-callout bs-callout-warning">
-    <p>Customize the Solr search engine at your own risk. Magento supports only the options displayed in the Admin. Customizing the Solr engine itself, while potentially useful, can cause issues with Magento. If you encounter problems with your customizations, do not contact Magento Support; instead, consult the resources available from the <a href="http://wiki.apache.org/solr/" target="_blank">Apache Solr Wiki</a>.</p>
-</div>
-  </li>
-  <li>
-    <p>If you choose to enable SELinux, set up <a href="http://wiki.centos.org/HowTos/SELinux" target="_blank">rules</a> to allow Magento and Solr to communicate with each other</p>
-
-    <p>SELinux settings are entirely up to you; Magento does not recommend either enabling it or disabling it. Because SELinux is very complex, make sure you have an experienced system administrator who can configure it.</p>
-  </li>
-  <li>Script Solr startup and shutdown as discussed in the next section</li>
+  <li><a href="#reds-cache-prereq">Prerequisite</a></li>
+  <li><a href="#config-redis-config">Configure Magento to use Redis for session storage</a></li>
 </ul>
 
-<h3 id="solr-script">Script Solr startup and shutdown</h3>
-<p>In a production environment, you should start and stop Solr using a script.</p>
+<h2 id="reds-cache-prereq">Prerequisite</h2>
+<p>Before you continue, install Redis as discussed in <a href="/guides/v2.0/config-guide/redis/config-redis.html">Use Redis for page caching or session storage</a>.</p>
 
 <div class="bs-callout bs-callout-info" id="info">
-	<p>You must perform all tasks discussed in this section as a user with <code>root</code> privileges.</p>
+<span class="glyphicon-class">
+  <p>You can use Redis for session storage in Magento versions 2.0.6 and later only.</p></span>
 </div>
 
-<p>Create a script named <code>/etc/init.d/solr</code> with options similar to the following:</p>
+<h2 id="config-redis-config">Configure Magento to use Redis for session storage</h2>
+<p>Following is a sample configuration to add to <code>&lt;your Magento install dir&gt;app/etc/env.php</code>:</p>
 
-<pre><code>#!/bin/sh
- 
-#Starts, stops, and restarts Apache Solr.
-#chkconfig: 35 92 08
-#description: Starts and stops Apache Solr
- 
-SOLR_DIR="&lt;your Solr install dir&gt;"
-JAVA_OPTIONS="-Xmx1024m -DSTOP.PORT=&lt;jetty-stop-port&gt; -DSTOP.KEY=&lt;jetty-stop-key&gt; -jar  start.jar"
-LOG_FILE="&lt;path-to-solr-log-file&gt;"
-JAVA="&lt;java_home&gt;"
- 
-case $1 in
-start)
-echo -n "Starting Solr"
-cd $SOLR_DIR
-$JAVA $JAVA_OPTIONS 2&gt; $LOG_FILE &amp;
-;;
-stop)
-echo -n "Stopping Solr"
-cd $SOLR_DIR
-$JAVA $JAVA_OPTIONS --stops
-;;
-restart)
-$0 stop
-sleep 1
-$0 start
-;;
-*)
-echo "Usage: $0 {start|stop|restart}" &gt;&amp;2
-exit 1
-;;
-esac
+<pre><code>'session' =&gt; 
+   array (
+   'save' =&gt; 'redis',
+   'redis' =&gt; 
+      array (
+	'host' =&gt; '127.0.0.1',
+	'port' =&gt; '6379',
+	'password' =&gt; '',
+	'timeout' =&gt; '2.5',
+	'persistent_identifier' =&gt; '',
+	'db' =&gt; '0',
+	'compression_threshold' =&gt; '2048',
+	'compression_library' =&gt; 'gzip',
+	'log_level' =&gt; '1',
+	'max_concurrency' =&gt; '6',
+	'break_after_frontend' =&gt; '5',
+	'break_after_adminhtml' =&gt; '30',
+	'first_lifetime' =&gt; '600',
+	'bot_first_lifetime' =&gt; '60',
+	'bot_lifetime' =&gt; '7200',
+	'disable_locking' =&gt; '0',
+	'min_lifetime' =&gt; '60',
+	'max_lifetime' =&gt; '2592000'
+    )
+)
 </code></pre>
 
-<p>All parameters shown in the following table are required.</p>
+<p>where</p>
 
 <table>
-<col width="200" />
-<col width="300" />
 <tbody>
+	<tr>
+		<th>Parameter</th>
+		<th>Meaning</th>
+		<th>Default value</th>
+	</tr>
 <tr>
-  <th>Value</th>
-  <th>Description</th>
+	<td>host</td>
+	<td><p>Fully qualified host name, IP address, or absolute path if using UNIX sockets.</p></td>
+	<td>127.0.0.1</td>
 </tr>
 <tr>
-  <td>&lt;your Solr install dir&gt;</td>
-  <td>The absolute file system path to your Solr installation. (For example, <code>/etc/solr/apache-solr-3.6.2</code></td>
+	<td>port</td>
+	<td>Redis server listen port.</td>
+	<td>6379</td>
 </tr>
 <tr>
-  <td>&lt;jetty-stop-port&gt;<br />
-  &lt;jetty-stop-key&gt;</td>
-  <td>Security parameters used to prevent malicious attempts to stop Jetty.
-
-  For <code>-DSTOP.PORT=</code>, specify any unused port.
-
-  For <code>-DSTOP.KEY=</code>, specify a string. If you omit a value for <code>-DSTOP.KEY=</code>, Jetty generates a random key you must enter to stop Jetty.
- 
-  For more information, see <a href="https://wiki.eclipse.org/Jetty/Howto/Configure_SSL" target="_blank">Securing Jetty</a>.
-</td>
+	<td>password</td>
+	<td>Specifies a password if your Redis server requires authentication.</td>
+	<td>empty</td>
 </tr>
 <tr>
-  <td>&lt;path-to-solr-log-file&gt;</td>
-  <td>Absolute file system path to the Solr log file. (For example, <code>/var/log/solr.log</code>)</td>
+	<td>timeout</td>
+	<td><p>Connection timeout, in seconds.</p></td>
+	<td>2.5</td>
 </tr>
 <tr>
-  <td>&lt;java_home&gt;</td>
-  <td>Absolute file system path to your Java executable. (For example, <code>/usr/bin/java</code>)</td>
+	<td>persistent_identifier</td>
+	<td><p>Unique string to enable persistent connections (for example, <code>sess-db0</code>).</p>
+		<p><a href="https://github.com/nicolasff/phpredis/issues/70" target="_blank">Known issues with <code>phpredis</code> and <code>php-fpm</code></a>.</p></td>
+	<td>empty</td>
+</tr>
+<tr>
+	<td>database</td>
+	<td>Unique Redis database number, which is recommended to protect against data loss.</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>compression_threshold</td>
+	<td><p>Set to <code>0</code> to disable compression (recommended when <a href="http://suhosin.org/stories/howtos.html#encryption-features" target="_blank"><code>suhosin.session.encrypt = On</code></a>).</p>
+	<p><a href="https://github.com/colinmollenhour/Cm_Cache_Backend_Redis/issues/18" target="_blank">Known issue with strings of more than 64KB</a>.</p></td>
+		<td>2048</td>
+</tr>
+<tr>
+	<td>compression_library</td>
+	<td>Options: <code>gzip</code>, <code>lzf</code>, <code>lz4</code> or <code>snappy</code>.</td>
+	<td>gzip</td>
+</tr>
+<tr>
+	<td>log_level</td>
+	<td><p>Set to any of the following, listed in order from least verbose to most verbose:</p>
+		<ul><li><code>0</code> (emergency: only the most severe errors)</li>
+			<li><code>1</code> (alert: immediate action required)</li>
+			<li><code>2</code> (critical: application component unavailable)</li>
+			<li><code>3</code> (error: runtime errors, not critical but must be monitored)</li>
+			<li><code>4</code> (warning: additional information, recommended)</li>
+			<li><code>5</code> (notice: normal but significant condition)</li>
+			<li><code>6</code> (info: informational messages)</li>
+			<li><code>7</code> (debug: the most information for development or testing only)</li></ul></td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>max_concurrency</td>
+	<td><p>Maximum number of processes that can wait for a lock on one session. For large production clusters, set this  to at least 10% of the number of PHP processes.</p></td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>break_after_frontend</td>
+	<td><p>Number of seconds to wait before trying to break the lock for frontend (that is, storefront) session.</p></td>
+	<td>5</td>
+</tr>
+<tr>
+	<td>break_after_adminhtml</td>
+	<td><p>Number of seconds to wait before trying to break the lock for an adminhtml (that is, Magento Admin) session.</p></td>
+	<td>30</td>
+</tr>
+<tr>
+	<td>first_lifetime</td>
+	<td><p>Lifetime, in seconds, of session for non-bots on the first write, or use <code>0</code> to disable.</p></td>
+	<td>600</td>
+</tr>
+<tr>
+	<td>bot_first_lifetime</td>
+	<td><p>Lifetime, in seconds, of session for bots on the first write, or use <code>0</code> to disable.</p></td>
+	<td>60</td>
+</tr>
+<tr>
+	<td>disable_locking</td>
+	<td><p>Disable session locking entirely.</p></td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>min_lifetime</td>
+	<td><p>Minimum session lifetime, in seconds.</p></td>
+	<td>60</td>
+</tr>
+<tr>
+	<td>max_lifetime</td>
+	<td><p>Maximum session lifetime, in seconds.</p></td>
+	<td>2592000 (720 hours)</td>
 </tr>
 </tbody>
 </table>
 
-<p>An example follows:</p>
-
-<pre><code>#!/bin/sh
- 
-#Starts, stops, and restarts Apache Solr.
-#chkconfig: 35 92 08
-#description: Starts and stops Apache Solr
- 
-SOLR_DIR="/opt/solr/apache-solr-4-10-4/example"
-JAVA_OPTIONS="-Xmx1024m -DSTOP.PORT=8079 -DSTOP.KEY=mykey -jar  start.jar"
-LOG_FILE="/var/log/solr.log"
-JAVA="/usr/bin/java"
- 
-case $1 in
-start)
-echo -n "Starting Solr"
-cd $SOLR_DIR
-$JAVA $JAVA_OPTIONS 2&gt; $LOG_FILE &amp;
-;;
-stop)
-echo -n "Stopping Solr"
-cd $SOLR_DIR
-$JAVA $JAVA_OPTIONS --stop
-;;
-restart)
-$0 stop
-sleep 1
-$0 start
-;;
-*)
-echo "Usage: $0 {start|stop|restart}" &gt;&amp;2
-exit 1
-;;
-esac
-</code></pre>
-
-<p>To complete the script:</p>
+<h4 id="related-topics">Related topics</h4>
 
 <ul>
-  <li>Make sure you saved the edited version of the script.</li>
-  <li>
-    <p>Give the script executable permissions as follows:</p>
-
-    <pre><code>chmod +x /etc/init.d/solr
-</code></pre>
-  </li>
-  <li>
-    <p>You can now start, stop, and restart Solr as follows:</p>
-
-    <p>Start Solr: <code>/etc/init.d/solr start</code></p>
-
-    <p>Stop Solr: <code>/etc/init.d/solr stop</code></p>
-  </li>
-  <li>Restart Solr: <code>/etc/init.d/solr restart</code></li>
+  <li><a href="/guides/v2.0/config-guide/config/config-create.html">Create or extend configuration types</a></li>
+  <li><a href="/guides/v2.0/config-guide/config/config-php.html">Magento’s deployment configuration</a></li>
 </ul>
-
-<!-- <h2 id="next"></a>Next steps</h2>
-For additional information about Solr, see the following:
-
-*	For more information about performance, see "Using Solr as a Search Engine" in <a href="http://info.magento.com/rs/magentocommerce/images/Magento_PerformanceWhitepaper-EEv1-9.1.pdf" target="_blank">Maximizing Performance and Scalability with Magento Enterprise Edition</a>
-*	<a href="http://wiki.apache.org/solr/#Operations_and_Production" target="_blank">Customize Solr</a> -->
-
-<!-- <h2 id="related">Related Information</h2>
-*	<a href="http://www.magentocommerce.com/knowledge-base/entry/solr-ee-faq" target="_blank">Frequently Asked Questions (FAQ) About Using Solr with Magento Enterprise Edition (EE)</a>
-*	<a href="http://www.magentocommerce.com/knowledge-base/entry/solr-ee-best-practices" target="_blank">Solr and Magento Enterprise Edition (EE) Best Practices</a> -->
 
 
 		</div>
