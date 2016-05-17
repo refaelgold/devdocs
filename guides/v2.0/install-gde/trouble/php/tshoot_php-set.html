@@ -752,12 +752,13 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 8 April 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 17 May 2016 (PDT)</i></p>
 		<h2 id="trouble-php-set">PHP settings errors</h2>
 <p>See one of the following sections:</p>
 
 <ul>
   <li><a href="#trouble-php-always">always_populate_raw_post_data error</a></li>
+  <li><a href="#trouble-php-memory">PHP memory limit error</a></li>
   <li><a href="#trouble-php-xdebug">xdebug maximum function nesting level error</a></li>
   <li><a href="#trouble-php-asptags">Errors display when you access a PHTML template</a></li>
 </ul>
@@ -796,6 +797,37 @@
     </ul>
   </li>
   <li>On the readiness check page, click <strong>Try Again</strong>.</li>
+</ol>
+
+<h3 id="trouble-php-memory">PHP memory limit error</h3>
+<p>The readiness checks makes sure you have at least 1GB of memory set aside for PHP processes. This setting should be sufficient for most installations, including installing optional sample data. However, we recommend at least 2GB for debugging.</p>
+
+<p>To increase your PHP memory limit:</p>
+
+<ol>
+  <li>Log in to your Magento server.</li>
+  <li>
+    <p>Locate your <code>php.ini</code> file using the following command:</p>
+
+    <pre><code>php --ini
+</code></pre>
+  </li>
+  <li>As a user with <code>root</code> privileges, use a text editor to open the <code>php.ini</code> specified by <code>Loaded Configuration File</code>.</li>
+  <li>Locate <code>memory_limit</code>.</li>
+  <li>Change it to a value of <code>1GB</code> for normal use or at least <code>2GB</code> for debugging.</li>
+  <li>Save your changes to <code>php.ini</code> and exit the text editor.</li>
+  <li>
+    <p>Restart your web server.</p>
+
+    <p>Examples follow:</p>
+
+    <ul>
+      <li>CentOS: <code>service httpd restart</code></li>
+      <li>Ubuntu: <code>service apache2 restart</code></li>
+      <li>nginx (both CentOS and Ubuntu): <code>service nginx restart</code></li>
+    </ul>
+  </li>
+  <li>Try the installation again.</li>
 </ol>
 
 <h3 id="trouble-php-xdebug">xdebug maximum function nesting level error</h3>

@@ -550,12 +550,7 @@ fatal: The remote end hung up unexpectedly</pre>
     <li>
       <p>Set permissions:</p>
 
-      <pre><code>find . -type d -exec chmod 770 {} \; &amp;&amp; find . -type f -exec chmod 660 {} \;
-</code></pre>
-
-      <p>If you must enter the commands as <code>sudo</code>, use:</p>
-
-      <pre><code>sudo find . -type d -exec chmod 770 {} \; &amp;&amp; sudo find . -type f -exec chmod 660 {} \;
+      <pre><code>find . -type d -exec chmod g+ws {} \;
 </code></pre>
     </li>
     <li>
