@@ -693,7 +693,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 11 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 17 May 2016 (PDT)</i></p>
 		<h4 id="instgde-php-prereq-contents">Contents</h4>
 
 <ul>
@@ -716,7 +716,8 @@
 <p>Magento requires:</p>
 
 <ul>
-  <li>PHP 7.0.2 (supported by Magento version 2.0.1 and later only)</li>
+  <li>7.0.2–7.0.6 except for 7.0.5 (supported by Magento version 2.0.1 and later only)
+There is a <a href="https://bugs.php.net/bug.php?id=71914" target="_blank">known PHP issue</a> that affects our <a href="/guides/v2.0/config-guide/cli/config-cli-subcommands-compiler.html">code compiler</a> when using PHP 7.0.5. We recommend you not use PHP 7.0.5; instead, use PHP 7.0.2–7.0.4 or 7.0.6.</li>
   <li>PHP 5.6.x</li>
   <li>PHP 5.5.x, where x is 22 or greater</li>
 </ul>
