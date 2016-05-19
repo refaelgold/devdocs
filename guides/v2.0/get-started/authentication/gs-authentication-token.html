@@ -531,7 +531,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 16 January 2016 (PST)</i></p>
+      <p align="right"><i>Updated: 19 May 2016 (PDT)</i></p>
 		<p>To make a web API call from a client such as a mobile application, you must supply an <i>authentication token</i> on the call. The token acts like an electronic key that lets you access the API.</p>
 <p>You request a token from the Magento token service at the REST endpoint that is defined for your user type. The token service returns
    a unique authentication token in exchange for a user name and password for a Magento account.
@@ -578,7 +578,7 @@
    <tr>
       <td>Credentials</td>
       <td>
-         <p>The user name and password for a Magento account.</p>
+         <p>The user name and password for a Magento account, so for customers the username is their email address.</p>
          <p>To specify these credentials in a JSON request body, include <code>-d '{"username":"&lt;USER-NAME&gt;", "password":"&lt;PASSWORD&gt;"}'</code> in the call.</p>
       </td>
    </tr>
@@ -594,17 +594,17 @@
 <p>For example:</p>
 <pre>curl -X POST "https://magento.host/index.php/rest/V1/integration/customer/token" \
      -H "Content-Type:application/xml" \
-     -d '&lt;login&gt;&lt;username&gt;user_example&lt;/username&gt;&lt;password&gt;123123q&lt;/password&gt;&lt;/login&gt;'</pre>
+     -d '&lt;login&gt;&lt;username&gt;customer@example.com&lt;/username&gt;&lt;password&gt;123123q&lt;/password&gt;&lt;/login&gt;'</pre>
 <p><a name="auth-request"></a></p>
 <h2>Authentication token request</h2>
 <p>To request an authentication token for a customer user for the REST web API:</p>
 <pre>curl -X POST "https://magento.host/index.php/rest/V1/integration/customer/token" \
      -H "Content-Type:application/json" \
-     -d '{"username":"user_example", "password":"123123q"}'</pre>
+     -d '{"username":"customer@example.com", "password":"123123q"}'</pre>
 <p>To request an authentication token for an admin user for the REST web API:</p>
 <pre>curl -X POST "https://magento.host/index.php/rest/V1/integration/admin/token" \
      -H "Content-Type:application/json" \
-     -d '{"username":"user_example", "password":"123123q"}'</pre>
+     -d '{"username":"customer@example.com", "password":"123123q"}'</pre>
 <p><a name="auth-response"></a></p>
 <h2>Authentication token response</h2>
 <p>A successful request returns a response body with the token, as follows:</p>
