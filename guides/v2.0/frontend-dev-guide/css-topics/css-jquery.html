@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Templates overview</title>
+	<title>Using jQuery UI styles</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/frontend-dev-guide/templates/template-overview.html">
+	<link rel="canonical" href="//guides/v2.0/frontend-dev-guide/css-topics/css-jquery.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Templates overview</h1>
+		<h1 class="page-heading">Using jQuery UI styles</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/frontend-dev-guide/templates/template-overview.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/frontend-dev-guide/css-topics/css-jquery.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -431,7 +431,7 @@
 
 
 								
-									<li class="level1  active "><a class="nav-header" href="/guides/v2.0/frontend-dev-guide/templates/template-overview.html">Templates</a></li>
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/frontend-dev-guide/templates/template-overview.html">Templates</a></li>
 									
 								
 
@@ -541,7 +541,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/frontend-dev-guide/css-topics/css-jquery.html">Using jQuery UI styles</a></li>
+									<li class="level-2  active "><a href="/guides/v2.0/frontend-dev-guide/css-topics/css-jquery.html">Using jQuery UI styles</a></li>
 
 									
 
@@ -838,31 +838,24 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 15 January 2016 (PST)</i></p>
-		<h2>Introduction to customizing a theme using templates</h2>
+      <p align="right"><i>Updated: 28 April 2016 (PDT)</i></p>
+		<h2>What's in this topic</h2>
 
-<p>In Magento application templates are the part of the view layer. Templates define exactly how the content of <a href="/guides/v2.0/frontend-dev-guide/layouts/layout-overview.html" target="_blank">layout blocks</a> is presented on a page: order, CSS classes, elements grouping, and so on. 
-In most cases, templates do not contain any logic about whether they will or will not be rendered, this is typically handled by the layout files. Once a template is called in a layout, it will be displayed.</p>
+<p>This topic provides an overview of how jQuery UI styles are used in Magento out of the box, and how you can use them in a custom theme.</p>
 
-<p>Default Magento templates are PHTML files. Also HTML templates are used for <a href="http://knockoutjs.com/index.html">Knockout JS</a> scripts. </p>
+<h2 id="jquery-ui-styles-used-on-the-storefront">jQuery UI styles used on the storefront</h2>
 
-<div class="bs-callout bs-callout-info" id="info">
-<span class="glyphicon-class">
- <p><a href="/guides/v2.0/architecture/view/template-engine.html" target="_blank">The Magento template rendering subsystem</a> supports multiple template engines, including the default PHP-based engine for processing PHTML templates.</p></span>
-</div>
+<p>In Magento out of the box certain storefront elements are implemented using jQuery UI widgets (like navigation menu, mini shopping cart and so on), with the default jQuery classes assigned. But Magento does not contain jQuery UI styles in the code base. Styles for the certain default jQuery UI classes are defined in Magento by default (in the default Magento storefront and Admin themes). For other jQuery UI classes styles are not defined. </p>
 
-<p>This chapter describes how to customize templates in your design theme, and provides both the practice reference and the theoretical background of how templates are applied in a Magento store. </p>
+<p>We do not recommend downloading the jQuery UI styles as is, because they will override the default Magento themes definitions and break the default Magento design. </p>
 
-<p>We strongly recommend that you do not change the default templates, because if you do edit them, your changes can be overwritten by the new version of the default files during upgrades.
-The best practice is <a href="/guides/v2.0/frontend-dev-guide/themes/theme-create.html" target="_blank">creating a new design theme</a> and adding your modified templates there.</p>
+<p>To use the jQuery styles, you need to define those which you need in your custom stylesheets in the <code>&lt;your_custom_theme&gt;/web/css</code> directory. </p>
 
-<p>This chapter contains the following topics:</p>
+<h2 id="recommended-reading">Recommended reading</h2>
 
 <ul>
-  <li><a href="/guides/v2.0/frontend-dev-guide/templates/template-walkthrough.html" target="_blank">Template customization walkthrough</a></li>
-  <li><a href="/guides/v2.0/frontend-dev-guide/templates/template-override.html" target="_blank">Templates basic concepts</a></li>
-  <li><a href="/guides/v2.0/frontend-dev-guide/templates/template-sample.html" target="_blank">Illustration of customizing templates</a></li>
-  <li><a href="/guides/v2.0/frontend-dev-guide/templates/template-email.html" target="_blank">Customizing email templates</a></li>
+  <li><a href="/guides/v2.0/frontend-dev-guide/themes/debug-theme.html#debug-theme-style">Define what styles you need to change</a></li>
+  <li><a href="/guides/v2.0/frontend-dev-guide/css-guide/css_quick_guide_overview.html">Quick start guide to working with styles for a new theme</a></li>
 </ul>
 
 
