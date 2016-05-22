@@ -552,7 +552,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 20 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 22 May 2016 (PDT)</i></p>
 		<h2>Magento Enterprise Edition 2.1 Release Candidate 1 (RC1)</h2>
 <p>We are pleased to present Magento 2.1 Release Candidate 1 (RC1). This release candidate build is not intended for production purposes. Instead, it provides the development community opportunities to: </p>
 
@@ -721,9 +721,10 @@ RewriteRule (.*) http://%{HTTP_HOST}%{REQUEST_URI} [L]</pre>
 <p>This Release Candidate is for test purposes only. Do not install it in a production environment.</p>
 
 <h5 id="binstall-using-composerb"><b>Install using Composer</b></h5>
-<p>This Release Candidate is available from <code>repo.magento.com</code> if you have an Enterprise Edition license. Before installing this Release Candidate using Composer,  familiarize yourself with these  <a href="/guides/v2.0/install-gde/prereq/integrator_install.html" target="_blank">prerequisites</a>, then run </p>
+<p>This Release Candidate is available from <code>repo.magento.com</code>. Before installing this Release Candidate using Composer,  familiarize yourself with these  <a href="/guides/v2.0/install-gde/prereq/integrator_install.html" target="_blank">prerequisites</a>, then run:</p>
 
-<p><code>composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=&lt;2.1.0-rc1&gt; &lt;installation directory name&gt;</code></p>
+<pre><code>	composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.1.0-rc1 &lt;installation directory name&gt;
+</code></pre>
 
 <h4><b>Upgrade existing installations</b></h4>
 <!-- If you installed Magento Community Edition 2.0.0 from an archive, you must perform some additional tasks before you can upgrade your installation. Current users of Magento 2.0.0/2.0.1/2.0.2/2.0.3/2.0.4/2.0.5/2.0.6 must first update the installer from the command line.  -->
