@@ -820,7 +820,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 3 March 2016 (PST)</i></p>
+      <p align="right"><i>Updated: 24 May 2016 (PDT)</i></p>
 		<h2 id="name-your-component">Name your component</h2>
 
 <h4 id="contents">Contents</h4>
@@ -846,7 +846,7 @@
 <h2 id="module-xml">Add the component’s <code>module.xml</code> file</h2>
 <p>Declare the component itself by adding a module.xml file in the <code>/etc</code> folder of your component.</p>
 
-<p>A component declares itself (that is, defines its name and existence) in the <code>module.xml</code> file, located in the Magento install directory at <code>&lt;ComponentName&gt;/etc/</code>. </p>
+<p>A component declares itself (that is, defines its name and existence) in the <code>module.xml</code> file, located in the Magento install directory at <code>&lt;ComponentName&gt;/etc/</code>.</p>
 
 <p>The smallest working module.xml file would look something like this:</p>
 
@@ -858,10 +858,12 @@
 
 <p>…where <code>name</code>  is the name of your component, and <code>setup_version</code> is your module’s database schema version. Both of these attributes are required.</p>
 
+<p>Do not use “Ui” for your custom module name because the <code>%Vendor%_Ui</code> notation, required when specifying paths, might cause issues.</p>
+
 <h2 id="add-composer-json">Add the components <code>composer.json</code> file</h2>
 <p><code>composer.json</code> provides a component name and also specifies component dependencies.</p>
 
-<p>In addition, the <a href="/guides/v2.0/comp-mgr/compman-start.html">Component Manager</a> looks for a <code>composer.json</code> in a component’s root directory and can perform actions on the component and its dependencies. </p>
+<p>In addition, the <a href="/guides/v2.0/comp-mgr/compman-start.html">Component Manager</a> looks for a <code>composer.json</code> in a component’s root directory and can perform actions on the component and its dependencies.</p>
 
 <p>In particular:</p>
 

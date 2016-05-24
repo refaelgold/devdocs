@@ -820,7 +820,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 26 February 2016 (PST)</i></p>
+      <p align="right"><i>Updated: 24 May 2016 (PDT)</i></p>
 		<h2 id="register-your-component">Register your component</h2>
 
 <h4 id="contents">Contents</h4>
@@ -846,6 +846,8 @@
 </code></pre>
 
 <p>where &lt;VendorName&gt; is the name of the company providing the module and &lt;ModuleName&gt; is the name of the module.</p>
+
+<p>Do not use “Ui” for your custom module name because the <code>%Vendor%_Ui</code> notation, required when specifying paths, might cause issues.</p>
 
 <h3 id="example">Example</h3>
 <pre><code>use \Magento\Framework\Component\ComponentRegistrar;
