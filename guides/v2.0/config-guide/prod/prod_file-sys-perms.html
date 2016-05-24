@@ -1244,6 +1244,12 @@
   <li>Log in to your Magento server.</li>
   <li>Change to your Magento installation directory.</li>
   <li>
+    <p>Enter the following command to change to production mode:</p>
+
+    <pre><code>php bin/magento deploy:mode:set production
+</code></pre>
+  </li>
+  <li>
     <p>Enter the following commands:</p>
 
     <pre><code>find var vendor lib pub/static app/etc var/generation var/di var/view_preprocessed -type f -exec chmod g-w {} \;
