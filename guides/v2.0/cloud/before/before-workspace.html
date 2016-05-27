@@ -660,6 +660,51 @@
 									
 
 								
+								
+								
+							
+							
+						
+
+					
+
+						
+
+						
+
+							
+
+
+								
+
+
+								
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">How-tos and tutorials</a></li>
+									
+								
+
+									
+
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">How to upgrade the Magento system software</a></li>
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Tutorial&mdash;Merge and delete an environment</a>
+
+
+									
+
+								
 
 									
 
@@ -673,17 +718,7 @@
 									
 
 
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
-
-
-									
-
-								
-
-									
-
-
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/env/environment-tutorial-env-merge.html">Tutorial&mdash;Merge an environment</a>
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
 
 
 									
@@ -914,11 +949,12 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 7 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 27 May 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
   <li><a href="#cloud-first-workspace">Set up a Magento workspace</a></li>
   <li><a href="#cloud-ssh-cli-cli-install">Install the CLI</a></li>
+  <li><a href="#cloud-first-php">Set up PHP</a></li>
   <li><a href="#cloud-ssh-cli-ssh">Enable Secure Shell (SSH)</a></li>
 </ul>
 
@@ -967,15 +1003,42 @@
   </li>
 </ol>
 
+<h2 id="cloud-first-php">Set up PHP</h2>
+<p>When you’re working with the Magento Cloud CLI, local environment settings come from the machine on which you’re working, not from Magento Enterprise Cloud Edition. For example, certain things (like debugging) require a larger PHP <code>memory_limit</code> than most PHP distributions provide by default.</p>
+
+<p>Before working with your Cloud project, make sure you set the PHP <code>memory_limit</code> to at least <code>1G</code> for normal use or at least <code>2G</code> for debugging.</p>
+
+<p>To set <code>memory_limit</code>:</p>
+
+<ol>
+  <li>
+    <p>Find your <code>php.ini</code> file using the following command:</p>
+
+    <pre><code>php --ini Use the value of `Loaded Configuration File`.
+</code></pre>
+  </li>
+  <li>Open <code>php.ini</code> in a text editor.</li>
+  <li>Change the value of <code>memory_limit</code> to at least <code>1G</code> for normal use or at least <code>2G</code> for debugging.</li>
+  <li>Save your changes to <code>php.ini</code> and exit the text editor.</li>
+  <li>
+    <p>Restart your web server:</p>
+
+    <ul>
+      <li>CentOS: <code>service httpd restart</code></li>
+      <li>Ubuntu: <code>service apache2 restart</code></li>
+    </ul>
+  </li>
+</ol>
+
 <h2 id="cloud-ssh-cli-ssh">Enable Secure Shell (SSH)</h2>
 <p>The <a href="https://en.wikipedia.org/wiki/Secure_Shell" target="_blank">SSH protocol </a> is designed to maintain a secure connection between two systems—in this case, your local working environment and your Magento Enterprise Cloud Edition Git project.</p>
 
 <p>You must create an SSH keypair on every machine with which you and your team expect to interact with Magento Enterprise Cloud Edition.</p>
 
 <h3 id="locate-an-existing-ssh-keypair">Locate an existing SSH keypair</h3>
-<p>An existing SSH keypair is typically located in the <code>.ssh</code> subdirectory of the user’s home directory. For example, if you log in as <code>magento_user</code>, your SSH keys are typically located in:</p>
+<p>An existing SSH keypair is typically located in the <code>.ssh</code> subdirectory of the user’s home directory. To see if you already have keys, enter the following command:</p>
 
-<pre><code>/home/magento_user/.ssh
+<pre><code>ls ~/.ssh
 </code></pre>
 
 <p>If you don’t have SSH keys, continue with the next section.</p>

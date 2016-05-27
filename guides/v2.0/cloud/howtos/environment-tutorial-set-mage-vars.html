@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Architecture</title>
+	<title>Tutorial&mdash;Set Magento environment variables</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/cloud/discover-arch.html">
+	<link rel="canonical" href="//guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Architecture</h1>
+		<h1 class="page-heading">Tutorial&mdash;Set Magento environment variables</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/discover-arch.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -233,7 +233,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/cloud/discover-arch.html">Architecture</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/discover-arch.html">Architecture</a></li>
 
 									
 
@@ -718,7 +718,7 @@
 									
 
 
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
+											<li class="level3Child env-tut  active " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
 
 
 									
@@ -949,40 +949,137 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 11 April 2016 (PDT)</i></p>
-		<h2 id="architecture">Architecture</h2>
-<p>The container for your Magento application is a <em>project</em>. The project is your Magento store. Each project has one or more <em>environments</em>, which are Git branches that enable developers to work on new features or perform testing. Each environment is comprised of <em>services</em>, which are deployed inside highly restricted containers on a grid of servers.</p>
+      <p align="right"><i>Updated: 26 May 2016 (PDT)</i></p>
+		<h2 id="cloud-env-vars-magento-admin-tut">Tutorial: change the Magento Admin URI and password</h2>
+<p>For security reasons, we strongly recommend you change the Magento Admin URI and the administrator’s password. This makes it harder for someone else to log in to the Magento Admin and change settings.</p>
 
-<p>Monitoring and fail-over happen automatically, behind the scene.</p>
+<p>Remember that environment variables are inherited from the parent environment to child environments. You should make these changes in the <code>master</code> environment so all other environments start with the same values.</p>
 
-<div class="bs-callout bs-callout-info" id="info">
-  <p>Magento Enterprise Cloud Edition currently supports the following services: PHP, MySQL (MariaDB), Solr, Elasticsearch, Redis and RabbitMQ.</p>
+<p>You can use the same tasks to change any variable discussed in the preceding section.</p>
+
+<p>To get started:</p>
+
+<div>
+
+  <ol>
+    <li>Log in to the server on which your SSH keys are located.</li>
+    <li>
+      <p>Log in to your project:</p>
+
+      <pre><code>magento-cloud login
+</code></pre>
+    </li>
+    <li>
+      <p>List your projects:</p>
+
+      <pre><code>magento-cloud project:list
+</code></pre>
+    </li>
+    <li>
+      <p>If necessary, clone a project.</p>
+
+      <pre><code>magento-cloud project:get &lt;project ID&gt;
+</code></pre>
+    </li>
+    <li>
+      <p>Change to a project directory.</p>
+
+      <p>For example if your project is named Magento 2, <code>cd magento-2</code></p>
+    </li>
+    <li>
+      <p>List environments in the project:</p>
+
+      <pre><code>magento-cloud environment:list
+</code></pre>
+    </li>
+    <li>
+      <p>Check out an environment:</p>
+
+      <pre><code>magento-cloud environment:checkout &lt;environment ID&gt;
+</code></pre>
+
+      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent project ID&gt;</code></p>
+    </li>
+    <li>
+      <p>Create a <a href="/guides/v2.0/cloud/admin/admin-snap.html">snapshot</a> of the environment.</p>
+
+      <pre><code>magento-cloud snapshot:create -e &lt;environment ID&gt;
+</code></pre>
+    </li>
+  </ol>
+
+  <p>To change the Admin URI and administrator password:</p>
+
+  <ol>
+    <li>
+      <p>Set the variable values.</p>
+
+      <pre><code>magento-cloud variable:set &lt;name&gt; &lt;value&gt; -e &lt;environment ID&gt;
+</code></pre>
+    </li>
+    <li>
+      <p>For example, to set the administrator’s password to <code>admin_A456</code> in an environment with ID <code>admin</code>, enter:</p>
+
+      <pre><code>magento-cloud variable:set ADMIN_PASSWORD admin_A456 -e admin
+</code></pre>
+    </li>
+    <li>Wait while the project redeploys.</li>
+    <li>
+      <p>Set the Admin URI to <code>magento_A8v10</code>, enter:</p>
+
+      <pre><code>magento-cloud variable:set ADMIN_URL magento_A8v10 -e admin
+</code></pre>
+    </li>
+    <li>Wait while the project redeploys.</li>
+    <li>
+      <p>Log in to the Magento Admin using the values you just changed.</p>
+
+      <p>The simplest way to do that is to use the environment routes that display when you redeploy the <code>master</code> branch. An example follows:</p>
+
+      <pre><code>Waiting for the activity ksvciptnzxfto (Steve Johnson added variable ADMIN_URL):
+    Building application 'mymagento' (runtime type: php:7.0, tree: 07263ba)
+    Slug already built for this tree id, skipping.
+
+Re-deploying environment k4wtvm7ogzr5s-master.
+Environment configuration:
+    mymagento (type: php:7.0, size: S, disk: 2048)
+    mysql (type: mysql:10.0, size: S, disk: 2048)
+    redis (type: redis:3.0, size: S)
+    solr (type: solr:4.10, size: S, disk: 1024)
+
+Environment routes:
+    http://master-k4wtvm7ogzr5s.us.magentosite.cloud/ is served by application `mymagento`
+    https://master-k4wtvm7ogzr5s.us.magentosite.cloud/ is served by application `mymagento`
+</code></pre>
+
+      <p>In the preceding example, go to <code>http://master-k4wtvm7ogzr5s.us.magentosite.cloud/magento_g8v10</code> and log in using the user name <code>admin</code> and password <code>admin_A456</code></p>
+    </li>
+    <li>
+      <p>(Optional.) Create an environment and list the environment variables.</p>
+
+      <pre><code>magento-cloud environment:branch &lt;new branch name&gt;
+</code></pre>
+
+      <p>After the environment deploys, enter</p>
+
+      <pre><code>magento-cloud variable:get -e &lt;environment ID&gt;
+</code></pre>
+
+      <p>A sample result follows:</p>
+
+      <pre><code>+----------------+---------------+-----------+------+
+| ID             | Value         | Inherited | JSON |
++----------------+---------------+-----------+------+
+| ADMIN_PASSWORD | admin_A456    | Yes       | No   |
+| ADMIN_URL      | magento_A8v10 | Yes       | No   |
++----------------+---------------+-----------+------+
+</code></pre>
+    </li>
+  </ol>
+
+  <h4 id="related-topic">Related topic</h4>
+  <p><a href="/guides/v2.0/cloud/env/environment-tutorial-env-merge.html">Tutorial—Merge an environment</a></p>
 </div>
-
-<h2 id="services">Services</h2>
-<p>Each service runs in its own secure container; containers are managed together in the project. </p>
-
-<p>Some services are built-in, such as the following:</p>
-
-<ul>
-  <li>HTTP router (handling incoming requests, but also caching and redirects)</li>
-  <li>PHP application server</li>
-  <li>Git </li>
-  <li>Secure Shell (SSH)</li>
-</ul>
-
-<p>You can even have multiple applications running in the same project. Building 
-a microservice oriented architecture with Magento Enterprise Cloud Edition is
-as easy as managing a monolithic application.</p>
-
-<h4 id="related-topics">Related topics</h4>
-<ul>
-  <li><a href="/guides/v2.0/cloud/discover-workflow.html">Workflow</a></li>
-  <li><a href="/guides/v2.0/cloud/discover-deploy.html">Deployment process</a></li>
-  <li><a href="/guides/v2.0/cloud/discover-tools.html">Tooling</a></li>
-  <li><a href="/guides/v2.0/cloud/cloud-requirements.html">Magento Enterprise Cloud Edition requirements</a></li>
-</ul>
-
 
 
 		</div>

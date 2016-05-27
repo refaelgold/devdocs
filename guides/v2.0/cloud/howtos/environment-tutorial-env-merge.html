@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Architecture</title>
+	<title>Tutorial&mdash;Merge and delete an environment</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/cloud/discover-arch.html">
+	<link rel="canonical" href="//guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Architecture</h1>
+		<h1 class="page-heading">Tutorial&mdash;Merge and delete an environment</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/discover-arch.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -233,7 +233,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/cloud/discover-arch.html">Architecture</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/discover-arch.html">Architecture</a></li>
 
 									
 
@@ -699,7 +699,7 @@
 									
 
 
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Tutorial&mdash;Merge and delete an environment</a>
+											<li class="level3Child env-tut  active " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Tutorial&mdash;Merge and delete an environment</a>
 
 
 									
@@ -949,40 +949,169 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 11 April 2016 (PDT)</i></p>
-		<h2 id="architecture">Architecture</h2>
-<p>The container for your Magento application is a <em>project</em>. The project is your Magento store. Each project has one or more <em>environments</em>, which are Git branches that enable developers to work on new features or perform testing. Each environment is comprised of <em>services</em>, which are deployed inside highly restricted containers on a grid of servers.</p>
+      <p align="right"><i>Updated: 26 May 2016 (PDT)</i></p>
+		<h4 id="contents">Contents</h4>
+<ul>
+  <li><a href="#tut-env-merge">Tutorial—Merge an environment</a></li>
+  <li><a href="#tut-env-delete">Optionally delete the environment</a></li>
+</ul>
 
-<p>Monitoring and fail-over happen automatically, behind the scene.</p>
+<h2 id="tut-env-merge">Tutorial—Merge an environment</h2>
+<p>This tutorial shows how to merge changes from an environment to its parent, which in this case is the master branch. You can, for example, merge code, changes to themes, and so on.</p>
 
-<div class="bs-callout bs-callout-info" id="info">
-  <p>Magento Enterprise Cloud Edition currently supports the following services: PHP, MySQL (MariaDB), Solr, Elasticsearch, Redis and RabbitMQ.</p>
+<p>You can them optionally delete the environment.</p>
+
+<p>This tutorial shows how to create a sample file and merge it. This tutorial assumes you’re already working in an environment; if not, see <a href="/guides/v2.0/cloud/env/environments-start.html#env-start-comm"> Get started with an environment</a> to create one.</p>
+
+<p>To get started:</p>
+
+<div>
+
+  <ol>
+    <li>Log in to the server on which your SSH keys are located.</li>
+    <li>
+      <p>Log in to your project:</p>
+
+      <pre><code>magento-cloud login
+</code></pre>
+    </li>
+    <li>
+      <p>List your projects:</p>
+
+      <pre><code>magento-cloud project:list
+</code></pre>
+    </li>
+    <li>
+      <p>If necessary, clone a project.</p>
+
+      <pre><code>magento-cloud project:get &lt;project ID&gt;
+</code></pre>
+    </li>
+    <li>
+      <p>Change to a project directory.</p>
+
+      <p>For example if your project is named Magento 2, <code>cd magento-2</code></p>
+    </li>
+    <li>
+      <p>List environments in the project:</p>
+
+      <pre><code>magento-cloud environment:list
+</code></pre>
+    </li>
+    <li>
+      <p>Check out an environment:</p>
+
+      <pre><code>magento-cloud environment:checkout &lt;environment ID&gt;
+</code></pre>
+
+      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent project ID&gt;</code></p>
+    </li>
+    <li>
+      <p>Create a <a href="/guides/v2.0/cloud/admin/admin-snap.html">snapshot</a> of the environment.</p>
+
+      <pre><code>magento-cloud snapshot:create -e &lt;environment ID&gt;
+</code></pre>
+    </li>
+  </ol>
+
+  <p>To merge an environment:</p>
+
+  <ol>
+    <li>
+      <p>Add a file named <code>test.txt</code> to the environment root directory.</p>
+
+      <p>You can put whatever contents you want; for example, the number <code>1</code></p>
+    </li>
+    <li>Save your changes and exit the text editor.</li>
+    <li>
+      <p>Add, commit, and push your change to the environment:</p>
+
+      <pre><code>git add -A
+git commit -m "&lt;commit message&gt;"
+git push origin
+</code></pre>
+    </li>
+    <li>
+      <p>Merge with the parent environment:</p>
+
+      <pre><code>magento-cloud environment:merge &lt;environment ID&gt;
+</code></pre>
+
+      <p>For example,</p>
+
+      <pre><code>magento-cloud environment:merge master
+</code></pre>
+    </li>
+  </ol>
+
+  <h2 id="tut-env-delete">Optionally delete the environment</h2>
+  <p>Before you delete an environment, make sure you don’t need it anymore. You cannot recover a deleted environment later.</p>
+
+  <div class="bs-callout bs-callout-info" id="info">
+  <p>You cannot delete the <code>master</code> environment of any project.</p>
 </div>
 
-<h2 id="services">Services</h2>
-<p>Each service runs in its own secure container; containers are managed together in the project. </p>
+  <p>You must be a <a href="/guides/v2.0/cloud/admin/admin-user-admin.html#cloud-role-project">project administrator</a>, <a href="/guides/v2.0/cloud/admin/admin-user-admin.html#cloud-role-env">environment administrator</a>, or <a href="/guides/v2.0/cloud/admin/admin-user-admin.html#cloud-role-acct-owner">account owner</a> to perform this task.</p>
 
-<p>Some services are built-in, such as the following:</p>
+  <p>This section discusses how to optionally delete an environment in the following ways:</p>
 
-<ul>
-  <li>HTTP router (handling incoming requests, but also caching and redirects)</li>
-  <li>PHP application server</li>
-  <li>Git </li>
-  <li>Secure Shell (SSH)</li>
-</ul>
+  <ul>
+    <li>Make the environment <em>inactive</em> but let it remain in the project</li>
+    <li>Delete the environment entirely and remove it from the project</li>
+  </ul>
 
-<p>You can even have multiple applications running in the same project. Building 
-a microservice oriented architecture with Magento Enterprise Cloud Edition is
-as easy as managing a monolithic application.</p>
+  <p>To delete a environment:</p>
 
-<h4 id="related-topics">Related topics</h4>
-<ul>
-  <li><a href="/guides/v2.0/cloud/discover-workflow.html">Workflow</a></li>
-  <li><a href="/guides/v2.0/cloud/discover-deploy.html">Deployment process</a></li>
-  <li><a href="/guides/v2.0/cloud/discover-tools.html">Tooling</a></li>
-  <li><a href="/guides/v2.0/cloud/cloud-requirements.html">Magento Enterprise Cloud Edition requirements</a></li>
-</ul>
+  <ol>
+    <li>Log in to your project if you haven’t already done so.</li>
+    <li>To delete the branch entirely (removing it from the project), check out the branch.</li>
+    <li>
+      <p>Delete the environment:</p>
 
+      <pre><code>magento-cloud environment:delete &lt;environment ID&gt;
+</code></pre>
+
+      <p>For example, to delete the <code>deleteme</code> environment:</p>
+
+      <pre><code>magento-cloud environment:delete deleteme
+</code></pre>
+
+      <p>To delete more than one environment:</p>
+
+      <pre><code>magento-cloud environment:delete &lt;environment ID&gt; &lt;environmentID&gt;
+</code></pre>
+
+      <p>For additional options, see the command-line help:</p>
+
+      <pre><code>magento-cloud environment:delete --help
+</code></pre>
+    </li>
+    <li>
+      <p>Answer the prompt:</p>
+
+      <pre><code>Are you sure you want to delete the remote Git branch sampledata? [Y/n]
+</code></pre>
+
+      <p>A <code>Y</code> answer makes the branch inactive but leaves it in the project.</p>
+    </li>
+    <li>
+      <p>Answer the prompt:</p>
+
+      <pre><code>Delete the remote Git branch too? [Y/n]
+</code></pre>
+
+      <p>A <code>Y</code> answer completely removes the branch from the project.</p>
+    </li>
+  </ol>
+
+  <p>Wait for the environment to delete.</p>
+
+  <pre><code>	git push origin :&lt;branch name&gt;
+</code></pre>
+
+  <h4 id="related-topic">Related topic</h4>
+  <p><a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Tutorial—Set Magento environment variables</a></p>
+</div>
 
 
 		</div>

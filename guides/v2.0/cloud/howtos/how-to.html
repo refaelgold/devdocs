@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Architecture</title>
+	<title>How-tos and tutorials</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/cloud/discover-arch.html">
+	<link rel="canonical" href="//guides/v2.0/cloud/howtos/how-to.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Architecture</h1>
+		<h1 class="page-heading">How-tos and tutorials</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/discover-arch.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/howto/how-to.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -233,7 +233,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/cloud/discover-arch.html">Architecture</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/discover-arch.html">Architecture</a></li>
 
 									
 
@@ -679,7 +679,7 @@
 
 
 								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">How-tos and tutorials</a></li>
+									<li class="level1  active "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">How-tos and tutorials</a></li>
 									
 								
 
@@ -949,40 +949,19 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 11 April 2016 (PDT)</i></p>
-		<h2 id="architecture">Architecture</h2>
-<p>The container for your Magento application is a <em>project</em>. The project is your Magento store. Each project has one or more <em>environments</em>, which are Git branches that enable developers to work on new features or perform testing. Each environment is comprised of <em>services</em>, which are deployed inside highly restricted containers on a grid of servers.</p>
+      <p align="right"><i>Updated: 27 May 2016 (PDT)</i></p>
+		<h2 id="cloud-howto">How-tos and tutorials</h2>
+<p>These topics are intended to get you up to speed quickly using Magento Enterprise Cloud Edition. These are step-by-step instructions that provide instructions about specific tasks (<em>how-to</em>) or that explain how to achieve a goal (<em>tutorial</em>).</p>
 
-<p>Monitoring and fail-over happen automatically, behind the scene.</p>
+<p>Have suggestions? Open <a href="https://github.com/magento/devdocs/issues" target="_blank">an issue</a> or click the <strong>Edit this page on GitHub</strong> link and give us feedback directly.</p>
 
-<div class="bs-callout bs-callout-info" id="info">
-  <p>Magento Enterprise Cloud Edition currently supports the following services: PHP, MySQL (MariaDB), Solr, Elasticsearch, Redis and RabbitMQ.</p>
-</div>
-
-<h2 id="services">Services</h2>
-<p>Each service runs in its own secure container; containers are managed together in the project. </p>
-
-<p>Some services are built-in, such as the following:</p>
+<p>Current topics:</p>
 
 <ul>
-  <li>HTTP router (handling incoming requests, but also caching and redirects)</li>
-  <li>PHP application server</li>
-  <li>Git </li>
-  <li>Secure Shell (SSH)</li>
+  <li><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">How to upgrade the Magento system software</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Tutorial—Set Magento environment variables</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Tutorial—Merge and delete an environment</a></li>
 </ul>
-
-<p>You can even have multiple applications running in the same project. Building 
-a microservice oriented architecture with Magento Enterprise Cloud Edition is
-as easy as managing a monolithic application.</p>
-
-<h4 id="related-topics">Related topics</h4>
-<ul>
-  <li><a href="/guides/v2.0/cloud/discover-workflow.html">Workflow</a></li>
-  <li><a href="/guides/v2.0/cloud/discover-deploy.html">Deployment process</a></li>
-  <li><a href="/guides/v2.0/cloud/discover-tools.html">Tooling</a></li>
-  <li><a href="/guides/v2.0/cloud/cloud-requirements.html">Magento Enterprise Cloud Edition requirements</a></li>
-</ul>
-
 
 
 		</div>

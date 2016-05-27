@@ -660,6 +660,51 @@
 									
 
 								
+								
+								
+							
+							
+						
+
+					
+
+						
+
+						
+
+							
+
+
+								
+
+
+								
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">How-tos and tutorials</a></li>
+									
+								
+
+									
+
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">How to upgrade the Magento system software</a></li>
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Tutorial&mdash;Merge and delete an environment</a>
+
+
+									
+
+								
 
 									
 
@@ -673,17 +718,7 @@
 									
 
 
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
-
-
-									
-
-								
-
-									
-
-
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/env/environment-tutorial-env-merge.html">Tutorial&mdash;Merge an environment</a>
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
 
 
 									
@@ -914,15 +949,14 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 22 April 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 26 May 2016 (PDT)</i></p>
 		<h2 id="cloud-env-start">Get started with an environment</h2>
 <p>This topic shows how to get started working on an environment:</p>
 
 <ul>
   <li><a href="#env-start-ssh">Connect to the environment using Secure Shell (SSH)</a></li>
   <li><a href="#env-start-comm">Common commands</a></li>
-  <li><a href="#env-start-tunn">SSH tunneling</a></li>
-  <li><a href="#env-delete">Delete an environment</a></li>
+  <li><a href="#env-start-ssh">SSH to an environment</a></li>
 </ul>
 
 <h2 id="env-start-ssh">Connect to the environment using Secure Shell (SSH)</h2>
@@ -999,108 +1033,89 @@
   <dd>Set a value for an environment variable in this environment</dd>
 </dl>
 
-<h2 id="env-start-tunn">SSH tunneling</h2>
-<p>Use SSH tunneling to connect to a service in your development site to Magento Enterprise Cloud Edition
-as if the service were local.</p>
+<p><a href="#env-start-ssh">SSH to an environment</a>
+This section discusses how to SSH to an environment so you can run commands as if you were logged in to the environment itself.</p>
 
-<h3 id="list-existing-tunnels">List existing tunnels</h3>
-<p>You might want to check to see if any tunnels are already open using the following command:</p>
+<h3 id="step-1-get-started">Step 1: Get started</h3>
 
-<pre><code>magento-cloud tunnel:list
+<div>
+
+  <ol>
+    <li>Log in to the server on which your SSH keys are located.</li>
+    <li>
+      <p>Log in to your project:</p>
+
+      <pre><code>magento-cloud login
+</code></pre>
+    </li>
+    <li>
+      <p>List your projects:</p>
+
+      <pre><code>magento-cloud project:list
+</code></pre>
+    </li>
+    <li>
+      <p>If necessary, clone a project.</p>
+
+      <pre><code>magento-cloud project:get &lt;project ID&gt;
+</code></pre>
+    </li>
+    <li>
+      <p>Change to a project directory.</p>
+
+      <p>For example if your project is named Magento 2, <code>cd magento-2</code></p>
+    </li>
+    <li>
+      <p>List environments in the project:</p>
+
+      <pre><code>magento-cloud environment:list
+</code></pre>
+    </li>
+    <li>
+      <p>Check out an environment:</p>
+
+      <pre><code>magento-cloud environment:checkout &lt;environment ID&gt;
 </code></pre>
 
-<h3 id="list-available-apps-in-your-project">List available apps in your project</h3>
-<p>To build a tunnel, you must know the name of the app to which to tunnel. Use the following commands:</p>
+      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent project ID&gt;</code></p>
+    </li>
+    <li>
+      <p>Create a <a href="/guides/v2.0/cloud/admin/admin-snap.html">snapshot</a> of the environment.</p>
 
-<pre><code>cd &lt;project directory&gt;
-magento-cloud project:list
-magento-cloud apps
+      <pre><code>magento-cloud snapshot:create -e &lt;environment ID&gt;
+</code></pre>
+    </li>
+  </ol>
+
+  <h3 id="step-2-find-the-ssh-url">Step 2: Find the SSH URL</h3>
+  <p>To find the SSH URL, enter the following command:</p>
+
+  <pre><code>magento-cloud environment:ssh --pipe -e &lt;environment ID&gt;
 </code></pre>
 
-<h3 id="set-up-the-ssh-tunnel">Set up the SSH tunnel</h3>
-<p>Use the following command:</p>
+  <h3 id="step-3-ssh-to-the-environment">Step 3: SSH to the environment</h3>
+  <p>To SSH to the environment, use the SSH URL you found in the preceding step:</p>
 
-<pre><code>magento-cloud tunnel:open -e &lt;environment ID&gt; --app &lt;app name&gt;
+  <pre><code>ssh &lt;ssh url&gt;
 </code></pre>
 
-<p>For example, to open a tunnel to the <code>sprint5</code> branch in a project with an app named <code>mymagento</code>, enter</p>
+  <h3 id="step-4-enter-commands">Step 4: Enter commands</h3>
+  <p>Now you can connect to services as if they were running locally.</p>
 
-<pre><code>magento-cloud tunnel:open -e sprint5 --app mymagento
+  <p>For example, to connect to the database, use the following command:</p>
+
+  <pre><code>mysql --host=127.0.0.1 --user='&lt;database user name&gt;' --pass='&lt;user password&gt;' --database='&lt;name&gt;' --port='&lt;port&gt;'
 </code></pre>
 
-<p>Messages similar to the following display:</p>
+  <p>You can find information like <code>&lt;database user name&gt;</code> in <code>&lt;your Magento install dir&gt;/app/etc/env.php</code>.</p>
 
-<pre><code>SSH tunnel opened on port 30003 to relationship: solr
-SSH tunnel opened on port 30004 to relationship: redis
-SSH tunnel opened on port 30005 to relationship: database
-Logs are written to: /home/magento_user/.magento/tunnels.log
-
-List tunnels with: platform tunnels
-View tunnel details with: platform tunnel:info
-Close tunnels with: platform tunnel:close
-</code></pre>
-
-<h3 id="get-tunnel-information">Get tunnel information</h3>
-<p>To display information about your tunnel, enter:</p>
-
-<pre><code>magento-cloud tunnel:info -e &lt;environment ID&gt;
-</code></pre>
-
-<h3 id="cloud-ssh-tunnel-service">Connect to services</h3>
-<p>Now you can connect to services as if they were running locally.</p>
-
-<p>For example, to connect to the database, use the following command:</p>
-
-<pre><code>mysql --host=127.0.0.1 --user='&lt;database user name&gt;' --pass='&lt;user password&gt;' --database='&lt;name&gt;' --port='&lt;port&gt;'
-</code></pre>
-
-<p>Details about the service display if you use the <code>tunnel:info</code> command.</p>
-
-<h2 id="env-delete">Delete an environment</h2>
-<p>Before you delete an environment, make sure you don’t need it anymore. You cannot recover a deleted environment later.</p>
-
-<div class="bs-callout bs-callout-info" id="info">
-  <p>You cannot delete the <code>master</code> environment of any project.</p>
+  <h4 id="related-topics">Related topics</h4>
+  <ul>
+    <li><a href="/guides/v2.0/cloud/env/environments.html">Manage your environments</a></li>
+    <li><a href="/guides/v2.0/cloud/env/environment-vars_over.html">Overview of environment variables</a></li>
+    <li><a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Tutorial—Set Magento environment variables</a></li>
+  </ul>
 </div>
-
-<p>You must be a <a href="/guides/v2.0/cloud/admin/admin-user-admin.html#cloud-role-project">project administrator</a>, <a href="/guides/v2.0/cloud/admin/admin-user-admin.html#cloud-role-env">environment administrator</a>, or <a href="/guides/v2.0/cloud/admin/admin-user-admin.html#cloud-role-acct-owner">account owner</a> to perform this task.</p>
-
-<p>To delete an environment using the command line:</p>
-
-<ol>
-  <li>
-    <p>List the projects:</p>
-
-    <pre><code>magento-cloud project:list
-</code></pre>
-  </li>
-  <li>
-    <p>List the environments in the specified project:</p>
-
-    <pre><code>magento-cloud environment:list -p &lt;project ID&gt;
-</code></pre>
-  </li>
-  <li>
-    <p>Delete the environment:</p>
-
-    <pre><code>magento-cloud environment:delete -p &lt;project ID&gt; -e &lt;environment name&gt;
-</code></pre>
-  </li>
-  <li>You are required to confirm the deletion.</li>
-  <li>
-    <p><em>Optional</em>. Delete the branch:</p>
-
-    <pre><code>git push origin &lt;branch name&gt;
-</code></pre>
-  </li>
-</ol>
-
-<h4 id="related-topics">Related topics</h4>
-<ul>
-  <li><a href="/guides/v2.0/cloud/env/environments.html">Manage your environments</a></li>
-  <li><a href="/guides/v2.0/cloud/env/environment-vars_over.html">Overview of environment variables</a></li>
-  <li><a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Tutorial—Set Magento environment variables</a></li>
-</ul>
 
 
 		</div>
