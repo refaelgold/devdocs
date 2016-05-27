@@ -1164,7 +1164,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 30 March 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 27 May 2016 (PDT)</i></p>
 		<h2 id="config-varnish-magento">Configure Magento to use Varnish</h2>
 <p>To configure Magento to use Varnish:</p>
 
@@ -1212,6 +1212,16 @@
 <img src="/common/images/config_varnish_admin.png" alt="Configure Magento to use Varnish in the Admin" /></p>
   </li>
   <li>Replace your existing <code>default.vcl</code> with the one you just exported.</li>
+  <li>
+    <p>We recommend you open <code>default.vcl</code> and change the value of <code>acl purge</code> to the IP address of the Varnish host. (You can specify multiple hosts on separate lines or you can use CIDR notation as well.)</p>
+
+    <p>For example,</p>
+
+    <pre><code>acl purge {
+   "localhost";
+}
+</code></pre>
+  </li>
   <li>
     <p>Restart Varnish and your web server:</p>
 
