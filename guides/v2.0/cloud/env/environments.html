@@ -426,6 +426,45 @@
 
 									
 
+										<li class="level3Parent " id="project"><a href="#">Use the project Web Interface</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-basic.html">Basic project information</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-branch.html">Manage environments (branches)</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-snap.html">Project backup and restore (snapshot)</a>
+
+
+									
+
+								
+
+									
+
 									<li class="level-2 "><a href="/guides/v2.0/cloud/project/project-conf-files_magento-app.html">.magento.app.yaml</a></li>
 
 									
@@ -679,7 +718,7 @@
 
 
 								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">How-tos and tutorials</a></li>
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">Tutorials</a></li>
 									
 								
 
@@ -690,7 +729,15 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">How to upgrade the Magento system software</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Tutorial&mdash;Install optional sample data</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Tutorial&mdash;Install optional sample data</a></li>
 
 									
 
@@ -798,6 +845,49 @@
 									
 
 									<li class="level-2 "><a href="/guides/v2.0/cloud/live/live-prot.html">Protective block</a></li>
+
+									
+
+								
+								
+								
+							
+							
+						
+
+					
+
+						
+
+						
+
+							
+
+
+								
+
+
+								
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/trouble/trouble.html">Troubleshooting</a></li>
+									
+								
+
+									
+
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_proj-startover.html">Resolve issues with a new project</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_ce-creds.html">Incorrect credentials</a></li>
 
 									
 
@@ -949,7 +1039,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 25 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 31 May 2016 (PDT)</i></p>
 		<h2 id="cloud-env-over">Overview of environments</h2>
 <p>A Magento Enterprise Cloud <em>environment</em> consists of a running Magento instance. It includes your Magento application (codebase and files) and the services required to run it (<em>Services</em> include the web server, database, search engine, caching server, and so on).</p>
 
@@ -986,7 +1076,9 @@
 <h2 id="cloud-env-hier">Environment hierarchy</h2>
 <p>The <code>master</code> environment is ultimately the parent of all other environments. Every time you branch it or any other environment, you create a parent-child relationship between them.</p>
 
-<p>Each child environment can sync code, data, or both from its parent. Likewise, a child can merge code with its parent, which ends up redeploying the parent environment with the code changes of the child environment.</p>
+<p>Each child environment can sync code, data, or both from its parent. Syncing data to an environment results in a byte-for-byte copy of all services and media files.</p>
+
+<p>Likewise, a child can merge code with its parent, which ends up redeploying the parent environment with the code changes of the child environment.</p>
 
 <p>Child environments are typically used for development, staging, and testing.</p>
 

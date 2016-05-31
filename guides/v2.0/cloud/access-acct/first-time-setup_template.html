@@ -426,6 +426,45 @@
 
 									
 
+										<li class="level3Parent " id="project"><a href="#">Use the project Web Interface</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-basic.html">Basic project information</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-branch.html">Manage environments (branches)</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-snap.html">Project backup and restore (snapshot)</a>
+
+
+									
+
+								
+
+									
+
 									<li class="level-2 "><a href="/guides/v2.0/cloud/project/project-conf-files_magento-app.html">.magento.app.yaml</a></li>
 
 									
@@ -679,7 +718,7 @@
 
 
 								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">How-tos and tutorials</a></li>
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">Tutorials</a></li>
 									
 								
 
@@ -690,7 +729,15 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">How to upgrade the Magento system software</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Tutorial&mdash;Install optional sample data</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Tutorial&mdash;Install optional sample data</a></li>
 
 									
 
@@ -798,6 +845,49 @@
 									
 
 									<li class="level-2 "><a href="/guides/v2.0/cloud/live/live-prot.html">Protective block</a></li>
+
+									
+
+								
+								
+								
+							
+							
+						
+
+					
+
+						
+
+						
+
+							
+
+
+								
+
+
+								
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/trouble/trouble.html">Troubleshooting</a></li>
+									
+								
+
+									
+
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_proj-startover.html">Resolve issues with a new project</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_ce-creds.html">Incorrect credentials</a></li>
 
 									
 
@@ -949,7 +1039,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 7 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 29 May 2016 (PDT)</i></p>
 		<h2 id="cloud-first-clone">Create a sample Magento project from a template</h2>
 <p>This section discusses how to get started with a Magento cloud deployment by cloning an existing sample project. You can customize your project to your needs anytime, including before you deploy it.</p>
 
@@ -985,7 +1075,20 @@
     <p>You can now:</p>
 
     <ul>
-      <li>Click <strong>visit your site</strong> to see your new Magento site.</li>
+      <li>
+        <p>Click <strong>visit your site</strong> to see your new Magento site.</p>
+
+        <p>To access the Magento Admin, add <code>/admin</code> to the end of the URL and log in as follows:</p>
+
+        <ul>
+          <li>Username: <code>admin</code></li>
+          <li>Password: <code>admin12</code></li>
+        </ul>
+
+        <div class="bs-callout bs-callout-warning">
+    <p>For security reasons, we strongly recommend you change your Magento Admin URI and administrator password. For step-by-step details, see <a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>.</p>
+</div>
+      </li>
       <li>
         <p>Click <strong>configure project</strong> to start configuring the project.</p>
 
@@ -1000,14 +1103,12 @@
           <li><a href="/guides/v2.0/cloud/project/project-conf-files_services.html"><code>service.yaml</code></a></li>
         </ul>
       </li>
-      <li><a href="/guides/v2.0/cloud/env/environments.html">Configure environments</a></li>
+      <li>
+        <p><a href="/guides/v2.0/cloud/env/environments.html">Configure environments</a></p>
+      </li>
     </ul>
   </li>
 </ol>
-
-<div class="bs-callout bs-callout-warning">
-    <p>For security reasons, we strongly recommend you change your Magento Admin URI and administrator password. For step-by-step details, see <a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>.</p>
-</div>
 
 
 

@@ -426,6 +426,45 @@
 
 									
 
+										<li class="level3Parent " id="project"><a href="#">Use the project Web Interface</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-basic.html">Basic project information</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-branch.html">Manage environments (branches)</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-snap.html">Project backup and restore (snapshot)</a>
+
+
+									
+
+								
+
+									
+
 									<li class="level-2 "><a href="/guides/v2.0/cloud/project/project-conf-files_magento-app.html">.magento.app.yaml</a></li>
 
 									
@@ -679,7 +718,7 @@
 
 
 								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">How-tos and tutorials</a></li>
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">Tutorials</a></li>
 									
 								
 
@@ -690,7 +729,15 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">How to upgrade the Magento system software</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Tutorial&mdash;Install optional sample data</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Tutorial&mdash;Install optional sample data</a></li>
 
 									
 
@@ -798,6 +845,49 @@
 									
 
 									<li class="level-2 "><a href="/guides/v2.0/cloud/live/live-prot.html">Protective block</a></li>
+
+									
+
+								
+								
+								
+							
+							
+						
+
+					
+
+						
+
+						
+
+							
+
+
+								
+
+
+								
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/trouble/trouble.html">Troubleshooting</a></li>
+									
+								
+
+									
+
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_proj-startover.html">Resolve issues with a new project</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_ce-creds.html">Incorrect credentials</a></li>
 
 									
 
@@ -949,7 +1039,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 25 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 30 May 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
   <li><a href="#cloud-yaml-routes-over"><code>routes.yaml</code> overview</a></li>
@@ -995,7 +1085,7 @@ configurations. A route  template can look like this: <code>http://www.{default}
 <code>https://{default}/blog</code>, where <code>{default}</code> is the fully qualified domain 
 name configured for the project. </p>
 
-<p>If the domain is <code>example.com</code>, these 
+<div class="collapsible"><h4 class="collapsible-title">Click to show/hide content </h4><div class="collapsible-content"><p>If the domain is <code>example.com</code>, these 
 routes resolve: <code>http://www.example.com/</code> and 
 <code>https://example.com/blog</code> for the live environment (that is, the Master). </p>
 
@@ -1011,6 +1101,7 @@ to test that system. In a test system, <code>{default}</code> is replaced with
 </div>
 
 <!-- Magento Enterprise Cloud Edition also supports [multiple applications](/guides/v2.0/cloud/project/project-conf-multi.html) per project. Each project has a single `routes.yaml` file that defines which request is routed to which application. -->
+</div></div>
 
 <h2 id="cloud-yaml-routes-opts">Route options</h2>
 <p>Each route can be configured separately with the following properties:</p>
@@ -1039,7 +1130,8 @@ another route that will be identified by its template (see the following example
 </ul>
 
 <h2 id="cloud-yaml-routes-sample-simple">Simple routes</h2>
-<p>Following is a sample <code>routes.yaml</code> file:</p>
+
+<div class="collapsible"><h4 class="collapsible-title">Click to show/hide content </h4><div class="collapsible-content"><p>Following is a sample <code>routes.yaml</code> file:</p>
 
 <pre><code>"http://{default}/":
   type: upstream
@@ -1068,6 +1160,7 @@ it serves from both:</p>
 server responds directly to a request of the form <code>http://example.com/hello</code>, 
 but it will issue a 301 redirect for <code>http://www.example.com/mypath</code> (to 
 <code>http://example.com/mypath</code>).</p>
+</div></div>
 
 <h2 id="cloud-yaml-routes-sample-wild">Wildcard routes</h2>
 <p>Magento Enterprise Cloud Edition supports wildcard routes, so you can map multiple subdomains to the
@@ -1076,7 +1169,7 @@ simply prefix the route with a star (<code>*</code>), for example <code>*.exampl
 <code>www.example.com</code>, <code>blog.example.com</code>, and <code>us.example.com</code> all get routed to the
 same application.</p>
 
-<p>For your live environment, this functions as a catch-all domain.</p>
+<div class="collapsible"><h4 class="collapsible-title">Click to show/hide content </h4><div class="collapsible-content"><p>For your live environment, this functions as a catch-all domain.</p>
 
 <h3 id="routing-a-non-mapped-domain">Routing a non-mapped domain</h3>
 <p>You can also route to a system that is not mapped to a domain (basically anything other than
@@ -1104,6 +1197,7 @@ In this example, the route is defined as <code>http://*.{default}/</code> route,
 you will see a route such as <code>https://*---add-theme-vmwklxcpbi6zq.na.magentosite.cloud/</code></p>
 
 <p><a href="/guides/v2.0/cloud/project/project-routes-more-cache.html">More information about caching</a>.</p>
+</div></div>
 
 <h2 id="cloud-yaml-routes-sample-redirects">Redirects</h2>
 <p>As discussed in more detail in <a href="/guides/v2.0/cloud/project/project-routes-more-redir.html">redirects</a>, you can set up complex redirection rules including <em>partial redirects</em> like the following:</p>

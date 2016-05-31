@@ -426,6 +426,45 @@
 
 									
 
+										<li class="level3Parent " id="project"><a href="#">Use the project Web Interface</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-basic.html">Basic project information</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-branch.html">Manage environments (branches)</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child project " data-menunode="project"><a href="/guides/v2.0/cloud/project/project-webint-snap.html">Project backup and restore (snapshot)</a>
+
+
+									
+
+								
+
+									
+
 									<li class="level-2 "><a href="/guides/v2.0/cloud/project/project-conf-files_magento-app.html">.magento.app.yaml</a></li>
 
 									
@@ -679,7 +718,7 @@
 
 
 								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">How-tos and tutorials</a></li>
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/howtos/how-to.html">Tutorials</a></li>
 									
 								
 
@@ -690,7 +729,15 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">How to upgrade the Magento system software</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Tutorial&mdash;Install optional sample data</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Tutorial&mdash;Install optional sample data</a></li>
 
 									
 
@@ -798,6 +845,49 @@
 									
 
 									<li class="level-2 "><a href="/guides/v2.0/cloud/live/live-prot.html">Protective block</a></li>
+
+									
+
+								
+								
+								
+							
+							
+						
+
+					
+
+						
+
+						
+
+							
+
+
+								
+
+
+								
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/cloud/trouble/trouble.html">Troubleshooting</a></li>
+									
+								
+
+									
+
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_proj-startover.html">Resolve issues with a new project</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_ce-creds.html">Incorrect credentials</a></li>
 
 									
 
@@ -949,7 +1039,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 27 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 30 May 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
   <li><a href="#cloud-first-workspace">Set up a Magento workspace</a></li>
@@ -972,10 +1062,10 @@
 
 <p>This guide assumes you’re working on a UNIX system or in a UNIX shell environment. On Windows, you can use a UNIX environment like Cygwin or you can use Putty. The tool you use is up to you.</p>
 
-<h2 id="cloud-ssh-cli-cli-install">Install the CLI (Command Line Interface)</h2>
+<h2 id="cloud-ssh-cli-cli-install">Install the CLI (command-line interface)</h2>
 <p>The CLI is equivalent to the Web Interface. It will help you manage your projects on Magento Enterprise Cloud Edition.</p>
 
-<p>To install the Magento Enterprise Cloud Edition CLI:</p>
+<div class="collapsible"><h4 class="collapsible-title">Click to show/hide content </h4><div class="collapsible-content"><p>To install the Magento Enterprise Cloud Edition CLI:</p>
 
 <ol>
   <li>
@@ -1002,11 +1092,12 @@
 </code></pre>
   </li>
 </ol>
+</div></div>
 
 <h2 id="cloud-first-php">Set up PHP</h2>
 <p>When you’re working with the Magento Cloud CLI, local environment settings come from the machine on which you’re working, not from Magento Enterprise Cloud Edition. For example, certain things (like debugging) require a larger PHP <code>memory_limit</code> than most PHP distributions provide by default.</p>
 
-<p>Before working with your Cloud project, make sure you set the PHP <code>memory_limit</code> to at least <code>1G</code> for normal use or at least <code>2G</code> for debugging.</p>
+<div class="collapsible"><h4 class="collapsible-title">Click to show/hide content </h4><div class="collapsible-content"><p>Before working with your Cloud project, make sure you set the PHP <code>memory_limit</code> to at least <code>1G</code> for normal use or at least <code>2G</code> for debugging.</p>
 
 <p>To set <code>memory_limit</code>:</p>
 
@@ -1031,11 +1122,12 @@
     </ul>
   </li>
 </ol>
+</div></div>
 
 <h2 id="cloud-ssh-cli-ssh">Enable Secure Shell (SSH)</h2>
 <p>The <a href="https://en.wikipedia.org/wiki/Secure_Shell" target="_blank">SSH protocol </a> is designed to maintain a secure connection between two systems—in this case, your local working environment and your Magento Enterprise Cloud Edition Git project.</p>
 
-<p>You must create an SSH keypair on every machine with which you and your team expect to interact with Magento Enterprise Cloud Edition.</p>
+<div class="collapsible"><h4 class="collapsible-title">Click to show/hide content </h4><div class="collapsible-content"><p>You must create an SSH keypair on every machine with which you and your team expect to interact with Magento Enterprise Cloud Edition.</p>
 
 <h3 id="locate-an-existing-ssh-keypair">Locate an existing SSH keypair</h3>
 <p>An existing SSH keypair is typically located in the <code>.ssh</code> subdirectory of the user’s home directory. To see if you already have keys, enter the following command:</p>
@@ -1100,12 +1192,13 @@
   </li>
   <li>Expand <strong>SSH Keys</strong>.</li>
   <li>
-    <p>On the next page, click <strong>Add Public SSH Key</strong> as the following figure shows.</p>
+    <p>On the next page, click <strong>Add a public key</strong> as the following figure shows.</p>
 
-    <p><img src="/common/images/cloud_add-public-key.png" alt="Add SSH public key to your account" width="650px" /></p>
+    <p><img src="/common/images/cloud_add-public-key.png" alt="Add an SSH public key to your account" width="650px" /></p>
   </li>
   <li>Follow the prompts on your screen to complete the task.</li>
 </ol>
+</div></div>
 
 <h4 id="next-steps">Next steps</h4>
 <ul>
