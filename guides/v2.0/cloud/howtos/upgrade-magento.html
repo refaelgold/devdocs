@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Tutorial&mdash;Upgrade the Magento system software</title>
+	<title>Upgrade the Magento system software</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -148,7 +148,7 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Tutorial&mdash;Upgrade the Magento system software</h1>
+		<h1 class="page-heading">Upgrade the Magento system software</h1>
 			
 			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/howtos/upgrade-magento.md" target="_blank">Edit this page on GitHub</a>
 		
@@ -729,7 +729,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Tutorial&mdash;Upgrade the Magento system software</a></li>
+									<li class="level-2  active "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Upgrade the Magento system software</a></li>
 
 									
 
@@ -737,7 +737,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Tutorial&mdash;Install optional sample data</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Install optional sample data</a></li>
 
 									
 
@@ -745,17 +745,7 @@
 
 									
 
-										<li class="level3Parent " id="env-tut"><a href="#">Tutorials&mdash;Environment</a>
-
-
-									
-
-								
-
-									
-
-
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
+										<li class="level3Parent " id="env-tut"><a href="#">Environment</a>
 
 
 									
@@ -765,7 +755,17 @@
 									
 
 
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Tutorial&mdash;Merge and delete an environment</a>
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Set Magento environment variables</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Merge and delete an environment</a>
 
 
 									
@@ -1039,7 +1039,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 31 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 1 June 2016 (PDT)</i></p>
 		<h2 id="cloud-howto-upgrade">How to upgrade the Magento system software</h2>
 <p>This topic discusses how to upgrade the Magento system software (for example, from version 2.0.6 to version 2.0.8).</p>
 
@@ -1095,7 +1095,13 @@
       <pre><code>magento-cloud environment:checkout &lt;environment ID&gt;
 </code></pre>
 
-      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent project ID&gt;</code></p>
+      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent environment ID&gt;</code></p>
+    </li>
+    <li>
+      <p>Pull the latest code from the environment:</p>
+
+      <pre><code>git pull origin &lt;environment ID&gt;
+</code></pre>
     </li>
     <li>
       <p>Create a <a href="/guides/v2.0/cloud/admin/admin-snap.html">snapshot</a> of the environment.</p>

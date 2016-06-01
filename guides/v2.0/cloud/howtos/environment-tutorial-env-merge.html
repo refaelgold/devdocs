@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Tutorial&mdash;Merge and delete an environment</title>
+	<title>Merge and delete an environment</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -148,7 +148,7 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Tutorial&mdash;Merge and delete an environment</h1>
+		<h1 class="page-heading">Merge and delete an environment</h1>
 			
 			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.md" target="_blank">Edit this page on GitHub</a>
 		
@@ -729,7 +729,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Tutorial&mdash;Upgrade the Magento system software</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Upgrade the Magento system software</a></li>
 
 									
 
@@ -737,7 +737,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Tutorial&mdash;Install optional sample data</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Install optional sample data</a></li>
 
 									
 
@@ -745,17 +745,7 @@
 
 									
 
-										<li class="level3Parent " id="env-tut"><a href="#">Tutorials&mdash;Environment</a>
-
-
-									
-
-								
-
-									
-
-
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
+										<li class="level3Parent " id="env-tut"><a href="#">Environment</a>
 
 
 									
@@ -765,7 +755,17 @@
 									
 
 
-											<li class="level3Child env-tut  active " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Tutorial&mdash;Merge and delete an environment</a>
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Set Magento environment variables</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child env-tut  active " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Merge and delete an environment</a>
 
 
 									
@@ -1039,20 +1039,25 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 27 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 1 June 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
-  <li><a href="#tut-env-merge">Tutorial—Merge an environment</a></li>
+  <li><a href="#tut-env-merge">Merge an environment</a></li>
   <li><a href="#tut-env-delete">Optionally delete the environment</a></li>
 </ul>
 
-<h2 id="tut-env-merge">Tutorial—Merge an environment</h2>
-<p>This tutorial shows how to merge changes from an environment to its parent, which in this case is the master branch. You can, for example, merge code, changes to themes, and so on.</p>
+<h2 id="tut-env-merge">Merge an environment</h2>
+<p>This tutorial shows how to merge changes from an environment to its parent, which in this case is the master branch. You can, for example, merge code updates, new components, changes to themes, and so on.</p>
 
 <p>You can them optionally delete the environment.</p>
 
-<p>This tutorial shows how to create a sample file and merge it. This tutorial assumes you’re already working in an environment; if not, see <a href="/guides/v2.0/cloud/env/environments-start.html#env-start-comm"> Get started with an environment</a> to create one.</p>
+<p>This tutorial shows how to create a sample file and merge it. This tutorial assumes you’re already working in an environment; if not, see <a href="/guides/v2.0/cloud/env/environments-start.html#env-start-comm">Get started with an environment</a> to create one.</p>
 
+<div class="bs-callout bs-callout-info" id="info">
+  <p>You <em>cannot</em> merge environment variables because they are not code. You must set the value of environment variables in an environment.</p>
+</div>
+
+<h3 id="get-started">Get started</h3>
 <p>To get started:</p>
 
 <div>
@@ -1104,7 +1109,13 @@
       <pre><code>magento-cloud environment:checkout &lt;environment ID&gt;
 </code></pre>
 
-      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent project ID&gt;</code></p>
+      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent environment ID&gt;</code></p>
+    </li>
+    <li>
+      <p>Pull the latest code from the environment:</p>
+
+      <pre><code>git pull origin &lt;environment ID&gt;
+</code></pre>
     </li>
     <li>
       <p>Create a <a href="/guides/v2.0/cloud/admin/admin-snap.html">snapshot</a> of the environment.</p>
@@ -1114,6 +1125,7 @@
     </li>
   </ol>
 
+  <h3 id="merge-an-environment">Merge an environment</h3>
   <p>To merge an environment:</p>
 
   <ol>
@@ -1128,8 +1140,10 @@
 
       <pre><code>git add -A
 git commit -m "&lt;commit message&gt;"
-git push origin
+git push origin &lt;branch name&gt;
 </code></pre>
+
+      <p>Where <code>&lt;branch name&gt;</code> is the Git name of the environment (that is, the environment ID).</p>
     </li>
     <li>
       <p>Merge with the parent environment:</p>
@@ -1206,11 +1220,12 @@ git push origin
 
   <p>Wait for the environment to delete.</p>
 
-  <pre><code>	git push origin :&lt;branch name&gt;
-</code></pre>
+  <div class="bs-callout bs-callout-info" id="info">
+  <p>To activate the environment later, use the <code>magento-cloud environment:activate</code> command.</p>
+</div>
 
   <h4 id="related-topic">Related topic</h4>
-  <p><a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Tutorial—Set Magento environment variables</a></p>
+  <p><a href="/guides/v2.0/cloud/env/environment-tutorial-set-mage-vars.html">Set Magento environment variables</a></p>
 </div>
 
 

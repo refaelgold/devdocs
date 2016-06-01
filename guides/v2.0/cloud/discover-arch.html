@@ -729,7 +729,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Tutorial&mdash;Upgrade the Magento system software</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Upgrade the Magento system software</a></li>
 
 									
 
@@ -737,7 +737,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Tutorial&mdash;Install optional sample data</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/sample-data.html">Install optional sample data</a></li>
 
 									
 
@@ -745,17 +745,7 @@
 
 									
 
-										<li class="level3Parent " id="env-tut"><a href="#">Tutorials&mdash;Environment</a>
-
-
-									
-
-								
-
-									
-
-
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Tutorial&mdash;Set Magento environment variables</a>
+										<li class="level3Parent " id="env-tut"><a href="#">Environment</a>
 
 
 									
@@ -765,7 +755,17 @@
 									
 
 
-											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Tutorial&mdash;Merge and delete an environment</a>
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-set-mage-vars.html">Set Magento environment variables</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child env-tut " data-menunode="env-tut"><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Merge and delete an environment</a>
 
 
 									
@@ -1039,11 +1039,11 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 11 April 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 1 June 2016 (PDT)</i></p>
 		<h2 id="architecture">Architecture</h2>
 <p>The container for your Magento application is a <em>project</em>. The project is your Magento store. Each project has one or more <em>environments</em>, which are Git branches that enable developers to work on new features or perform testing. Each environment is comprised of <em>services</em>, which are deployed inside highly restricted containers on a grid of servers.</p>
 
-<p>Monitoring and fail-over happen automatically, behind the scene.</p>
+<p>Monitoring and fail-over happen automatically, behind the scenes.</p>
 
 <div class="bs-callout bs-callout-info" id="info">
   <p>Magento Enterprise Cloud Edition currently supports the following services: PHP, MySQL (MariaDB), Solr, Elasticsearch, Redis and RabbitMQ.</p>
@@ -1064,6 +1064,16 @@
 <p>You can even have multiple applications running in the same project. Building 
 a microservice oriented architecture with Magento Enterprise Cloud Edition is
 as easy as managing a monolithic application.</p>
+
+<h2 id="software-versions-used">Software versions used</h2>
+<p>Magento Enterprise Cloud Edition uses:</p>
+
+<ul>
+  <li>Operating system: Debian GNU/Linux 8 (jessie)</li>
+  <li>Web server: nginx 1.8</li>
+</ul>
+
+<p>The preceding software is <em>not</em> upgradable but versions of <a href="/guides/v2.0/cloud/project/project-conf-files_magento-app.html">PHP</a>, <a href="/guides/v2.0/cloud/project/project-conf-files_services-mysql.html">MySQL</a>, <a href="/guides/v2.0/cloud/project/project-conf-files_services-solr.html">Solr</a>, <a href="/guides/v2.0/cloud/project/project-conf-files_services-redis.html">Redis</a>, [RabbitMQ],(/guides/v2.0/cloud/project/project-conf-files_services-rabbit.html) and <a href="/guides/v2.0/cloud/project/project-conf-files_services-elastic.html">Elasticsearch</a> are configurable.</p>
 
 <h4 id="related-topics">Related topics</h4>
 <ul>
