@@ -591,7 +591,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 11 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 2 June 2016 (PDT)</i></p>
 		<h2 id="m2devgde-js-resources-intro">Overview</h2>
 
 <p>JavaScript is important for making your storefront dynamic and interactive. However, including JavaScript into the page headers might slow down uploading of the pages. To address this problem, we exclude JavaScript from the page headers and we added the ability to use the <a href="http://requirejs.org" target="_blank">RequireJS library</a>.</p>
@@ -615,18 +615,15 @@
 
 <p>JavaScript resources generated in Magento have IDs of two types:  a RequireJS ID and a Magento modular ID. For example JavaScript resources for configurable product will have the following IDs:</p>
 
-<pre>// Regular ID
-require(["jquery"], function($){
-    // ...
-});
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// Regular ID</span>
+<span class="nx">require</span><span class="p">([</span><span class="s2">&quot;jquery&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">){</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
 
-// Modular ID (Magento module: Magento_ConfigurableProduct, resource: js/configurable)
-require(["magento!Magento_ConfigurableProduct::js/configurable"], function(Configurable){
-    // ...
-});
-</pre>
-
-<p>The modular ID has <code>magento!</code> prefix and is used for loading the JavaScript modules. The ID Normalizer plugin converts the modular IDs into the file paths that are used by RequireJS to load the JavaScript modules.</p>
+<span class="c1">// Modular ID (Magento module: Magento_ConfigurableProduct/js/configurable)</span>
+<span class="nx">require</span><span class="p">([</span><span class="s2">&quot;Magento_ConfigurableProduct/js/configurable&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Configurable</span><span class="p">){</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span></code></pre></div>
 
 <h3 id="m2devgde-js-resources-dependencies">Specify dependencies between JavaScript resources</h3>
 <p>Specifying all dependencies between JavaScript resources might be time consuming. To facilitate this task we implemented ability to build the dependencies via plugin: thus, you will need to specify only dependency of your resource on a plugin, and the latter will pick up all necessary dependencies on other resources automatically.</p>
