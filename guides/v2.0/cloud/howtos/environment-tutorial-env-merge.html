@@ -729,7 +729,28 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Upgrade the Magento system software</a></li>
+										<li class="level3Parent " id="upgrade-update"><a href="#">Upgrade and update tutorials</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child upgrade-update " data-menunode="upgrade-update"><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Upgrade the Magento system software</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child upgrade-update " data-menunode="upgrade-update"><a href="/guides/v2.0/cloud/howtos/install-components.html">Install components</a>
+
 
 									
 
@@ -745,7 +766,17 @@
 
 									
 
-										<li class="level3Parent " id="env-tut"><a href="#">Environment</a>
+
+											<li class="level3Child upgrade-update " data-menunode="upgrade-update"><a href="/guides/v2.0/cloud/howtos/update-components.html">Update components</a>
+
+
+									
+
+								
+
+									
+
+										<li class="level3Parent " id="env-tut"><a href="#">Environment tutorials</a>
 
 
 									
@@ -888,6 +919,14 @@
 									
 
 									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_ce-creds.html">Incorrect credentials</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_comp-deploy-fail.html">Component deployment failure</a></li>
 
 									
 
@@ -1039,7 +1078,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 1 June 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 2 June 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
   <li><a href="#tut-env-merge">Merge an environment</a></li>
@@ -1112,7 +1151,7 @@
       <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent environment ID&gt;</code></p>
     </li>
     <li>
-      <p>Pull the latest code from the environment:</p>
+      <p>Pull updated code:</p>
 
       <pre><code>git pull origin &lt;environment ID&gt;
 </code></pre>
@@ -1203,7 +1242,7 @@ git push origin &lt;branch name&gt;
     <li>
       <p>Answer the prompt:</p>
 
-      <pre><code>Are you sure you want to delete the remote Git branch sampledata? [Y/n]
+      <pre><code>Are you sure you want to delete the remote Git branch deleteme? [Y/n]
 </code></pre>
 
       <p>A <code>Y</code> answer makes the branch inactive but leaves it in the project.</p>

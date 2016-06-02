@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Workflow</title>
+	<title>Update components</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/cloud/discover-workflow.html">
+	<link rel="canonical" href="//guides/v2.0/cloud/howtos/update-components.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Workflow</h1>
+		<h1 class="page-heading">Update components</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/discover-workflow.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/howtos/update-components.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -241,7 +241,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/cloud/discover-workflow.html">Workflow</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/cloud/discover-workflow.html">Workflow</a></li>
 
 									
 
@@ -767,7 +767,7 @@
 									
 
 
-											<li class="level3Child upgrade-update " data-menunode="upgrade-update"><a href="/guides/v2.0/cloud/howtos/update-components.html">Update components</a>
+											<li class="level3Child upgrade-update  active " data-menunode="upgrade-update"><a href="/guides/v2.0/cloud/howtos/update-components.html">Update components</a>
 
 
 									
@@ -1078,32 +1078,171 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 6 May 2016 (PDT)</i></p>
-		<h2 id="workflow">Workflow</h2>
-<p>Everything in Magento Enterprise Cloud Edition is Git-driven. Not only the code, but also the
-infrastructure. A project contains multiple <em>environments</em>, which are Git branches.</p>
+      <p align="right"><i>Updated: 2 June 2016 (PDT)</i></p>
+		<h2 id="cloud-howto-upcomp">How update components</h2>
+<p>This topic discusses how to update components you previously installed from Magento Marketplace or from another source.</p>
 
-<p>Every branch enables you to develop features, test, or fix bugs, just like you normally do in development. Not only that, every pull request to a branch is a separate staging system you can view in a browser and test using command-line or other automated test tools.</p>
+<p>Before you continue, you must:</p>
 
-<p>You can test every feature in isolation and put it into production with a 
-single click, or a single command on the command-line.</p>
-
-<h3 id="use-any-methodology">Use any methodology</h3>
-<p>You can use any methodology you already have or you can invent new ones. For example, you can use a Development -&gt; Staging -&gt; Production workflow.</p>
-
-<p>As another example, if you are using an agile methodology such as scrum you can create <a href="/guides/v2.0/cloud/env/environments.html#cloud-env-work">branches for every sprint</a>.</p>
-
-<p>From each sprint, you can have branches for every user story. All the stories
-become testable. You can continually merge to the sprint branch and validate
-that on a continuous basis. When the sprint ends, there is no testing
-bottleneck, and you can just merge to master and put the whole sprint into
-production.</p>
-
-<h4 id="related-topics">Related topics</h4>
 <ul>
-  <li><a href="/guides/v2.0/cloud/access-acct/first-time-setup.html">First-time setup</a></li>
-  <li><a href="/guides/v2.0/cloud/project/project-start.html">Get started with a project</a></li>
-  <li><a href="/guides/v2.0/cloud/env/environments-start.html">Get started with an environment</a></li>
+  <li>Know the component’s <a href="#update-composer-name">Composer name</a> and version</li>
+  <li>Know the component is compatible with your project (in particular, check the required PHP version)</li>
+</ul>
+
+<h3 id="update-composer-name">Find a component’s Composer name</h3>
+
+<div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><div>
+
+  <p>This section discusses how to get a component’s Composer name and its version from Magento Marketplace. Alternatively, you can find the name and version of <em>any</em> component (whether or not you purchased it on Marketplace) in the component’s <code>composer.json</code> file. Open <code>composer.json</code> in a text editor and write down the values of <code>"name"</code> and <code>"version"</code>. </p>
+
+  <p>To get the component’s Composer name from Magento Marketplace:</p>
+
+  <ol>
+    <li>Log in to <a href="https://marketplace.magento.com" target="_blank">Magento Marketplace</a> with the user name and password you used to purchase the component.</li>
+    <li>
+      <p>In the upper right corner, click <strong>&lt;your user name&gt;</strong> &gt; <strong>My Account</strong> as the following figure shows.</p>
+
+      <p><img src="/common/images/cloud_marketplace-account.png" alt="Access your Marketplace account" width="650px" /></p>
+    </li>
+    <li>
+      <p>On the My Account page, click <strong>Purchase History</strong> as the following figure shows.</p>
+
+      <p><img src="/common/images/cloud_marketplace-purch-history.png" alt="Marketplace purchase history" width="650px" /></p>
+    </li>
+    <li>
+      <p>On the Purchase History page, click <strong>Download Invoice</strong> for the component you purchased as the following figure shows.</p>
+
+      <p><img src="/common/images/cloud_marketplace-download-invoice.png" alt="Download an invoice" width="650px" /></p>
+    </li>
+    <li>
+      <p>Copy the SKU to the clipboard and paste it in a text editor.</p>
+
+      <p>A sample SKU follows:</p>
+
+      <pre><code>celebros/module-autocomplete1.0.0-ee_edition
+</code></pre>
+    </li>
+    <li>Remove <code>-ee_edition</code> from the value.</li>
+    <li>Replace the dash character between the name and version with a colon character (in this example, <code>celebros/module-autocomplete:1.0.0</code>).</li>
+  </ol>
+</div>
+</div></div>
+
+<h3 id="get-started">Get started</h3>
+
+<div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><p>To get started:</p>
+
+<div>
+
+  <ol>
+    <li>Log in to the server on which your SSH keys are located.</li>
+    <li>
+      <p>Log in to your project:</p>
+
+      <pre><code>magento-cloud login
+</code></pre>
+    </li>
+    <li>
+      <p>List your projects:</p>
+
+      <pre><code>magento-cloud project:list
+</code></pre>
+    </li>
+    <li>
+      <p>If necessary, clone a project.</p>
+
+      <pre><code>magento-cloud project:get &lt;project ID&gt;
+</code></pre>
+    </li>
+    <li>
+      <p>Change to a project directory.</p>
+
+      <p>For example if your project is named Magento 2, <code>cd magento-2</code></p>
+    </li>
+    <li>
+      <p>List environments in the project:</p>
+
+      <pre><code>magento-cloud environment:list
+</code></pre>
+
+      <div class="bs-callout bs-callout-info" id="info">
+  		<p><code>magento-cloud environment:list</code> displays environment hierarchies whereas <code>git branch</code> displays does not. If you have any nested environments, use <code>magento-cloud environment:list</code>.</p>
+</div>
+    </li>
+    <li>
+      <p>Fetch origin branches:</p>
+
+      <pre><code>git fetch origin
+</code></pre>
+    </li>
+    <li>
+      <p>Check out an environment:</p>
+
+      <pre><code>magento-cloud environment:checkout &lt;environment ID&gt;
+</code></pre>
+
+      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent environment ID&gt;</code></p>
+    </li>
+    <li>
+      <p>Pull updated code:</p>
+
+      <pre><code>git pull origin &lt;environment ID&gt;
+</code></pre>
+    </li>
+    <li>
+      <p>Create a <a href="/guides/v2.0/cloud/admin/admin-snap.html">snapshot</a> of the environment.</p>
+
+      <pre><code>magento-cloud snapshot:create -e &lt;environment ID&gt;
+</code></pre>
+    </li>
+  </ol>
+</div>
+</div></div>
+
+<h3 id="update-components">Update components</h3>
+
+<div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><p>To update components:</p>
+
+<ol>
+  <li>If you haven’t done so already, change to your environment root directory.</li>
+  <li>
+    <p>Make a backup of <code>composer.json</code>:</p>
+
+    <pre><code>cp composer.json composer.json.orig
+</code></pre>
+  </li>
+  <li>Open <code>composer.json</code> in a text editor.</li>
+  <li>Locate your component.</li>
+  <li>Update its version.</li>
+  <li>Save your changes to <code>composer.json</code> and exit the text editor.</li>
+  <li>
+    <p>Update project dependencies:</p>
+
+    <pre><code>composer update
+</code></pre>
+  </li>
+  <li>
+    <p>Enter the following commands in the order shown to commit the changes and deploy the project:</p>
+
+    <pre><code>git add -A
+git commit -m "&lt;message&gt;"
+git push origin &lt;environment ID&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Wait for the project to deploy.</p>
+
+    <p>If there are errors, see <a href="/guides/v2.0/cloud/trouble/trouble_comp-deploy-fail.html">Component deployment failure</a>.</p>
+  </li>
+</ol>
+</div></div>
+
+<h4 id="related-topic">Related topic</h4>
+<ul>
+  <li><a href="/guides/v2.0/cloud/howtos/install-components.html">Install components</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Upgrade the Magento system software</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/sample-data.html">Install optional sample data</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Merge and delete an environment</a></li>
 </ul>
 
 

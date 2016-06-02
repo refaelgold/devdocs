@@ -729,7 +729,28 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Upgrade the Magento system software</a></li>
+										<li class="level3Parent " id="upgrade-update"><a href="#">Upgrade and update tutorials</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child upgrade-update  active " data-menunode="upgrade-update"><a href="/guides/v2.0/cloud/howtos/upgrade-magento.html">Upgrade the Magento system software</a>
+
+
+									
+
+								
+
+									
+
+
+											<li class="level3Child upgrade-update " data-menunode="upgrade-update"><a href="/guides/v2.0/cloud/howtos/install-components.html">Install components</a>
+
 
 									
 
@@ -745,7 +766,17 @@
 
 									
 
-										<li class="level3Parent " id="env-tut"><a href="#">Environment</a>
+
+											<li class="level3Child upgrade-update " data-menunode="upgrade-update"><a href="/guides/v2.0/cloud/howtos/update-components.html">Update components</a>
+
+
+									
+
+								
+
+									
+
+										<li class="level3Parent " id="env-tut"><a href="#">Environment tutorials</a>
 
 
 									
@@ -888,6 +919,14 @@
 									
 
 									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_ce-creds.html">Incorrect credentials</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/cloud/trouble/trouble_comp-deploy-fail.html">Component deployment failure</a></li>
 
 									
 
@@ -1039,12 +1078,14 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 1 June 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 2 June 2016 (PDT)</i></p>
 		<h2 id="cloud-howto-upgrade">How to upgrade the Magento system software</h2>
 <p>This topic discusses how to upgrade the Magento system software (for example, from version 2.0.6 to version 2.0.8).</p>
 
 <h3 id="get-started">Get started</h3>
 <p>To get started:</p>
+
+<div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><p>To get started:</p>
 
 <div>
 
@@ -1098,7 +1139,7 @@
       <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent environment ID&gt;</code></p>
     </li>
     <li>
-      <p>Pull the latest code from the environment:</p>
+      <p>Pull updated code:</p>
 
       <pre><code>git pull origin &lt;environment ID&gt;
 </code></pre>
@@ -1110,46 +1151,54 @@
 </code></pre>
     </li>
   </ol>
+</div>
+</div></div>
 
-  <h3 id="upgrade-the-software">Upgrade the software</h3>
-  <p>To upgrade:</p>
+<h3 id="upgrade-the-software">Upgrade the software</h3>
 
-  <ol>
-    <li>If you have not done so already, check out the environment to upgrade.</li>
-    <li>
-      <p>Enter the following commands at a terminal prompt:</p>
+<div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><p>To upgrade:</p>
 
-      <pre><code>composer require magento/product-enterprise-edition &lt;version&gt; --no-update
+<ol>
+  <li>If you have not done so already, check out the environment to upgrade.</li>
+  <li>
+    <p>Enter the following commands at a terminal prompt:</p>
+
+    <pre><code>composer require magento/product-enterprise-edition &lt;version&gt; --no-update
 composer update
 </code></pre>
 
-      <p>For example,</p>
+    <p>For example,</p>
 
-      <pre><code>composer require magento/product-enterprise-edition 2.0.8 --no-update
+    <pre><code>composer require magento/product-enterprise-edition 2.0.8 --no-update
 composer update
 </code></pre>
-    </li>
-    <li>Wait for dependencies to update.</li>
-    <li>
-      <p>Commit and push the changes:</p>
+  </li>
+  <li>Wait for dependencies to update.</li>
+  <li>
+    <p>Commit and push the changes:</p>
 
-      <pre><code>git add -A
+    <pre><code>git add -A
 git commit -m "Upgrade Magento"
 git push origin
 </code></pre>
-    </li>
-    <li>Wait for the project to deploy.</li>
-    <li>
-      <p>Verify the version either by logging in to the Magento Admin (version displays toward the bottom of the page) or by entering the following command:</p>
+  </li>
+  <li>Wait for the project to deploy.</li>
+  <li>
+    <p>Verify the version either by logging in to the Magento Admin (version displays toward the bottom of the page) or by entering the following command:</p>
 
-      <pre><code>php &lt;your project root dir&gt;/bin/magento --version
+    <pre><code>php &lt;your environment root dir&gt;/bin/magento --version
 </code></pre>
-    </li>
-  </ol>
+  </li>
+</ol>
+</div></div>
 
-  <h4 id="related-topic">Related topic</h4>
-  <p><a href="{ site.gdeurl }">Tutorial—Merge and delete an environment</a>cloud/howtos/environment-tutorial-env-merge.html)</p>
-</div>
+<h4 id="related-topics">Related topics</h4>
+<ul>
+  <li><a href="/guides/v2.0/cloud/howtos/install-components.html">Install components</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/update-components.html">Update components</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/sample-data.html">Install optional sample data</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Merge and delete an environment</a></li>
+</ul>
 
 
 		</div>
