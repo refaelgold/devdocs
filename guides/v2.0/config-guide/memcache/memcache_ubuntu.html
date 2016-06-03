@@ -1172,7 +1172,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 30 March 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 24 May 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
   <li><a href="#config-memcache-memcached">PHP memcache and memcached extensions</a></li>
@@ -1294,7 +1294,12 @@ phpinfo();
   <p>Create <code>cache-test.php</code> in the web server’s docroot with the following contents:</p>
 
   <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="nv">$mem</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Memcache</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">class_exists</span><span class="p">(</span><span class="s1">&#39;Memcache&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$meminstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Memcache</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$meminstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Memcached</span><span class="p">();</span>
+<span class="p">}</span>
+
 <span class="nv">$mem</span><span class="o">-&gt;</span><span class="na">addServer</span><span class="p">(</span><span class="s2">&quot;&lt;memcache host name or ip&gt;&quot;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">memcache</span> <span class="nx">port</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$mem</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">);</span>

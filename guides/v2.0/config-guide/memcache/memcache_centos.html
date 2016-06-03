@@ -1172,7 +1172,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 30 March 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 24 May 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
   <li><a href="#config-memcache-memcached">PHP memcache and memcached extensions</a></li>
@@ -1322,11 +1322,13 @@ exit
   <p>Create <code>cache-test.php</code> in your web server’s docroot:</p>
 
   <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="nv">$meminstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Memcache</span><span class="p">();</span>
-<span class="nv">$meminstance</span><span class="o">-&gt;</span><span class="na">pconnect</span><span class="p">(</span><span class="s1">&#39;&lt;memcache host name or ip&gt;&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">memcache</span> <span class="nx">port</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">class_exists</span><span class="p">(</span><span class="s1">&#39;Memcache&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$meminstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Memcache</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$meminstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Memcached</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="nb">mysql_connect</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;memcache_test&quot;</span><span class="p">,</span> <span class="s2">&quot;memcache_test&quot;</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span><span class="p">(</span><span class="nb">mysql_error</span><span class="p">());</span>
-<span class="nb">mysql_select_db</span><span class="p">(</span><span class="s2">&quot;memcache_test&quot;</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span><span class="p">(</span><span class="nb">mysql_error</span><span class="p">());</span>
+<span class="nv">$meminstance</span><span class="o">-&gt;</span><span class="na">addServer</span><span class="p">(</span><span class="s1">&#39;&lt;memcache host name or ip&gt;&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">memcache</span> <span class="nx">port</span><span class="o">&gt;</span><span class="p">);</span>
 
 <span class="nv">$query</span> <span class="o">=</span> <span class="s2">&quot;select id from example where name = &#39;new_data&#39;&quot;</span><span class="p">;</span>
 <span class="nv">$querykey</span> <span class="o">=</span> <span class="s2">&quot;KEY&quot;</span> <span class="o">.</span> <span class="nb">md5</span><span class="p">(</span><span class="nv">$query</span><span class="p">);</span>
@@ -1334,14 +1336,19 @@ exit
 <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$meminstance</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$querykey</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">)</span> <span class="p">{</span>
-   <span class="nv">$result</span> <span class="o">=</span> <span class="nb">mysql_fetch_array</span><span class="p">(</span><span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;select id from example where name = &#39;new_data&#39;&quot;</span><span class="p">))</span> <span class="k">or</span> <span class="k">die</span><span class="p">(</span><span class="s1">&#39;mysql error&#39;</span><span class="p">);</span>
-   <span class="nv">$meminstance</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$querykey</span><span class="p">,</span> <span class="nv">$result</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
-   <span class="k">print</span> <span class="s2">&quot;got result from mysql</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+   <span class="k">try</span> <span class="p">{</span>
+        <span class="nv">$dbh</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s1">&#39;mysql:host=localhost;dbname=memcache_test&#39;</span><span class="p">,</span><span class="s1">&#39;memcache_test&#39;</span><span class="p">,</span><span class="s1">&#39;memcache_test&#39;</span><span class="p">);</span>
+        <span class="nv">$dbh</span><span class="o">-&gt;</span><span class="na">setAttribute</span><span class="p">(</span><span class="nx">PDO</span><span class="o">::</span><span class="na">ATTR_ERRMODE</span><span class="p">,</span> <span class="nx">PDO</span><span class="o">::</span><span class="na">ERRMODE_EXCEPTION</span><span class="p">);</span>
+        <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$dbh</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;select id from example where name = &#39;new_data&#39;&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">();</span>
+        <span class="nv">$meminstance</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$querykey</span><span class="p">,</span> <span class="nv">$result</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">600</span><span class="p">);</span>
+        <span class="k">print</span> <span class="s2">&quot;got result from mysql</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">PDOException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">die</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">print</span> <span class="s2">&quot;got result from memcached</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-
 <span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
 
   <p>where <code>&lt;memcache host name or ip&gt;</code> is either <code>localhost</code>, <code>127.0.0.1</code>, or the memcache host name or IP address. <code>&lt;memcache port&gt;</code> is its listen port; by default, <code>11211</code>.</p>
