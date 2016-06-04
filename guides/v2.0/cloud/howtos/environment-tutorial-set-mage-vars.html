@@ -1078,9 +1078,9 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 1 June 2016 (PDT)</i></p>
-		<h2 id="cloud-env-vars-magento-admin-tut">Tutorial: change the Magento Admin URI and password</h2>
-<p>For security reasons, we strongly recommend you change the Magento Admin URI and the administrator’s password. This makes it harder for someone else to log in to the Magento Admin and change settings.</p>
+      <p align="right"><i>Updated: 4 June 2016 (PDT)</i></p>
+		<h2 id="cloud-env-vars-magento-admin-tut">Tutorial: change the Magento Admin URI, user name, and password</h2>
+<p>For security reasons, we strongly recommend you change the Magento Admin URI, administrator user name, and the administrator’s password. This makes it harder for someone else to log in to the Magento Admin and change settings.</p>
 
 <p>Environment variables are inherited from the parent environment to child environments. You should make these changes in the <code>master</code> environment so all other environments start with the same values.</p>
 
@@ -1163,14 +1163,21 @@
 </code></pre>
     </li>
     <li>
-      <p>For example, to set the administrator’s password to <code>admin_A456</code> in an environment with ID <code>admin</code>, enter:</p>
+      <p>To set the administrator’s user name to <code>meister_x2U8</code> in an environment with ID <code>admin</code>, enter:</p>
+
+      <pre><code>magento-cloud variable:set ADMIN_USERNAME meister_x2U8 -e admin
+</code></pre>
+    </li>
+    <li>Wait for the project to redeploy.</li>
+    <li>
+      <p>To set the administrator’s password to <code>admin_A456</code> in an environment with ID <code>admin</code>, enter:</p>
 
       <pre><code>magento-cloud variable:set ADMIN_PASSWORD admin_A456 -e admin
 </code></pre>
     </li>
     <li>Wait while the project redeploys.</li>
     <li>
-      <p>Set the Admin URI to <code>magento_A8v10</code>, enter:</p>
+      <p>To set the Admin URI to <code>magento_A8v10</code>, enter:</p>
 
       <pre><code>magento-cloud variable:set ADMIN_URL magento_A8v10 -e admin
 </code></pre>

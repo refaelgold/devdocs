@@ -1078,7 +1078,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 30 May 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 4 June 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
   <li><a href="#cloud-first-workspace">Set up a Magento workspace</a></li>
@@ -1201,24 +1201,43 @@
 
 <p>Follow the prompts on your screen to complete the task.</p>
 
+<h3 id="add-a-public-ssh-key-to-your-account">Add a public SSH key to your account</h3>
 <p>You can add SSH keys to your account in any of the following ways:</p>
 
 <ul>
-  <li>Using the Magento Enterprise Cloud Edition CLI</li>
-  <li>Using the Magento Enterprise Cloud Edition Web Interface when you create a new project</li>
-  <li>Your account settings</li>
+  <li>Using the <a href="#add-key-cli">Magento Enterprise Cloud Edition CLI</a></li>
+  <li>Using the <a href="#add-key-web">Magento Enterprise Cloud Edition Web Interface</a></li>
 </ul>
 
-<h3 id="add-a-public-ssh-key-to-your-account">Add a public SSH key to your account</h3>
-<p>As the account owner, log in to your Magento Enterprise Cloud Edition account and add a public SSH key. You must add the SSH key for the machine on which you will do the initial <code>git push</code> to add code to the project.</p>
-
-<p>If you don’t already have SSH keys on that machine, see <a href="https://help.github.com/articles/generating-an-ssh-key" target="_blank">GitHub documentation</a> to create them.</p>
-
-<p>To add a public SSH key:</p>
+<h4 id="add-key-cli">Add a key using the CLI</h4>
+<p>To add an SSH key using the CLI:</p>
 
 <ol>
-  <li>Copy your SSH public key to the clipboard.</li>
-  <li>Using the link in your welcome e-mail, access your Magento Enterprise Cloud Edition account.</li>
+  <li>If you haven’t done so already, log in to the server on which your SSH keys are located.</li>
+  <li>
+    <p>Log in to your project:</p>
+
+    <pre><code>magento-cloud login
+</code></pre>
+  </li>
+  <li>
+    <p>Add the key:</p>
+
+    <pre><code>magento-cloud ssh-key:add &lt;key value&gt;
+</code></pre>
+  </li>
+</ol>
+
+<h4 id="add-key-web">Add a key using the Web Interface</h4>
+<p>To add an SSH key using the Web Interface:</p>
+
+<ol>
+  <li>
+    <p>Copy your SSH public key to the clipboard.</p>
+
+    <p>If you don’t already have SSH keys on that machine, see <a href="https://help.github.com/articles/generating-an-ssh-key" target="_blank">GitHub documentation</a> to create them.
+2.	Using the link in your welcome e-mail, access your Magento Enterprise Cloud Edition account.</p>
+  </li>
   <li>
     <p>Log in to your project using Bitbucket, GitHub, Google, or a user name and password.</p>
 
