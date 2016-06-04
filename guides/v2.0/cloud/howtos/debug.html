@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Caching</title>
+	<title>Run a PHP debugger</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/cloud/project/project-routes-more-cache.html">
+	<link rel="canonical" href="//guides/v2.0/cloud/howtos/debug.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Caching</h1>
+		<h1 class="page-heading">Run a PHP debugger</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/project/project-routes-more-cache.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/cloud/howtos/debug.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -493,7 +493,7 @@
 									
 
 
-											<li class="level3Child routes  active " data-menunode="routes"><a href="/guides/v2.0/cloud/project/project-routes-more-cache.html">Caching</a>
+											<li class="level3Child routes " data-menunode="routes"><a href="/guides/v2.0/cloud/project/project-routes-more-cache.html">Caching</a>
 
 
 									
@@ -805,7 +805,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/cloud/howtos/debug.html">Run a PHP debugger</a></li>
+									<li class="level-2  active "><a href="/guides/v2.0/cloud/howtos/debug.html">Run a PHP debugger</a></li>
 
 									
 
@@ -1086,145 +1086,134 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 6 May 2016 (PDT)</i></p>
-		<h4 id="contents">Contents</h4>
-<ul>
-  <li><a href="#cloud-cache-over">Caching</a></li>
-  <li><a href="#cloud-cache-setup">Set up caching</a></li>
-  <li><a href="#cloud-cache-route">Route-based caching</a></li>
-  <li><a href="#cloud-cache-ttl">Cache duration</a> </li>
-  <li><a href="#cloud-cache-key">Cache key</a> </li>
-  <li><a href="#cloud-cache-attrib">Cache attributes</a> </li>
-</ul>
+      <p align="right"><i>Updated: 4 June 2016 (PDT)</i></p>
+		<h2 id="cloud-howto-debug">How to run a PHP debugger</h2>
+<p>This topic discusses how to run a PHP debugger using Xdebug as an example.</p>
 
-<h2 id="cloud-cache-over">Caching</h2>
-<p>Magento Enterprise Cloud Edition enables you to use caching in your environment. If you disable caching, Magento Enterprise Cloud Edition directly serves the files. </p>
+<h3 id="get-started">Get started</h3>
 
-<h2 id="cloud-cache-setup">Set up caching</h2>
-<p>Enable caching in your Magento application’s <code>.magento/routes.yaml</code> as follows:</p>
+<div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><div>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">http://{default}/</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">upstream</span>
-    <span class="l-Scalar-Plain">upstream</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">php:php</span>
-    <span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
-        <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-        <span class="l-Scalar-Plain">headers</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span> <span class="s">&quot;Accept&quot;</span><span class="p-Indicator">,</span> <span class="s">&quot;Accept-Language&quot;</span><span class="p-Indicator">,</span> <span class="s">&quot;X-Language-Locale&quot;</span> <span class="p-Indicator">]</span>
-        <span class="l-Scalar-Plain">cookies</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;*&quot;</span><span class="p-Indicator">]</span>
-        <span class="l-Scalar-Plain">default_ttl</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">60</span></code></pre></div>
+  <ol>
+    <li>Log in to the server on which your SSH keys are located.</li>
+    <li>
+      <p>Log in to your project:</p>
 
-<h2 id="cloud-cache-route">Route-based caching</h2>
-<p>If you need fine-grained caching, you can set up caching rules for
-several routes separately as the following example shows:</p>
+      <pre><code>magento-cloud login
+</code></pre>
+    </li>
+    <li>
+      <p>List your projects:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">http://{default}/</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">upstream</span>
-  <span class="l-Scalar-Plain">upstream</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">php:php</span>
-  <span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+      <pre><code>magento-cloud project:list
+</code></pre>
+    </li>
+    <li>
+      <p>If necessary, clone a project.</p>
 
-<span class="l-Scalar-Plain">http://{default}/path/</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">upstream</span>
-  <span class="l-Scalar-Plain">upstream</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">php:php</span>
-  <span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+      <pre><code>magento-cloud project:get &lt;project ID&gt;
+</code></pre>
+    </li>
+    <li>
+      <p>Change to a project directory.</p>
 
-<span class="l-Scalar-Plain">http://{default}/path/more/</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">upstream</span>
-  <span class="l-Scalar-Plain">upstream</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">php:php</span>
-  <span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></code></pre></div>
+      <p>For example if your project is named Magento 2, <code>cd magento-2</code></p>
+    </li>
+    <li>
+      <p>List environments in the project:</p>
 
-<p>The preceding example caches the following routes:</p>
+      <pre><code>magento-cloud environment:list
+</code></pre>
 
-<ul>
-  <li><code>http://{default}/</code></li>
-  <li><code>http://{default}/path/more/</code></li>
-  <li><code>http://{default}/path/more/etc/</code></li>
-</ul>
-
-<p>And the following routes are <strong>not</strong> cached:</p>
-
-<ul>
-  <li><code>http://{default}/path/</code></li>
-  <li><code>http://{default}/path/etc/</code></li>
-</ul>
-
-<div class="bs-callout bs-callout-info" id="info">
-  <p>Regular expressions in routes are <em>not</em> supported.</p>
+      <div class="bs-callout bs-callout-info" id="info">
+  		<p><code>magento-cloud environment:list</code> displays environment hierarchies whereas <code>git branch</code> displays does not. If you have any nested environments, use <code>magento-cloud environment:list</code>.</p>
 </div>
+    </li>
+    <li>
+      <p>Fetch origin branches:</p>
 
-<h2 id="cloud-cache-ttl">Cache duration</h2>
-<p>The cache duration is determined by the <code>Cache-Control</code> response
-header value. If no <code>Cache-Control</code> header is in the response, we use the 
-<code>default_ttl</code> key.</p>
+      <pre><code>git fetch origin
+</code></pre>
+    </li>
+    <li>
+      <p>Check out an environment:</p>
 
-<h2 id="cloud-cache-key">Cache key</h2>
-<p>To decide how to cache a response, Magento Enterprise Cloud Edition builds a cache key
-depending on several factors and store the response associated with this
-key. When a request comes with the same cache key, the response is
-reused. Its purpose is similar to the HTTP <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.44" target="_blank"><code>Vary</code> header</a>.</p>
+      <pre><code>magento-cloud environment:checkout &lt;environment ID&gt;
+</code></pre>
 
-<p>The parameters <code>headers</code> and
-<code>cookies</code> keys enable you to change this cache key.</p>
+      <p>To create a new environment, use <code>magento-cloud environment:branch &lt;environment name&gt; &lt;parent environment ID&gt;</code></p>
+    </li>
+    <li>
+      <p>Pull updated code:</p>
 
-<p>The default value for these keys follows:</p>
+      <pre><code>git pull origin &lt;environment ID&gt;
+</code></pre>
+    </li>
+    <li>
+      <p>Create a <a href="/guides/v2.0/cloud/admin/admin-snap.html">snapshot</a> of the environment.</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-  <span class="l-Scalar-Plain">headers</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;Accept-Language&quot;</span><span class="p-Indicator">,</span> <span class="s">&quot;Accept&quot;</span><span class="p-Indicator">]</span>
-  <span class="l-Scalar-Plain">cookies</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;*&quot;</span><span class="p-Indicator">]</span></code></pre></div>
-
-<h2 id="cloud-cache-attrib">Cache attributes</h2>
-<p>We support the following attributes:</p>
-
-<ul>
-  <li><a href="#cloud-cache-attrib-en"><code>enabled</code></a></li>
-  <li><a href="#cloud-cache-attrib-head"><code>headers</code></a></li>
-  <li><a href="#cloud-cache-attrib-cook"><code>cookies</code></a></li>
-  <li><a href="#cloud-cache-attrib-ttl"><code>default_ttl</code></a> </li>
-</ul>
-
-<h3 id="cloud-cache-attrib-en"><code>enabled</code></h3>
-<p>When set to <code>true</code>, enable the cache for this route. When set to
-<code>false</code>, disable the cache for this route.</p>
-
-<h3 id="cloud-cache-attrib-head"><code>headers</code></h3>
-<p>Defines on which values the cache key must depend.</p>
-
-<p>For example, if the <code>headers</code> key is the following:</p>
-
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-  <span class="l-Scalar-Plain">headers</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;Accept&quot;</span><span class="p-Indicator">]</span></code></pre></div>
-
-<p>Then Magento Enterprise Cloud Edition will cache a different response for each value of the
-<code>Accept</code> HTTP header.</p>
-
-<h3 id="cloud-cache-attrib-cook"><code>cookies</code></h3>
-<p>The <code>cookies</code> key define on which values the cache key must depend.</p>
-
-<p>For example:</p>
-
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">cache</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">enabled</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-  <span class="l-Scalar-Plain">cookies</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;value&quot;</span><span class="p-Indicator">]</span></code></pre></div>
-
-<p>The cache key depends on the value of the <code>value</code> cookie in the
-request.</p>
-
-<p>A special case exists if the <code>cookies</code> key has the <code>["*"]</code> value. This value
-means that any request with a cookie will bypass the cache. This is the
-default value.</p>
-
-<div class="bs-callout bs-callout-info" id="info">
-  <p>You cannot  use wildcards in the cookie name. You must either use a precise cookie name, or match all cookies with asterisk (<code>*</code>). <code>SESS*</code> or <code>~SESS</code> are currently  <em>not</em> valid values.
-</p>
+      <pre><code>magento-cloud snapshot:create -e &lt;environment ID&gt;
+</code></pre>
+    </li>
+  </ol>
 </div>
+</div></div>
 
-<h3 id="cloud-cache-attrib-ttl"><code>default_ttl</code></h3>
-<p>If the response does not have a <code>Cache-Control</code> header, the
-<code>default_ttl</code> key is used to define the cache duration, in seconds. The
-default value is <code>0</code>, which means nothing is cached.</p>
+<h3 id="set-up-xdebug">Set up Xdebug</h3>
+
+<div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><p>To set up Xdebug:</p>
+
+<ol>
+  <li>Open <code>.magento.app.yaml</code> in a text editor.</li>
+  <li>
+    <p>In the <code>runtime</code> section, under <code>extensions</code>, add <code>xdebug</code>.</p>
+
+    <p>An example follows:</p>
+
+    <pre><code>runtime:
+   extensions:
+      - mcrypt
+      - redis
+      - xsl
+      - json
+      - xdebug
+</code></pre>
+  </li>
+  <li>Save your changes to <code>.magento.app.yaml</code> and exit the text editor.</li>
+  <li>
+    <p>Add, commit, and push the changes to redeploy the environment:</p>
+
+    <pre><code>git add -A
+git commit -m "Add xdebug"
+git push origin &lt;environment ID&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>Get the environment’s SSH URL:</p>
+
+    <pre><code>magento-cloud environment:ssh --pipe -e &lt;environment ID&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>To use Xdebug, SSH to the environment as follows:</p>
+
+    <pre><code>ssh -R &lt;xdebug listen port&gt;:&lt;host&gt;:&lt;xdebug listen port&gt; &lt;SSH URL&gt;
+</code></pre>
+
+    <p>For example,</p>
+
+    <pre><code>ssh -R 9000:localhost:9000 pwga8A0bhuk7o-mybranch@ssh.us.magentosite.cloud
+</code></pre>
+  </li>
+</ol>
+</div></div>
+
+<h4 id="related-topics">Related topics</h4>
+<ul>
+  <li><a href="/guides/v2.0/cloud/howtos/install-components.html">Install components</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/update-components.html">Update components</a></li>
+  <li><a href="/guides/v2.0/cloud/howtos/environment-tutorial-env-merge.html">Merge and delete an environment</a></li>
+</ul>
 
 
 		</div>
