@@ -1078,7 +1078,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 2 June 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 4 June 2016 (PDT)</i></p>
 		<h2 id="component-deployment-failure">Component deployment failure</h2>
 <p>This topic discusses how to recover from a failed component deployment. Typical examples are components that have dependencies that are not met by your environment; for example, incompatible PHP versions.</p>
 
@@ -1199,6 +1199,24 @@
   </ol>
 </div>
 </div></div>
+
+<h4 id="clear-var-directories">Clear <code>var</code> directories</h4>
+<p>To clean up from the previous deployment, you must SSH to the environment and manually clear the contents of the Magento <code>var</code> directory.</p>
+
+<ol>
+  <li>
+    <p>Enter the following command to SSH to the current environment:</p>
+
+    <pre><code>magento-cloud environment:ssh
+</code></pre>
+  </li>
+  <li>
+    <p>Clear the <code>var</code> directory:</p>
+
+    <pre><code>rm -rf var/*
+</code></pre>
+  </li>
+</ol>
 
 <h4 id="remove-the-component">Remove the component</h4>
 
