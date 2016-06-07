@@ -1086,7 +1086,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 1 June 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 7 June 2016 (PDT)</i></p>
 		<h4 id="contents">Contents</h4>
 <ul>
   <li><a href="#cloud-yaml-platform">About <code>.magento.app.yaml</code></a></li>
@@ -1469,11 +1469,11 @@ schedule.</p>
 <div class="collapsible"><h4 class="collapsible-title">Click to show/hide content </h4><div class="collapsible-content"><p><code>crons</code> supports the following:</p>
 
 <ul>
-  <li><code>spec</code>: The cron specification. Magento requires cron to run every minute; our spec is <code>*/1 * * * *</code>.</li>
+  <li><code>spec</code>: The cron specification. Regardless of the setting, cron runs every 5 minutes.</li>
   <li><code>cmd</code>: The command to execute.</li>
 </ul>
 
-<p>The Magento cron job follows:</p>
+<p>A sample Magento cron job follows:</p>
 
 <pre><code>crons:
 cronrun:
