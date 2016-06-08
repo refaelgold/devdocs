@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Start System Upgrade</title>
+	<title>Upgrade Magento EE with sample data to RC1 or RC2</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/comp-mgr/upgrader/upgrade-start.html">
+	<link rel="canonical" href="//guides/v2.0/comp-mgr/upgrader/upgrade-rc1.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -148,9 +148,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Start System Upgrade</h1>
+		<h1 class="page-heading">Upgrade Magento EE with sample data to RC1 or RC2</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/comp-mgr/upgrader/upgrade-start.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/comp-mgr/upgrader/upgrade-rc1.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -162,9 +162,6 @@
 <aside class="sidebar">
 	<a href="#" class="toc-toggler">Table of Contents</a>
 	<div class="sidebar-wrapper">
-
-
-<h4>Component Manager and System Upgrade Guide</h4>
 
 
 
@@ -236,589 +233,6 @@
 				
 
 			
-
-				
-
-					
-					
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/bk-compman-upgrade-guide.html">Upgrade the Magento application and components</a></li>
-									
-								
-
-									
-
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/prereq/prereq_compman.html">Prerequisites</a></li>
-									
-								
-
-									
-
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/prereq/prereq_auth-token.html">Enter your authentication keys in the Admin</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/prereq/prereq_compman-ulimit.html">Set ulimit for the web server user</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/prereq/prereq_cron.html">Set up cron for Component Manager and System Upgrade</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/prereq/prereq_compman-checklist.html">Update and upgrade checklist</a></li>
-
-									
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/marketplace/marketplace.html">Magento Marketplace example</a></li>
-									
-								
-
-									
-
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/compman-checklist.html">Run the Component Manager</a></li>
-									
-								
-
-									
-
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/compman-start.html">Start the Component Manager</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/compman-main-pg.html">Manage your components</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/compman-readiness.html">Step 1. Readiness check</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/compman-backup.html">Step 2. Back up the file system and database</a></li>
-
-									
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/compman-enable-disable.html">Enable/Disable (Component Manager)</a></li>
-									
-								
-
-									
-
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/compman-new-purchase.html">Component Install (Component Manager)</a></li>
-									
-								
-
-									
-
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/compman-update.html">Component Update</a></li>
-									
-								
-
-									
-
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/upgrader/ce-ee-upgrade-start.html">Upgrade from CE to EE</a></li>
-									
-								
-
-									
-
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/cli/cli-upgrade.html">Command-line upgrade</a></li>
-									
-								
-
-									
-
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/cli/cli-rc1-samp.html">Command-line Magento EE upgrade with sample data to RC1 or RC2</a></li>
-
-									
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/upgrader/upgrade-checklist.html">Run System Upgrade</a></li>
-									
-								
-
-									
-
-
-								
-
-									
-
-									<li class="level-2  active "><a href="/guides/v2.0/comp-mgr/upgrader/upgrade-start.html">Start System Upgrade</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/upgrader/upgrade-main-pg.html">Step 1. Select versions to upgrade</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/upgrader/upgrade-readiness.html">Step 2. Readiness check</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/upgrader/upgrade-backup.html">Step 3. Back up the file system and database</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/upgrader/upgrade.html">Step 4. Upgrade</a></li>
-
-									
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/compman-uninst.html">Uninstall</a></li>
-									
-								
-
-									
-
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/compman-uninst-data.html">Step 3. Data Option</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/compman-uninst-final.html">Step 4. Uninstall</a></li>
-
-									
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/updater/update-updater.html">Update the updater application</a></li>
-									
-								
-
-									
-
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/updater/updater.html">Updater application</a></li>
-
-									
-
-								
-								
-								
-							
-							
-						
-
-					
-
-						
-
-						
-
-							
-
-
-								
-
-
-								
-									<li class="level1 "><a class="nav-header" href="/guides/v2.0/comp-mgr/trouble/tshoot.html">Troubleshooting suggestions</a></li>
-									
-								
-
-									
-
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/were-sorry.html">Sorry, we can't take that action right now</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/gitignore.html">Missing .gitignore files</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/cron.html">Troubleshoot cron</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/updater.html">Troubleshoot the updater application</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/php-version.html">PHP version readiness check issues</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/update-fail.html">Roll back after update failure</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/component-depend.html">Resolve component dependencies</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/maint-mode.html">Maintenance mode options for upgrade</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/tshoot_backup.html">Troubleshoot backups</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/ce-ee-upgrade.html">Error upgrading from CE to EE</a></li>
-
-									
-
-								
-
-									
-
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/trouble/cman/doc.html">magento/theme-doc-blank failure</a></li>
-
-									
-
-								
-								
-								
-							
-							
-						
-
-					
-
 
 				
 
@@ -926,70 +340,98 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 7 June 2016 (PDT)</i></p>
-		<h2 id="compman-prereq">Prerequisites</h2>
-<p>Before continuing, complete all tasks discussed in <a href="/guides/v2.0/comp-mgr/prereq/prereq_compman.html">Prerequisites</a>.</p>
+      <p align="right"><i>Updated: 8 June 2016 (PDT)</i></p>
+		<p><img src="/common/images/ee-only_large.png" alt="This topic applies to Enterprise Edition only" /></p>
 
-<div class="bs-callout bs-callout-warning">
-   	<p>If you're upgrading to either Release Candidate 1 (RC1) or RC2 with sample data, see <a href="/guides/v2.0/comp-mgr/upgrader/upgrade-rc1.html">Upgrade with sample data to RC1 or RC2</a> first.</p>   
-</div>
+<h2 id="upgrade-magento-ee-with-sample-data-to-rc1-or-rc2">Upgrade Magento EE with sample data to RC1 or RC2</h2>
 
-<h2 id="optional-custom-maintenance-page">Optional custom maintenance page</h2>
-<p>During the time you’re upgrading, your storefront is partially available. Users can see a list of files and so on but cannot shop or check out.</p>
+<div>
 
-<p>To avoid the appearance of a disabled site and to set up a custom maintenance page that displays during the upgrade, see <a href="/guides/v2.0/comp-mgr/trouble/cman/maint-mode.html">Maintenance mode options for upgrade</a>.</p>
+  <p>These instructions apply to you <em>only</em> if all of the following are true:</p>
 
-<h2 id="compman-access">Start System Upgrade from the Magento Admin</h2>
-<p>To run System Upgrade:</p>
+  <ul>
+    <li>You’re using Magento Enterprise Edition (EE)</li>
+    <li>You have installed optional sample data</li>
+    <li>You’re upgrading to Magento EE RC1 or Magento EE RC2 from any earlier version using the Setup Wizard</li>
+  </ul>
 
-<ol>
-  <li>Log in to the Magento Admin as an administrator.</li>
-  <li>Click <strong>System</strong> &gt; Tools &gt; <strong>Web Setup Wizard</strong>.
-The following page displays.<br /><br />
-<img src="/common/images/cman_upgr_initial.png" width="650px" alt="Specify whether to manage components or upgrade Magento" /></li>
-  <li>Click <strong>System Configuration</strong>.</li>
+  <p>To upgrade to Magento 2 EE RC1 or RC2 with sample data using the Setup Wizard:</p>
+
+  <div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><ol>
+  <li>Log in to your Magento server as, or switch to, the <a href="/guides/v2.0/install-gde/prereq/file-sys-perms-over.html">Magento file system owner</a>.</li>
+  <li>Change to the Magento installation directory.</li>
+  <li>Open <code>composer.lock</code> in a text editor.</li>
   <li>
-    <p>If you haven’t already done so, enter your <a href="/guides/v2.0/install-gde/prereq/connect-auth.html">authentication keys</a> in the provided fields.</p>
+    <p>Change the following:</p>
 
-    <p>The following figure shows an example if you <em>have</em> already entered your keys.</p>
+    <p>From:</p>
 
-    <p><img src="/common/images/compman_auth-keys.png" alt="Authentication keys entered in the Setup Wizard" /></p>
+    <pre><code>"type": "magento2-module-customer-balance"
+</code></pre>
 
-    <div class="bs-callout bs-callout-warning">
-	<p>For upgrade or update, you must use the same authentication keys you used to install the Magento software. For example, you <em>cannot</em> use Magento CE authentication keys to update or upgrade Magento EE or vice versa. You also <em>cannot</em> use:</p>
-	<ul><li>Another user's authentication keys</li>
-	<li><a href="http://docs.magento.com/m2/ce/user_guide/magento/magento-account-share.html" target="_blank">Shared account</a> authentication keys</li></ul>   
-</div>
+    <p>To:</p>
+
+    <pre><code>"type": "magento2-module"
+</code></pre>
   </li>
-  <li>Click <strong>Save Config</strong>.</li>
-  <li>
-    <p>Click <strong>System Upgrade</strong>.</p>
-
-    <p>Magento begins searching for core module updates immediately. To also search for component updates, click <strong>Yes</strong>. A sample follows:</p>
-
-    <p><img src="/common/images/upgr_initial-pg.png" width="650px" alt="Magento begins searching for upgrades right away" /></p>
-
-    <p>The page displays similar to the following when we find components to upgrade.<br /><br />
-<img src="/common/images/upgr_stuff-2-upgrade.png" width="650px" alt="Magento finds software to upgrade" /><br /><br /></p>
-  </li>
-  <li>Continue with <a href="/guides/v2.0/comp-mgr/upgrader/upgrade-main-pg.html">Step 1. Select versions to upgrade</a>.</li>
+  <li>Save your changes to <code>composer.lock</code> and exit the text editor.</li>
 </ol>
 
-<h4 id="error">Error</h4>
-<p>The following error can indicate one of several issues, including that you haven’t entered your <a href="/guides/v2.0/comp-mgr/prereq/prereq_auth-token.html">authentication keys</a> in the Magento Admin:</p>
+<div>
 
-<p><img src="/common/images/upgr-sorry.png" width="600px" /></p>
+  <h3 id="rc1-samp-ownership">Apply file system permissions and ownership</h3>
+  <p>Before you upgrade Magento and sample data, you must apply current file system permission and ownership as discussed in the following sections. Failure to do so will cause your upgrade to fail.</p>
 
-<p>For suggested solutions to other causes indicated by this message, see <a href="/guides/v2.0/comp-mgr/trouble/cman/were-sorry.html">troubleshooting</a>.</p>
+  <p>For more information about file system ownership and permissions since the Magento 2.0.6 release, see <a href="/guides/v2.0/install-gde/prereq/file-sys-perms-over.html">Overview of ownership and permissions</a>.</p>
 
-<h4 id="sample-data">Sample data</h4>
-<p>The System Upgrade utility installs sample data for you but doesn’t display it, if you:</p>
+  <h4 id="one-user-ownership-and-permissions">One-user ownership and permissions</h4>
+  <p>If you run the Magento application as one user (which is typical of shared hosting environments), change file system permissions and ownership as follows:</p>
 
-<ul>
-  <li>Used the <a href="/guides/v2.0/install-gde/install/cli/install-cli-sample-data-composer.html"><code>magento sampledata:deploy</code></a> command to download, but not installed sample data</li>
-  <li>You chose to update components at the same time as the Magento system software</li>
-</ul>
+  <pre><code>cd &lt;your Magento install dir&gt;
+find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
+find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \;
+chmod u+x bin/magento
+</code></pre>
 
+  <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code>:</p>
+
+  <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \; &amp;&amp; chmod u+x bin/magento
+</code></pre>
+
+  <p>After you set file system permissions, manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
+
+  <p>A sample command follows:</p>
+
+  <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+
+  <h4 id="two-user-ownership-and-permissions">Two-user ownership and permissions</h4>
+  <p>If you run the Magento application with two users, enter the following commands as a user with <code>root</code> privileges:</p>
+
+  <pre><code>cd &lt;your Magento install dir&gt;
+find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
+find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \;
+chown -R :&lt;web server group&gt; .
+chmod u+x bin/magento
+</code></pre>
+
+  <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code> and the web server group name is <code>apache</code>:</p>
+
+  <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \; &amp;&amp; chown -R :apache . &amp;&amp; chmod u+x bin/magento
+</code></pre>
+
+  <p>After you set file system permissions, manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
+
+  <p>A sample command follows:</p>
+
+  <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+
+  <h3 id="finish-the-upgrade">Finish the upgrade</h3>
+  <p>After you set file system permissions, complete your upgrade as discussed in <a href="/guides/v2.0/comp-mgr/upgrader/upgrade-start.html">Start System Upgrade</a>.</p>
+</div>
+</div></div>
+</div>
 
 
 		</div>

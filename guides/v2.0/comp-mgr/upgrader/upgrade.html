@@ -543,6 +543,14 @@
 
 
 								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/cli/cli-rc1-samp.html">Command-line Magento EE upgrade with sample data to RC1 or RC2</a></li>
+
+									
+
+								
 								
 								
 							
@@ -918,8 +926,34 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 13 May 2016 (PDT)</i></p>
-		<h2 id="upgrade-finish">Step 4. Upgrade</h2>
+      <p align="right"><i>Updated: 8 June 2016 (PDT)</i></p>
+		<h2 id="compman-upgr-var">Clear <code>var</code> directories (upgrade with sample data only)</h2>
+<p>This section applies to you <em>only</em> if all of the following are true:</p>
+
+<ul>
+  <li>You’re upgrading to Magento Enterprise Edition (EE) 2.1 Release Candidate 1 (RC1) or RC2</li>
+  <li>You installed sample data</li>
+</ul>
+
+<p>If the preceding are not true, skip this section and continue with <a href="#upgrade-finish">Step 4. Upgrade</a>.</p>
+
+<p>Before you continue your upgrade:</p>
+
+<ol>
+  <li>Log in to your Magento server as, or switch to, the <a href="/guides/v2.0/install-gde/prereq/file-sys-perms-over.html">Magento file system owner</a>.</li>
+  <li>Change to your Magento installation directory.</li>
+  <li>
+    <p>Clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
+
+    <p>A sample command follows:</p>
+
+    <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+  </li>
+  <li>Continue with the next section.</li>
+</ol>
+
+<h2 id="upgrade-finish">Step 4. Upgrade</h2>
 <p>The components you’re upgrading display. The following figure shows an example.</p>
 
 <p><img src="/common/images/upgr_upgrade.png" width="550px" alt="Click upgrade to complete the task" /></p>
@@ -930,7 +964,92 @@
 
 <p>Messages similar to the following display in the Console Log:</p>
 
-<p><img src="/common/images/upgrade-success-consolelog.png" width="650px" /></p>
+<div class="collapsible"><h4 class="collapsible-title">Click to view the Console Log </h4><div class="collapsible-content"><p><img src="/common/images/upgrade-success-consolelog.png" width="650px" /></p>
+</div></div>
+
+<p>After the upgrade finishes, access your storefront.</p>
+
+<h2 id="errors-after-upgrade">Errors after upgrade</h2>
+<p>After you finish your upgrade, errors might display.</p>
+
+<ul>
+  <li>
+    <p>On the main storefront page, the following error might display.</p>
+
+    <pre><code>We're sorry, an error has occurred while generating this email.
+</code></pre>
+  </li>
+  <li>
+    <p>On a category page, the following error might display:</p>
+
+    <pre><code>We can't find products matching the selection.
+</code></pre>
+  </li>
+</ul>
+
+<p>If any of the preceding errors display, perform all of the following tasks.</p>
+
+<div>
+
+  <h3 id="rc1-samp-ownership">Apply file system permissions and ownership</h3>
+  <p>Before you upgrade Magento and sample data, you must apply current file system permission and ownership as discussed in the following sections. Failure to do so will cause your upgrade to fail.</p>
+
+  <p>For more information about file system ownership and permissions since the Magento 2.0.6 release, see <a href="/guides/v2.0/install-gde/prereq/file-sys-perms-over.html">Overview of ownership and permissions</a>.</p>
+
+  <h4 id="one-user-ownership-and-permissions">One-user ownership and permissions</h4>
+  <p>If you run the Magento application as one user (which is typical of shared hosting environments), change file system permissions and ownership as follows:</p>
+
+  <pre><code>cd &lt;your Magento install dir&gt;
+find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
+find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \;
+chmod u+x bin/magento
+</code></pre>
+
+  <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code>:</p>
+
+  <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \; &amp;&amp; chmod u+x bin/magento
+</code></pre>
+
+  <p>After you set file system permissions, manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
+
+  <p>A sample command follows:</p>
+
+  <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+
+  <h4 id="two-user-ownership-and-permissions">Two-user ownership and permissions</h4>
+  <p>If you run the Magento application with two users, enter the following commands as a user with <code>root</code> privileges:</p>
+
+  <pre><code>cd &lt;your Magento install dir&gt;
+find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
+find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \;
+chown -R :&lt;web server group&gt; .
+chmod u+x bin/magento
+</code></pre>
+
+  <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code> and the web server group name is <code>apache</code>:</p>
+
+  <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \; &amp;&amp; chown -R :apache . &amp;&amp; chmod u+x bin/magento
+</code></pre>
+
+  <p>After you set file system permissions, manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
+
+  <p>A sample command follows:</p>
+
+  <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+
+  <h3 id="clear-var-directories">Clear <code>var</code> directories</h3>
+  <p>Clear the <code>var/cache</code>, 	<code>var/page_cache</code>, <code>var/generation</code></p>
+
+  <p>A sample command follows:</p>
+
+  <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+
+  <h3 id="access-your-storefront-again">Access your storefront again</h3>
+  <p>After performing the preceding tasks, access your storefront again. If necessary, press Control+R to force the page to reload.</p>
+</div>
 
 
 		</div>
