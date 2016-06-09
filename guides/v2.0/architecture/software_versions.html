@@ -149,6 +149,8 @@
 <section class="page-intro">
 	<div class="container">
 		<h1 class="page-heading">Magento 2.0 software versions</h1>
+			
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/architecture/software_versions.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -809,14 +811,14 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 7 March 2016 (PST)</i></p>
+      <p align="right"><i>Updated: 9 June 2016 (PDT)</i></p>
 		<h2 id="verpol">Magento 2.0 software versions</h2>
 
-<p>Magento versioning policy addresses the concerns of two main types of users: </p>
+<p>Magento versioning policy addresses the concerns of two main types of users:</p>
 
 <ul>
   <li>
-    <p><i>merchants</i>, who are focused on <strong>product version numbers</strong>. This product version number loosely corresponds to a platform version. </p>
+    <p><i>merchants</i>, who are focused on <strong>product version numbers</strong>. This product version number loosely corresponds to a platform version.</p>
   </li>
   <li>
     <p><i>extension developers</i>, who focus on <strong>module version numbers</strong>. Each  module is released in its own Composer package, which is identified with a module version number.</p>
@@ -840,11 +842,11 @@
 <h3>Schema and data version numbers (extension developer focus)</h3>
 <p>Schema and data version numbers are relevant only to developer-level discussions.  Magento uses these version numbers during the installation and upgrade process.</p>
 
-<p>Some modules contain tables of data, and these tables are assigned a schema version number. Changes to the table structure must be reflected in this schema version number. (Table structure changes can include the addition or deletion of a column, for example.) Changes to table data are captured in the data version number. </p>
+<p>Some modules contain tables of data, and these tables are assigned a schema version number. Changes to the table structure must be reflected in this schema version number. (Table structure changes can include the addition or deletion of a column, for example.) Changes to table data are captured in the data version number.</p>
 
 <p>For information on the types of schema changes that affect a module’s schema version number, see section 2 of Introducing SchemaVer for semantic versioning of schemas.</p>
 
-<p>If you are developing an extension, specify the schema version of each module in its <code>module.xml</code> file. Magento stores this schema version of each module within the read-only <code>setup_module</code> table of the Magento database. </p>
+<p>If you are developing an extension, specify the schema version of each module in its <code>module.xml</code> file. Magento stores this schema version of each module within the read-only <code>setup_module</code> table of the Magento database.</p>
 
 <p>If you are installing or upgrading Magento from the command line, you have the option to upgrade in stages: first upgrade only schemas of tables and then upgrade data. During the upgrade process, Magento tracks these version changes in the setup_module table by automatically updating from the version value in <code>etc/module.xml</code> file.</p>
 
@@ -859,7 +861,6 @@
 <p><a href="/guides/v2.0/architecture/back-compatibility.html">Backward compatibility</a></p>
 
 <p><a href="/guides/v2.0/architecture/archi_perspectives/ABasics_intro.html">Architectural basics</a></p>
-
 
 
 		</div>
