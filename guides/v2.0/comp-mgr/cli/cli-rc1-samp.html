@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Command-line Magento EE upgrade with sample data to RC1 or RC2</title>
+	<title>Command-line upgrade to Magento 2.1 with sample data</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -148,7 +148,7 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Command-line Magento EE upgrade with sample data to RC1 or RC2</h1>
+		<h1 class="page-heading">Command-line upgrade to Magento 2.1 with sample data</h1>
 			
 			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/comp-mgr/cli/cli-rc1-samp.md" target="_blank">Edit this page on GitHub</a>
 		
@@ -546,7 +546,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/comp-mgr/cli/cli-rc1-samp.html">Command-line Magento EE upgrade with sample data to RC1 or RC2</a></li>
+									<li class="level-2  active "><a href="/guides/v2.0/comp-mgr/cli/cli-rc1-samp.html">Command-line upgrade to Magento 2.1 with sample data</a></li>
 
 									
 
@@ -926,8 +926,8 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 9 June 2016 (PDT)</i></p>
-		<h2 id="command-line-magento-ee-upgrade-with-sample-data-to-rc1-or-rc2">Command-line Magento EE upgrade with sample data to RC1 or RC2</h2>
+      <p align="right"><i>Updated: 16 June 2016 (PDT)</i></p>
+		<h2 id="command-line-upgrade-to-magento-21-with-sample-data">Command-line upgrade to Magento 2.1 with sample data</h2>
 
 <div>
 
@@ -937,6 +937,31 @@
     <li>You installed optional sample data</li>
     <li>You’re upgrading to Magento 2.1 (including a Release Candidate) from version 2.0.7 or earlier using the command line</li>
   </ul>
+
+  <h3 id="upgrade-cli-maint">Put your store in maintenance mode</h3>
+
+  <div class="collapsible"><h4 class="collapsible-title">To put your store in maintenance mode for the upgrade: </h4><div class="collapsible-content"><p>To prevent access to your store while it’s being upgraded, put your store in maintenance mode.</p>
+
+<div class="bs-callout bs-callout-info" id="info">
+  	<p>You can optionally create a <a href="/guides/v2.0/comp-mgr/trouble/cman/maint-mode.html">custom maintenance mode page</a>.</p>
+</div>
+
+<p>To enable maintenance mode:</p>
+
+<ol>
+  <li>Log in to your Magento server as, or switch to, the Magento file system owner.</li>
+  <li>
+    <p>Enter the following command:</p>
+
+    <pre><code>php &lt;your Magento install dir&gt;/bin/magento magento maintenance:enable
+</code></pre>
+
+    <p>For additional options, see <a href="/guides/v2.0/install-gde/install/cli/install-cli-subcommands-maint.html">Enable or disable maintenance mode</a>.</p>
+  </li>
+</ol>
+</div></div>
+
+  <h3 id="upgrade-with-sample-data">Upgrade with sample data</h3>
 
   <div class="collapsible"><h4 class="collapsible-title">To upgrade to Magento 2.1 with sample data: </h4><div class="collapsible-content"><ol>
   <li>Log in to your Magento server as, or switch to, the <a href="/guides/v2.0/install-gde/prereq/file-system-perms-over.html">Magento file system owner</a>.</li>

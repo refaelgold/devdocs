@@ -752,7 +752,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 9 June 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 16 June 2016 (PDT)</i></p>
 		<h2 id="install-trouble-web-browser">Cannot access Magento software in a web browser</h2>
 
 <h3 id="symptom-the-following-message-displays-when-you-try-to-access-the-magento-storefront-or-admin">Symptom: The following message displays when you try to access the Magento storefront or Admin:</h3>
@@ -768,16 +768,26 @@ Magento supports PHP 5.5 or newer.
 <h3 id="symptom-a-404-not-found-error-displays">Symptom: A 404 (Not Found) error displays.</h3>
 
 <h4 id="solution-1">Solution</h4>
-
-<p>Likely an issue with the base URL you entered during the installation. You specify the base URL as the value of <code>--base-url=</code> when installing Magento from the command line or as the value of the <strong>Your Store Address</strong> field on the Web Configuration page of the web installer.</p>
-
-<p>The base URL <em>must</em> start with the scheme (such as <code>http://</code>) and end with a trailing slash (/). Run the installer again with a valid value and try accessing Magento afterward.</p>
-
-<p>To restart Apache:</p>
+<p>Try the following:</p>
 
 <ul>
-  <li>Ubuntu: <code>service apache2 restart</code></li>
-  <li>CentOS: <code>service httpd restart</code></li>
+  <li>
+    <p>Make sure <a href="/guides/v2.0/install-gde/prereq/apache.html">Apache server rewrites</a> are enabled.</p>
+
+    <p>If Apache server rewrites are set incorrectly, static files aren’t served from the correct location.</p>
+  </li>
+  <li>
+    <p>Likely an issue with the base URL you entered during the installation. You specify the base URL as the value of <code>--base-url=</code> when installing Magento from the command line or as the value of the <strong>Your Store Address</strong> field on the Web Configuration page of the web installer.</p>
+
+    <p>The base URL <em>must</em> start with the scheme (such as <code>http://</code>) and end with a trailing slash (/). Run the installer again with a valid value and try accessing Magento afterward.</p>
+
+    <p>To restart Apache:</p>
+
+    <ul>
+      <li>Ubuntu: <code>service apache2 restart</code></li>
+      <li>CentOS: <code>service httpd restart</code></li>
+    </ul>
+  </li>
 </ul>
 
 

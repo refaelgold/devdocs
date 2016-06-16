@@ -546,7 +546,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/cli/cli-rc1-samp.html">Command-line Magento EE upgrade with sample data to RC1 or RC2</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/comp-mgr/cli/cli-rc1-samp.html">Command-line upgrade to Magento 2.1 with sample data</a></li>
 
 									
 
@@ -926,7 +926,7 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 9 June 2016 (PDT)</i></p>
+      <p align="right"><i>Updated: 16 June 2016 (PDT)</i></p>
 		<h2 id="command-line-upgrade">Command-line upgrade</h2>
 <p>You can upgrade Magento from the command line if you installed the software using any of the following:</p>
 
@@ -938,7 +938,7 @@
 <div class="bs-callout bs-callout-info" id="info">
  	<ul><li>If you cloned the Magento 2 GitHub repository, you <em>cannot</em> use this method to upgrade; instead, see <a href="/guides/v2.0/install-gde/install/cli/dev_update-magento.html">Update the Magento application</a>.</li>
  		<li>If you configured Magento use use <code>pub</code> as its root directory, see the next section.</li>
- 		<li>If you're upgrading to Magento 2 Release Candidate 1 (RC1) or RC2 <em>and</em> you installed sample data, see <a href="/guides/v2.0/comp-mgr/cli/cli-rc1-samp.html">Command-line Magento EE upgrade with sample data to RC1 or RC2</a> instead of this topic.</li></ul>
+ 		<li>If you're upgrading to Magento 2.1 (including a Release Candidate) from Magento 2.0.7 or earlier <em>and</em> you installed sample data, see <a href="/guides/v2.0/comp-mgr/cli/cli-rc1-samp.html">Command-line upgrade to Magento 2.1 with sample data</a> instead of this topic.</li></ul>
 </div>
 
 <div class="bs-callout bs-callout-warning">
@@ -948,9 +948,7 @@
 <h2 id="upgrade-cli-pub">Prerequisite: <code>pub</code> directory root</h2>
 <p>This section applies to you <em>only</em> if you set the Magento root directory to <code>&lt;your Magento install dir&gt;/pub</code>. If you did not do this, skip this section and continue with the next section.</p>
 
-<p>If you use <code>pub</code> as your Magento root directory, you can do any of the following:</p>
-
-<ul>
+<div class="collapsible"><h4 class="collapsible-title">If you use pub as your Magento root directory: </h4><div class="collapsible-content"><ul>
   <li>
     <p>For the upgrade, create another subdomain or docroot that uses the Magento installation directory as its root. </p>
 
@@ -960,11 +958,31 @@
     <p>Use the <a href="#upgrade-cli-upgr">following procedure</a> to upgrade Magento using the command line.</p>
   </li>
 </ul>
+</div></div>
+
+<h2 id="upgrade-cli-maint">Put your store in maintenance mode</h2>
+<p>To prevent access to your store while it’s being upgraded, put your store in maintenance mode.</p>
+
+<div class="bs-callout bs-callout-info" id="info">
+  	<p>You can optionally create a <a href="/guides/v2.0/comp-mgr/trouble/cman/maint-mode.html">custom maintenance mode page</a>.</p>
+</div>
+
+<div class="collapsible"><h4 class="collapsible-title">To enable maintenance mode: </h4><div class="collapsible-content"><ol>
+  <li>Log in to your Magento server as, or switch to, the Magento file system owner.</li>
+  <li>
+    <p>Enter the following command:</p>
+
+    <pre><code>php &lt;your Magento install dir&gt;/bin/magento magento maintenance:enable
+</code></pre>
+
+    <p>For additional options, see <a href="/guides/v2.0/install-gde/install/cli/install-cli-subcommands-maint.html">Enable or disable maintenance mode</a>.</p>
+  </li>
+</ol>
+</div></div>
 
 <h2 id="upgrade-cli-upgr">Upgrade using the command line</h2>
-<p>To upgrade using the command line:</p>
 
-<ol>
+<div class="collapsible"><h4 class="collapsible-title">To upgrade using the command line: </h4><div class="collapsible-content"><ol>
   <li>Log in to your Magento server as, or switch to, the Magento file system owner.</li>
   <li>
     <p>Change to the directory in which you installed the Magento software.</p>
@@ -1018,12 +1036,13 @@ composer update
 
         <pre><code>&lt;your Magento install dir&gt;/var/cache 
 &lt;your Magento install dir&gt;/var/page_cache 
-&lt;your Magento install dir&gt;/var/generation 
+&lt;your Magento install dir&gt;/var/generation
 </code></pre>
       </li>
     </ol>
   </li>
 </ol>
+</div></div>
 
 
 		</div>
