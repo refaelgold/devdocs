@@ -393,6 +393,22 @@
 									
 
 								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/release-notes/ReleaseNotes2.1_RC3CE.html">Magento CE 2.1 Release Candidate 3 (RC3) Release Notes</a></li>
+
+									
+
+								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/release-notes/ReleaseNotes2.1_RC3EE.html">Magento EE 2.1 Release Candidate 3 (RC3) Release Notes</a></li>
+
+									
+
+								
 								
 								
 							
@@ -1175,6 +1191,13 @@ chmod u+x bin/magento
   <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code> and the web server group name is <code>apache</code>:</p>
 
   <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \; &amp;&amp; chown -R :apache . &amp;&amp; chmod u+x bin/magento
+</code></pre>
+
+  <h3 id="upgrade-cli-maint">Disable maintenance mode</h3>
+
+  <p>Enter the following command:</p>
+
+  <pre><code>php &lt;your Magento install dir&gt;/bin/magento magento maintenance:disable
 </code></pre>
 </div>
 </div></div>
