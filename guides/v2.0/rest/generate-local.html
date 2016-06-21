@@ -275,6 +275,14 @@
 									
 
 								
+
+									
+
+									<li class="level-2 "><a href="/guides/v2.0/rest/notes.html">Notes</a></li>
+
+									
+
+								
 								
 								
 							
@@ -418,14 +426,34 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 9 June 2016 (PDT)</i></p>
-		<p>The REST documentation is generated with <a href="http://swagger.io">Swagger UI</a> using a schema derived from the latest build of Magento 2.0 Community Edition. However, the REST API documentation is static in that the Magento Developers website is not running an instance of Magento.</p>
+      <p align="right"><i>Updated: 20 June 2016 (PDT)</i></p>
+		<p>The REST documentation is generated with <a href="http://swagger.io">Swagger UI</a> using a schema derived from the latest build of Magento 2 Community Edition. However, the REST API documentation is static in that the Magento Developers website is not running an instance of Magento.</p>
 
-<p>If you install Swagger UI on your server, then you can generate live REST API documentation. Use the following link to generate a JSON schema that includes third-party modules and extension attributes that have been installed on your system. </p>
+<p>The REST documentation on the Magento devdocs website is generated with Swagger UI using a schema derived from the latest build of Magento 2 Community Edition. However, the REST API documentation on devdocs is static in that the Magento Developers website is not running an instance of Magento and there is no live data.</p>
+
+<p>The Swagger UI is installed automatically on your server. As a result, you can generate live REST API documentation that can include third-party modules and extension attributes that have been installed on your system. To view this documentation, go to:</p>
+
+<p><code>http://&lt;magento_host&gt;/swagger</code></p>
+
+<p>You can also use the following link to generate a JSON schema:</p>
 
 <p><code>http://&lt;magento_host&gt;/rest/default/schema</code></p>
 
-<p>Then save the schema file and load it into your Swagger UI instance.</p>
+<p>To access REST API documentation, Magento requires the user to be authenticated and authorized, as follows:</p>
+
+<ul>
+  <li>By default, Magento returns documentation for resources available to anonymous users.</li>
+  <li>If a customer or admin session is active, Magento returns documentation as permitted by the user’s role.</li>
+  <li>To retrieve information for a particular user, you must specify a token in the Authorization request header with the Bearer HTTP authorization scheme.</li>
+</ul>
+
+<p>The generated Swagger documentation provides the capability to test REST API requests. A user can enter a sample request, then press the <strong>Try it out!</strong> button, and Swagger returns information such as a <code>curl</code> command, a request URL, a response body, a response code, and the response header. Using the <strong>Try it out!</strong> button also requires a bearer authorization token.</p>
+
+<p>The <strong>Try it out!</strong> feature is not available on Swagger documentation published on the Magento devdocs website.</p>
+
+<div class="bs-callout bs-callout-info" id="info">
+  <p>The <b>Try it out!</b> feature is not available on Swagger documentation published on the Magento devdocs website.</p>
+</div>
 
 
 		</div>

@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Overview</title>
+	<title>Notes</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/rest/bk-rest.html">
+	<link rel="canonical" href="//guides/v2.0/rest/notes.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -147,9 +147,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Overview</h1>
+		<h1 class="page-heading">Notes</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/rest/bk-rest.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/rest/notes.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -226,7 +226,7 @@
 
 
 								
-									<li class="level1  active "><a class="nav-header" href="/guides/v2.0/rest/bk-rest.html">Overview</a></li>
+									<li class="level1 "><a class="nav-header" href="/guides/v2.0/rest/bk-rest.html">Overview</a></li>
 									
 								
 
@@ -278,7 +278,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/rest/notes.html">Notes</a></li>
+									<li class="level-2  active "><a href="/guides/v2.0/rest/notes.html">Notes</a></li>
 
 									
 
@@ -427,11 +427,18 @@
 		<div class="content-wrap">
 
       <p align="right"><i>Updated: 20 June 2016 (PDT)</i></p>
-		<p>The <a href="http://devdocs.magento.com/swagger/index.html">REST API documentation</a> published here on the Magento 2 Developer Documentation website describes the REST APIs that are available on the latest release of Magento 2 Community Edition.  This documentation is generated from the code base using <a href="http://swagger.io">Swagger</a> and represents the state of the code at the time the documentation was generated. However, the REST API documentation is static in that the Magento Developers website (devdocs.magento.com) is not running an instance of Magento.</p>
+		<h2 id="parameters-in-urls">Parameters in URLs</h2>
 
-<p>For information about creating a dynamic API documentation set on your server with live data, see
-<a href="generate-local.html">Generate local REST API reference
-</a>.</p>
+<p>In a REST call, a user could potentially specify one ID in the URL and another in the request body. Whenever this type of conflict occurs, Magento uses the value specified in the URL.</p>
+
+<p>For example:</p>
+
+<p>The REST URL to update a customer is <code>&lt;route url="/V1/customers/:id" method="PUT"&gt;</code>.  If you specify a ID value of <code>1</code> in the URL (<code>http://magento.loc/customer/1</code>), and a body of <code>{ “id”: 2, “attr”: “value” }</code>, the customer with ID of <code>1</code> will be modified.</p>
+
+<p>This applies to all REST APIs where a parameter is passed in the URL. Anything specified in the request body with the same parameter name as the URL will be ignored.</p>
+
+<h2 id="related-topics">Related topics</h2>
+<p><a href="/guides/v2.0/howdoi/webapi/search-criteria.html">Search using REST APIs</a></p>
 
 
 		</div>
