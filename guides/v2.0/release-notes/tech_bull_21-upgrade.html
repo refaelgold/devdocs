@@ -759,14 +759,13 @@
 </table>
 
   <div class="bs-callout bs-callout-info" id="info">
-<span class="glyphicon-class">
-   	<p>If you don't have command line access to your Magento server, extract the patch locally and transfer the files to the server using an FTP application.</p>   
+  	<p>If you don't have command line access to your Magento server, extract the patch locally and transfer the files to the server using an FTP application.</p>   
+</div>
 
+  <p>For example, to change to the <code>magento_user</code> and extract <code>MDVA-532.zip</code> into <code>/var/www/magento2</code>, enter:</p>
 
-For example, to change to the `magento_user` and extract `MDVA-532.zip` into `/var/www/magento2`, enter:
-
-	su magento_user &amp;&amp; cd /var/www/magento2 &amp;&amp; unzip MDVA-532.zip
-</span></div>
+  <pre><code>su magento_user &amp;&amp; cd /var/www/magento2 &amp;&amp; unzip -o MDVA-532.zip
+</code></pre>
 </div>
 </div></div>
 
@@ -826,7 +825,7 @@ For example, to change to the `magento_user` and extract `MDVA-532.zip` into `/v
 </code></pre>
   </li>
   <li>
-    <p>Enter one of the following commands to upgrade the Magento software version:</p>
+    <p>Enter the following commands to upgrade the Magento software version:</p>
 
     <pre><code>composer require &lt;product&gt; &lt;version&gt; --no-update
 composer require &lt;sample data module-1&gt;:&lt;version&gt; ... &lt;sample data module-n&gt;:&lt;version&gt; --no-update
@@ -862,7 +861,7 @@ composer require magento/module-bundle-sample-data:100.1.0-rc3 magento/module-wi
 </ol>
 
 <h4 id="finish-your-upgrade">Finish your upgrade</h4>
-<p>After you’ve reset file system permissions:</p>
+<p>After you’ve updated dependencies:</p>
 
 <ol>
   <li>If you haven’t done so already, log in to your Magento server as, or switch to, the Magento file system owner.</li>
@@ -1014,14 +1013,13 @@ chmod u+x bin/magento
 </table>
 
   <div class="bs-callout bs-callout-info" id="info">
-<span class="glyphicon-class">
-   	<p>If you don't have command line access to your Magento server, extract the patch locally and transfer the files to the server using an FTP application.</p>   
+  	<p>If you don't have command line access to your Magento server, extract the patch locally and transfer the files to the server using an FTP application.</p>   
+</div>
 
+  <p>For example, to change to the <code>magento_user</code> and extract <code>MDVA-532.zip</code> into <code>/var/www/magento2</code>, enter:</p>
 
-For example, to change to the `magento_user` and extract `MDVA-532.zip` into `/var/www/magento2`, enter:
-
-	su magento_user &amp;&amp; cd /var/www/magento2 &amp;&amp; unzip MDVA-532.zip
-</span></div>
+  <pre><code>su magento_user &amp;&amp; cd /var/www/magento2 &amp;&amp; unzip MDVA-532.zip
+</code></pre>
 </div>
 </div></div>
 
@@ -1042,6 +1040,7 @@ For example, to change to the `magento_user` and extract `MDVA-532.zip` into `/v
     <pre><code>"type": "magento2-module",
 </code></pre>
   </li>
+  <li>Save your changes to <code>composer.lock</code> and exit the text editor.</li>
 </ol>
 </div></div>
 
