@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>Magento CE 2.1 Release Candidate 3 (RC3) Release Notes</title>
+	<title>Technical Bulletin</title>
 	<meta name="description" content="Magento 2 Developer Guide.
 ">
 
@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" href="/css/app.css" />
 	<link rel="stylesheet" href="/css/print.css" media="print"/>
-	<link rel="canonical" href="//guides/v2.0/release-notes/ReleaseNotes2.1_RC3CE.html">
+	<link rel="canonical" href="//guides/v2.0/release-notes/tech_bull_21-upgrade.html">
 
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -147,9 +147,9 @@
 <!-- page-header -->
 <section class="page-intro">
 	<div class="container">
-		<h1 class="page-heading">Magento CE 2.1 Release Candidate 3 (RC3) Release Notes</h1>
+		<h1 class="page-heading">Technical Bulletin</h1>
 			
-			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/release-notes/ReleaseNotes2.1_RC3CE.md" target="_blank">Edit this page on GitHub</a>
+			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/comp-mgr/release-notes/tech_bull_21-upgrade.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
@@ -395,7 +395,7 @@
 
 									
 
-									<li class="level-2  active "><a href="/guides/v2.0/release-notes/ReleaseNotes2.1_RC3CE.html">Magento CE 2.1 Release Candidate 3 (RC3) Release Notes</a></li>
+									<li class="level-2 "><a href="/guides/v2.0/release-notes/ReleaseNotes2.1_RC3CE.html">Magento CE 2.1 Release Candidate 3 (RC3) Release Notes</a></li>
 
 									
 
@@ -439,7 +439,7 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/release-notes/tech_bull_21-upgrade.html">Upgrade to Magento version 2.1 (June 22, 2016)</a></li>
+									<li class="level-2  active "><a href="/guides/v2.0/release-notes/tech_bull_21-upgrade.html">Upgrade to Magento version 2.1 (June 22, 2016)</a></li>
 
 									
 
@@ -667,364 +667,382 @@
 	<section class="content">
 		<div class="content-wrap">
 
-      <p align="right"><i>Updated: 21 June 2016 (PDT)</i></p>
-		<h2>Magento Community Edition 2.1 Release Candidate 3 (RC3)</h2>
-<p>We are pleased to present Magento 2.1 Release Candidate 3 (RC3). This release candidate build is not intended for production purposes. Instead, it provides the development community opportunities to: </p>
+      <p align="right"><i>Updated: 22 June 2016 (PDT)</i></p>
+		<h2 id="upgrade-to-magento-version-21">Upgrade to Magento version 2.1</h2>
+<p>These instructions apply to anyone upgrading to Magento Community Edition (CE) or Magento Enterprise Edition (EE) version 2.1 (including a Release Candidate). </p>
+
+<p>See one of the following sections for more information:</p>
 
 <ul>
-  <li>
-    <p>preview the new features and fixes that Magento 2.1 GA will contain</p>
-  </li>
-  <li>
-    <p>contribute to the Magento 2.1 code base by identifying unresolved issues</p>
-  </li>
-  <li>
-    <p>test your 2.0 extensions against 2.1 </p>
-  </li>
+  <li><a href="#tb-upgr-nosamp">Upgrade to Magento CE or EE version 2.1 <em>without</em> sample data</a></li>
+  <li><a href="#tb-upgr-samp">Upgrade to Magento CE or EE version 2.1 with sample data</a></li>
+  <li><a href="#tb-upgr-samp-wiz">Enterprise Edition only: Web Setup Wizard upgrade to Magento EE version 2.1 with sample data</a></li>
 </ul>
 
-<p>We welcome your participation in this process!  Please open any Community Edition issues or Pull Requests on the Community Edition GitHub repository. For more information on how to provide feedback and contribute on GitHub, see <a href="/guides/v2.0/contributor-guide/contributing.html" target="_blank">Code contributions</a>.</p>
+<h3 id="tb-upgr-nosamp">Upgrade to Magento CE or EE version 2.1 <em>without</em> sample data</h3>
+<p>Upgrades to version 2.1 without sample data can fail because of an issue with the Magento <code>composer-installer</code> component. It doesn’t correctly detect code changes and therefore doesn’t update the cache and compiled code directories properly. As a result, fatal errors display during the upgrade.</p>
 
-<p>Backward-incompatible changes are documented in <a href="/guides/v2.0/release-notes/backward-incompatible-changes-2.1.html" target="_blank">Magento 2.1 Backward Incompatible Changes</a>.</p>
+<p>To address the issue, you must apply a patch.</p>
 
-<h3>Highlights</h3>
+<h4 id="get-the-patch">Get the patch</h4>
+<p>Use the following instructions to get the patch named <code>MDVA-532.*</code>, then transfer it to your Magento server.</p>
 
-<p>Magento Community Edition 2.1 includes several new and exciting features:</p>
+<div class="collapsible"><h4 class="collapsible-title">To get the patch: </h4><div class="collapsible-content"><div>
+
+  <p>You can get a Magento Enterprise Edition (EE) patch in any of the following ways:</p>
+
+  <h4 id="from-the-magento-ee-merchant-portal">From the Magento EE merchant portal</h4>
+  <p>To get a patch from the EE merchant portal:</p>
+
+  <ol>
+    <li>Go to <a href="http://www.magento.com" target="_blank">www.magento.com</a>.</li>
+    <li>In the top horizontal navigation bar, click <strong>My Account</strong>.</li>
+    <li>Log in with your Magento user name and password.</li>
+    <li>In the left navigation bar, click <strong>Downloads</strong>.</li>
+    <li>Click <strong>Magento Enterprise Edition</strong> &gt; <strong>2.X</strong> &gt; <strong>Magento Enterprise Edition 2.x Release</strong> &gt; <strong>Support Patches</strong>.</li>
+    <li>Transfer the patch to your development system.</li>
+  </ol>
+
+  <h4 id="from-the-magento-ee-parter-portal">From the Magento EE parter portal</h4>
+  <p>To get a patch from the Magento EE partner portal:</p>
+
+  <ol>
+    <li>Log in to <a href="https://partners.magento.com/English/?rdir=/files.aspx" target="_blank">partners.magento.com</a>.</li>
+    <li>Click <strong>Magento Enterprise Edition</strong> &gt; <strong>Magento Enterprise Edition 2.X</strong> &gt; <strong>Magento Enterprise Edition 2.x Release</strong> &gt; <strong>Support Patches</strong>.</li>
+    <li>In the left navigation bar, click <strong>Downloads</strong>.</li>
+    <li>Follow the instructions on your screen to download the desired patch.</li>
+    <li>Transfer the patch to your development system.</li>
+  </ol>
+</div>
+</div></div>
+
+<h4 id="apply-the-patch">Apply the patch</h4>
+<p>As the <a href="/guides/v2.0/install-gde/prereq/file-sys-perms-over.html">Magento file system owner</a>, extract the patch in your Magento installation directory.</p>
+
+<div class="collapsible"><h4 class="collapsible-title">To apply the patch: </h4><div class="collapsible-content"><div>
+
+  <p>To apply a patch:</p>
+
+  <ol>
+    <li>Copy the patch file to your Magento installation directory.</li>
+    <li>As the Magento file system owner, use one of the following commands to extract it:</li>
+  </ol>
+
+  <table>
+<tbody>
+<tr> 
+	<th>Patch file format</th>
+	<th>Command to extract</th>
+</tr>
+<tr><td><code>.zip</code></td>
+	<td><code>unzip -o &lt;patch name&gt;.zip</code></td>
+</tr>
+<tr><td><code>.tar.gz</code></td>
+	<td><code>tar -zxf &lt;patch name&gt;.zip</code></td>
+</tr>
+<tr><td><code>.tar.bz2</code></td>
+	<td><code>tar -jxf &lt;patch name&gt;.zip</code></td>
+</tr>
+</tbody>
+</table>
+
+  <div class="bs-callout bs-callout-info" id="info">
+<span class="glyphicon-class">
+   	<p>If you don't have command line access to your Magento server, extract the patch locally and transfer the files to the server using an FTP application.</p>   
+
+
+For example, to change to the `magento_user` and extract `MDVA-532.zip` into `/var/www/magento2`, enter:
+
+	su magento_user &amp;&amp; cd /var/www/magento2 &amp;&amp; unzip MDVA-532.zip
+</span></div>
+</div>
+</div></div>
+
+<h4 id="complete-your-upgrade">Complete your upgrade</h4>
+<p>After applying the patch, complete your upgrade as follows:</p>
 
 <ul>
-  <li>
-    <p><strong>PayPal enhancements</strong> include PayPal in-context checkout and saved credit cards. In-context checkout helps to increase conversion rates 69 bps by allowing shoppers to pay with PayPal without leaving the merchant’s site. PayPal saved credit cards boost repeat purchases by allowing merchants to securely store credit card information with PayPal so customers do not need to re-enter it in checkout or when reordering items from the Admin interface.</p>
-  </li>
-  <li>
-    <p><strong>Braintree enhancements enable merchants to qualify for the simplest set of PCI compliance</strong> requirements by using Braintree Hosted Fields to collect all sensitive cardholder information in checkout. Merchants retain complete control over their checkout style and layout because Braintree uses small, transparent iframes to replace individual payment fields. Merchants can now also access Braintree settlement reports from within the Magento Admin interface.</p>
-  </li>
-  <li>
-    <p><strong>Improved management interfaces</strong> make it faster and easier to search for information in the Admin, set up global search synonyms, and create new product, category, and CMS content.</p>
-  </li>
+  <li><a href="/guides/v2.0/comp-mgr/cli/cli-upgrade.html">Command-line upgrade</a></li>
+  <li><a href="/guides/v2.0/comp-mgr/upgrader/upgrade-start.html">Start System Upgrade</a></li>
 </ul>
 
-<h3>Fixed issues</h3>
-
-<h4>Security enhancement</h4>
-
-<!--- 52867-->
-<ul>
-  <li>Magento no longer discloses sensitive information about the server when an invalid URL has been requested. </li>
-</ul>
-
-<h4>Performance enhancements</h4>
-<!--- 53530-->
-<ul>
-  <li>Category page performance has significantly improved when categories contain more than 30000 items. </li>
-</ul>
-
-<!--- 53223-->
-<ul>
-  <li>Setting the Merge CSS Files option to Yes no longer reduces product performance. <a href="https://github.com/magento/magento2/issues/4710" target="_blank">(GITHUB-4710)</a></li>
-</ul>
-
-<h4>Import/Export</h4>
-
-<!--- 54200-->
-<ul>
-  <li>Magento now successfully imports products with  a “gift_message_available” parameter. Previously, Magento exported the wrong “gift_message_available” parameter, which resulted in a validation error.</li>
-</ul>
-
-<h4>Cache</h4>
-
-<!--- 52923-->
-<ul>
-  <li>Category menus now display as expected for installations using Varnish. <a href="https://github.com/magento/magento2/issues/4540" target="_blank">(GITHUB-4540)</a></li>
-</ul>
-
-<!--- 54228-->
-<ul>
-  <li>Varnish cache is no longer disabled due to HTML requests. </li>
-</ul>
-
-<!--- 53474-->
-<ul>
-  <li>Magento now enables caches by default when upgrading by the command-line interface.  <a href="https://github.com/magento/magento2/issues/4707" target="_blank">(GITHUB-4707)</a></li>
-</ul>
-
-<!--- 54205-->
-<ul>
-  <li>Magento no longer disables all cache types after you use the command-line interface to enable or disable modules. Previously, all cache types were disabled after you disabled or enabled  modules through the command line interface. </li>
-</ul>
-
-<h4>Messages and documentation</h4>
-<!--- 52993-->
-<ul>
-  <li>Media Uploader error messages now make it clear the SVG file format is not supported. <a href="https://github.com/magento/magento2/issues/2958" target="_blank">(GITHUB-2958)</a></li>
-</ul>
-
-<!--- 53008-->
-<ul>
-  <li>The Swagger-generated docs for the REST API now display the property identifiers formatted as camelCaseFormat. <a href="https://github.com/magento/magento2/issues/4925" target="_blank">(GITHUB-4925)</a></li>
-</ul>
-
-<!--- 54255-->
-<ul>
-  <li>Magento now displays enhanced messages for cache management exceptions. </li>
-</ul>
-
-<h4>Payment methods</h4>
-
-<!--- 53238-->
-<ul>
-  <li>Magento no longer displays the Payflow Pro option for the Vault Provider field for countries where that option is unavailable. </li>
-</ul>
-
-<!--- 54214-->
-<ul>
-  <li>Problems placing an order using the Payflow Pro payment method have been resolved. </li>
-</ul>
-
-<!--- 54293-->
-<ul>
-  <li>You can now place an order using the Braintree Credit card as the payment method when 3D Secure Verification is enabled. </li>
-</ul>
-
-<h4>Miscellaneous</h4>
-
-<!--- 51753-->
-<ul>
-  <li>You can now re-install Magento and use a different Admin email address than you had previously used.</li>
-</ul>
-
-<!--- 52615-->
-<ul>
-  <li>Using the Web Setup wizard to disable a module no longer results in a backup error. <a href="https://github.com/magento/magento2/issues/3562" target="_blank">(GITHUB-3562)</a></li>
-</ul>
-
-<!--- 54283-->
-<ul>
-  <li>The ProductsList widget now returns the identities of the products displayed by this widget. </li>
-</ul>
-
-<!--- 52124-->
-<ul>
-  <li>Magento now retains special prices as expected for grouped products. </li>
-</ul>
-
-<!--- 53121-->
-<ul>
-  <li>You can now use a custom template to successfully create New Account email for a new customer. </li>
-</ul>
-
-<!--- 52891-->
-<ul>
-  <li>Magento now  displays the thousand separator for a product’s price  price, weight, and custom option price fields. </li>
-</ul>
-
-<!--- 54262-->
-<ul>
-  <li>You can now remove products from the shopping cart as expected. Previously, if the number of products being removed exceeded half the quantity of products in stock, Magento would throw an error. </li>
-</ul>
-
-<!--- 54182-->
-<ul>
-  <li>You can successfully complete an order for a quantity of product that exceeds half of the product stock. </li>
-</ul>
-
-<!--- 54191-->
-<ul>
-  <li>You can now successfully save new order status. Previously, you could not save new order status when selecting Create New Status from the Go to Stores &gt; Order Status menu. <a href="https://github.com/magento/magento2/issues/4146" target="_blank">(GITHUB-4146)</a></li>
-</ul>
-
-<!--- 54186-->
-<ul>
-  <li>JavaScript validation now works as expected when you add a product to a shopping cart. Previously, if a validation error occurred during this task, Magento would still submit the form. </li>
-</ul>
-
-<!--- 54242-->
-<ul>
-  <li>Grid view pagination (as configured from Stores &gt; Configuration &gt; Catalog &gt; Catalog &gt;Storefront)  now works as expected. <a href="https://github.com/magento/magento2/issues/3861" target="_blank">(GITHUB-3861)</a></li>
-</ul>
-
-<!--- 53139-->
-<ul>
-  <li>Magento now correctly displays prices for products with several configurable price options. </li>
-</ul>
-
-<!--- 54222-->
-<ul>
-  <li>You can now generate a new simple product without changing the names of already existing products.  <a href="https://github.com/magento/magento2/issues/4951" target="_blank">(GITHUB-4951)</a></li>
-</ul>
-
-<!--- 54257-->
-<ul>
-  <li>The Stock Status attribute now works as expected during creation of configurable products. </li>
-</ul>
-
-<!--- 54231-->
-<ul>
-  <li>You can successfully delete an Admin user without breaking integration if the Admin user shares the same ID as an integration user. Previously, if you deleted an Admin user who shared an ID with an integration user, the integration would be permanently broken. </li>
-</ul>
-
-<!--- 54051-->
-<ul>
-  <li>Problems related to login when inline translation is enabled have been resolved.  <a href="https://github.com/magento/magento2/issues/4925" target="_blank">(GITHUB-4925)</a></li>
-</ul>
-
-<!--- 54172-->
-<ul>
-  <li>Magento now generates URL rewrites for a new store view as expected during a mass update to a new website. </li>
-</ul>
-
-<!--- 54043-->
-<ul>
-  <li>Magento no longer prompts you to select a dropdown attribute when adding a product to the shopping cart if you have already selected an attribute. <a href="https://github.com/magento/magento2/issues/4899" target="_blank">(GITHUB-4899)</a></li>
-</ul>
-
-<!--- 53034-->
-<ul>
-  <li>You can now drag values as expected when working in the Customizable Options window.</li>
-</ul>
-
-<!--- 53366-->
-<ul>
-  <li>Tax Report now displays records as expected. </li>
-</ul>
-
-<!--- 52165 internal only-->
-
-<!--- 54120 internal only -->
-
-<!--- 54031 internal only-->
-
-<!--- 53293 internal only-->
-
-<h3>Known issues</h3>
-<p>Magento Community Edition 2.1, Release Candidate 3 includes the following known issues: </p>
-
-<!--- 54445-->
-<ul>
-  <li>The process of uninstalling modules using command-line tools unexpectedly stalls. 
-<strong>Workaround:</strong> Ensure that your <code>&lt;magento root&gt;/var/composer_home/auth.json</code> file contains your authentication keys. You can create an <code>auth.json</code> file in one of two ways:</li>
-</ul>
-
-<p><strong>Method 1:</strong> If you ran Composer commands from CLI before and specified your <code>repo.magento.com</code> credentials, you can copy the existing <code>auth.json</code> file from your home directory under <code>"~/.composer/"</code></p>
-
-<p><strong>Method 2:</strong> You can manually create the file using this format:</p>
-
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="p">{</span>
-    <span class="s2">&quot;http-basic&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;repo.magento.com&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;public key&gt;&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;password&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;private key&gt;&quot;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-
-<!--- 54320-->
-<ul>
-  <li>The Category page displays the former price instead of the current price during scheduled updates. </li>
-</ul>
-
-<h3>Technology stack</h3>
-
-<p>Our technology stack is built on PHP and MySQL. Magento 2.1 RC3 supports:</p>
-
-<ul>
-  <li>PHP 5.6</li>
-  <li>PHP 7.0.2</li>
-  <li>PHP 7.0.6 + up until 7.1</li>
-  <li>MySQL 5.6.</li>
-</ul>
-
-<p>We do not support PHP 5.5.x or 7.0.5. </p>
-
-<h2 id="installation-and-upgrade-instructions">Installation and upgrade instructions</h2>
-<p>You can install Magento Community Edition 2.1 Release Candidate 3 (RC3) from either Github or by using Composer. 
-This Release Candidate is for test purposes only. Do not install it in a production environment.</p>
+<h3 id="tb-upgr-samp">Command-line upgrade to Magento CE or EE version 2.1 with sample data</h3>
 
 <div>
 
-  <h2 id="installation-and-upgrade-instructions-1">Installation and upgrade instructions</h2>
-  <p>You can install Magento Enterprise Edition 2.1 (including a Release Candidate) from either Github or by using Composer. </p>
+  <p>This topic discusses how to upgrade to Magento 2.1 (including a Release Candidate) using the command line.</p>
 
-  <div class="bs-callout bs-callout-warning">
-    <p><em>Do not</em> install or upgrade to a Release Candidate on a production system. Upgrade to a Release Candidate on a development system only.</p>
-</div>
-
-  <p>See one of the following sections:</p>
+  <p>These instructions apply to Magento Community Edition (CE) and Magento Enterprise Edition (EE) users <em>only</em> if all of the following are true:</p>
 
   <ul>
-    <li><a href="#install-rc-gh">Install from GitHub</a></li>
-    <li><a href="#install-rc-composer">Install using Composer</a></li>
-    <li><a href="#upgrade-rc-nosamp">Upgrade existing installations</a></li>
-    <li><a href="#upgrade-rc-samp">Upgrade to Magento 2.1 with sample data</a></li>
+    <li>You installed optional sample data</li>
+    <li>You’re upgrading to Magento 2.1 (including a Release Candidate) using the command line</li>
   </ul>
 
-  <h3 id="install-rc-gh">Install from GitHub</h3>
-  <p>Before proceeding, please familiarize yourself with these prerequisites, then run</p>
+  <h4 id="upgrade-cli-maint">Put your store in maintenance mode</h4>
 
-  <pre><code>git clone git@github.com:magento/magento2.git
-cd magento2
-git checkout tags/&lt;version&gt; [-b &lt;version&gt;]
-</code></pre>
+  <div class="collapsible"><h4 class="collapsible-title">To put your store in maintenance mode for the upgrade: </h4><div class="collapsible-content"><p>To prevent access to your store while it’s being upgraded, put your store in maintenance mode.</p>
 
-  <p>where </p>
-
-  <p><code>&lt;version&gt;</code> is <code>2.1.0-rc1</code>, <code>2.1.0-rc2</code>, or <code>2.1.0-rc3</code></p>
-
-  <p><code>[-b &lt;version]</code> optionally checks out a new branch.</p>
-
-  <h3 id="install-rc-composer">Install using Composer</h3>
-  <p>This Release Candidate is available from <code>repo.magento.com</code>. Before installing this Release Candidate using Composer, familiarize yourself with the Composer metapackage  <a href="/guides/v2.0/install-gde/prereq/integrator_install.html" target="_blank">prerequisites</a>, then run </p>
-
-  <pre><code>composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=&lt;version&gt; &lt;installation directory name&gt;
-</code></pre>
-
-  <p>where <code>&lt;version&gt;</code> is <code>2.1.0-rc1</code>, <code>2.1.0-rc2</code>, or <code>2.1.0-rc3</code></p>
-
-  <p>For example, to install Magento CE RC3 in the <code>magento2</code> directory:</p>
-
-  <pre><code>composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.1.0-rc3 magento2
-</code></pre>
-
-  <h2 id="upgrade-rc-nosamp">Upgrade existing installations</h2>
-  <p>This section discusses how to upgrade to Magento version 2.1 (including a Release Candidate) <em>without</em> sample data.</p>
-
-  <p>If you installed optional sample data, see <a href="#upgrade-rc-samp">Upgrade to an RC with sample data</a> instead.</p>
-
-  <div class="bs-callout bs-callout-warning">
-    <p><em>Do not</em> upgrade to a Release Candidate on a production system. Upgrade to a Release Candidate on a development system only.</p>
+<div class="bs-callout bs-callout-info" id="info">
+  	<p>You can optionally create a <a href="/guides/v2.0/comp-mgr/trouble/cman/maint-mode.html">custom maintenance mode page</a>.</p>
 </div>
 
-  <h3 id="upgrade-from-the-github-repository">Upgrade from the GitHub repository</h3>
-  <p>Developers who contribute to the CE codebase can <a href="/guides/v2.0/comp-mgr/bk-compman-upgrade-guide.html" target="_blank">upgrade manually</a> from the Magento CE GitHub repository.</p>
+<p>To enable maintenance mode:</p>
+
+<ol>
+  <li>Log in to your Magento server as, or switch to, the Magento file system owner.</li>
+  <li>
+    <p>Enter the following command:</p>
+
+    <pre><code>php &lt;your Magento install dir&gt;/bin/magento magento maintenance:enable
+</code></pre>
+
+    <p>For additional options, see <a href="/guides/v2.0/install-gde/install/cli/install-cli-subcommands-maint.html">Enable or disable maintenance mode</a>.</p>
+  </li>
+</ol>
+</div></div>
+
+  <h4 id="upgrade-with-sample-data">Upgrade with sample data</h4>
+
+  <div class="collapsible"><h4 class="collapsible-title">To upgrade to Magento 2.1 with sample data: </h4><div class="collapsible-content"><ol>
+  <li>Log in to your Magento server as, or switch to, the <a href="/guides/v2.0/install-gde/prereq/file-system-perms-over.html">Magento file system owner</a>.</li>
+  <li>Change to the Magento installation directory.</li>
+  <li>
+    <p>Back up your current <code>composer.json</code>:</p>
+
+    <pre><code>cp composer.json composer.json.bak
+</code></pre>
+  </li>
+  <li>
+    <p>Enter one of the following commands to upgrade the Magento software version:</p>
+
+    <pre><code>composer require &lt;product&gt; &lt;version&gt; --no-update
+composer require &lt;sample data module-1&gt;:&lt;version&gt; ... &lt;sample data module-n&gt;:&lt;version&gt; --no-update
+</code></pre>
+
+    <ul>
+      <li>
+        <p>To upgrade Magento CE to 2.1 RC3:</p>
+
+        <pre><code>composer require magento/product-community-edition 2.1.0-rc3 --no-update
+
+composer require magento/module-bundle-sample-data:100.1.0-rc3 magento/module-widget-sample-data:100.1.0-rc3 magento/module-theme-sample-data:100.1.0-rc3 magento/module-catalog-sample-data:100.1.0-rc3 magento/module-customer-sample-data:100.1.0-rc3 magento/module-cms-sample-data:100.1.0-rc3  magento/module-catalog-rule-sample-data:100.1.0-rc3 magento/module-sales-rule-sample-data:100.1.0-rc3 magento/module-review-sample-data:100.1.0-rc3 magento/module-tax-sample-data:100.1.0-rc3 magento/module-sales-sample-data:100.1.0-rc3 magento/module-grouped-product-sample-data:100.1.0-rc3 magento/module-downloadable-sample-data:100.1.0-rc3 magento/module-msrp-sample-data:100.1.0-rc3 magento/module-configurable-sample-data:100.1.0-rc3 magento/module-product-links-sample-data:100.1.0-rc3 magento/module-wishlist-sample-data:100.1.0-rc3 magento/module-swatches-sample-data:100.1.0-rc3 magento/sample-data-media:100.1.0-rc3 magento/module-offline-shipping-sample-data:100.1.0-rc3 --no-update 
+</code></pre>
+      </li>
+      <li>
+        <p>To Magento EE to 2.1 RC3:</p>
+
+        <pre><code>composer require magento/product-enterprise-edition 2.1.0-rc3 --no-update
+
+composer require magento/module-bundle-sample-data:100.1.0-rc3 magento/module-widget-sample-data:100.1.0-rc3 magento/module-theme-sample-data:100.1.0-rc3 magento/module-catalog-sample-data:100.1.0-rc3 magento/module-customer-sample-data:100.1.0-rc3 magento/module-cms-sample-data:100.1.0-rc3  magento/module-catalog-rule-sample-data:100.1.0-rc3 magento/module-sales-rule-sample-data:100.1.0-rc3 magento/module-review-sample-data:100.1.0-rc3 magento/module-tax-sample-data:100.1.0-rc3 magento/module-sales-sample-data:100.1.0-rc3 magento/module-grouped-product-sample-data:100.1.0-rc3 magento/module-downloadable-sample-data:100.1.0-rc3 magento/module-msrp-sample-data:100.1.0-rc3 magento/module-configurable-sample-data:100.1.0-rc3 magento/module-product-links-sample-data:100.1.0-rc3 magento/module-wishlist-sample-data:100.1.0-rc3 magento/module-swatches-sample-data:100.1.0-rc3 magento/sample-data-media:100.1.0-rc3 magento/module-offline-shipping-sample-data:100.1.0-rc3 magento/module-gift-card-sample-data:100.1.0-rc3 magento/module-customer-balance-sample-data:100.1.0-rc3 magento/module-target-rule-sample-data:100.1.0-rc3 magento/module-gift-registry-sample-data:100.1.0-rc3 magento/module-multiple-wishlist-sample-data:100.1.0-rc3 --no-update
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Update dependencies:</p>
+
+    <pre><code>composer update
+</code></pre>
+  </li>
+  <li>If prompted, enter your <a href="/guides/v2.0/install-gde/prereq/connect-auth.html">authentication keys</a>.</li>
+  <li>Wait for dependencies to update.</li>
+</ol>
+
+<h4 id="finish-your-upgrade">Finish your upgrade</h4>
+<p>After you’ve reset file system permissions:</p>
+
+<ol>
+  <li>If you haven’t done so already, log in to your Magento server as, or switch to, the Magento file system owner.</li>
+  <li>Change to your Magento installation directory.</li>
+  <li>
+    <p>Manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
+
+    <p>A sample command follows:</p>
+
+    <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+  </li>
+  <li>
+    <p>Enter the following command from your Magento installation directory:</p>
+
+    <pre><code>php bin/magento setup:upgrade
+</code></pre>
+  </li>
+</ol>
+
+<div>
+
+  <h3 id="rc1-samp-ownership">Apply file system permissions and ownership</h3>
+  <p>As part of the sample data upgrade process, you must apply current file system permission and ownership as discussed in the following sections. Failure to do so will cause your upgrade to fail.</p>
+
+  <p>For more information about file system ownership and permissions since the Magento 2.0.6 release, see <a href="/guides/v2.0/install-gde/prereq/file-sys-perms-over.html">Overview of ownership and permissions</a>.</p>
+
+  <h4 id="one-user-ownership-and-permissions">One-user ownership and permissions</h4>
+  <p>If you run the Magento application as one user (which is typical of shared hosting environments), change file system permissions and ownership as follows:</p>
+
+  <pre><code>cd &lt;your Magento install dir&gt;
+find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
+find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \;
+chmod u+x bin/magento
+</code></pre>
+
+  <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code>:</p>
+
+  <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \; &amp;&amp; chmod u+x bin/magento
+</code></pre>
+
+  <p>After you set file system permissions, manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
+
+  <p>A sample command follows:</p>
+
+  <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+
+  <h4 id="two-user-ownership-and-permissions">Two-user ownership and permissions</h4>
+  <p>If you run the Magento application with two users, enter the following commands as a user with <code>root</code> privileges:</p>
+
+  <pre><code>cd &lt;your Magento install dir&gt;
+find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
+find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \;
+chown -R :&lt;web server group&gt; .
+chmod u+x bin/magento
+</code></pre>
+
+  <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code> and the web server group name is <code>apache</code>:</p>
+
+  <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \; &amp;&amp; chown -R :apache . &amp;&amp; chmod u+x bin/magento
+</code></pre>
+
+  <h4 id="upgrade-cli-maint">Disable maintenance mode</h4>
+
+  <p>Enter the following command:</p>
+
+  <pre><code>php &lt;your Magento install dir&gt;/bin/magento magento maintenance:disable
+</code></pre>
+</div>
+</div></div>
+
+  <h3 id="tb-upgr-samp-wiz">Enterprise Edition only: Web Setup Wizard upgrade to Magento EE version 2.1 with sample data</h3>
+  <p>Upgrades to Magento EE 2.1 with sample data can fail because of the following issues:</p>
+
+  <ul>
+    <li>
+      <p>An issue with the Magento <code>composer-installer</code> component. It doesn’t correctly detect code changes and therefore doesn’t update the cache and compiled code directories properly. As a result, fatal errors display during the upgrade.</p>
+
+      <p>We have a patch that resolves this issue.</p>
+    </li>
+    <li>
+      <p>Magento’s <code>composer.lock</code> file specifies a non-existent component type; this issue prevents the upgrade with sample data from completing successfully.</p>
+
+      <p>You can edit <code>composer.lock</code> to fix this issue.</p>
+    </li>
+  </ul>
+
+  <h4 id="get-the-patch-1">Get the patch</h4>
+  <p>Use the following instructions to get the patch named <code>MDVA-532.*</code>, then transfer it to your Magento server.</p>
+
+  <div class="collapsible"><h4 class="collapsible-title">To get the patch: </h4><div class="collapsible-content"><div>
+
+  <p>You can get a Magento Enterprise Edition (EE) patch in any of the following ways:</p>
+
+  <h4 id="from-the-magento-ee-merchant-portal">From the Magento EE merchant portal</h4>
+  <p>To get a patch from the EE merchant portal:</p>
 
   <ol>
-    <li>
-      <p>Go to the <a href="/guides/v2.0/install-gde/install/cli/dev_update-magento.html" target="_blank">Contributing Developers</a> page.</p>
-    </li>
-    <li>
-      <p>Follow the instructions to pull the updates from the repository and update using Composer.</p>
-    </li>
+    <li>Go to <a href="http://www.magento.com" target="_blank">www.magento.com</a>.</li>
+    <li>In the top horizontal navigation bar, click <strong>My Account</strong>.</li>
+    <li>Log in with your Magento user name and password.</li>
+    <li>In the left navigation bar, click <strong>Downloads</strong>.</li>
+    <li>Click <strong>Magento Enterprise Edition</strong> &gt; <strong>2.X</strong> &gt; <strong>Magento Enterprise Edition 2.x Release</strong> &gt; <strong>Support Patches</strong>.</li>
+    <li>Transfer the patch to your development system.</li>
   </ol>
 
-  <h3 id="other-upgrades">Other upgrades</h3>
-  <p>Other upgrade instructions are discussed in <a href="/guides/v2.0/comp-mgr/release-notes/tech_bull_21-upgrade.html">Upgrade to Magento version 2.1 (June 22, 2016)</a>.</p>
-
-  <h3 id="upgrade-an-existing-installation-from-the-github-repository">Upgrade an existing installation from the GitHub repository</h3>
-  <p>Developers who contribute to the CE codebase can <a href="/guides/v2.0/comp-mgr/bk-compman-upgrade-guide.html" target="_blank">upgrade manually</a> from the Magento CE GitHub repository.</p>
+  <h4 id="from-the-magento-ee-parter-portal">From the Magento EE parter portal</h4>
+  <p>To get a patch from the Magento EE partner portal:</p>
 
   <ol>
-    <li>
-      <p>Go to the <a href="/guides/v2.0/install-gde/install/cli/dev_update-magento.html" target="_blank">Contributing Developers</a> page.</p>
-    </li>
-    <li>
-      <p>Follow the instructions to pull the updates from the repository and update using Composer.</p>
-    </li>
+    <li>Log in to <a href="https://partners.magento.com/English/?rdir=/files.aspx" target="_blank">partners.magento.com</a>.</li>
+    <li>Click <strong>Magento Enterprise Edition</strong> &gt; <strong>Magento Enterprise Edition 2.X</strong> &gt; <strong>Magento Enterprise Edition 2.x Release</strong> &gt; <strong>Support Patches</strong>.</li>
+    <li>In the left navigation bar, click <strong>Downloads</strong>.</li>
+    <li>Follow the instructions on your screen to download the desired patch.</li>
+    <li>Transfer the patch to your development system.</li>
+  </ol>
+</div>
+</div></div>
+
+  <h4 id="apply-the-patch-1">Apply the patch</h4>
+  <p>As the <a href="/guides/v2.0/install-gde/prereq/file-sys-perms-over.html">Magento file system owner</a>, extract the patch in your Magento installation directory.</p>
+
+  <div class="collapsible"><h4 class="collapsible-title">To apply the patch: </h4><div class="collapsible-content"><div>
+
+  <p>To apply a patch:</p>
+
+  <ol>
+    <li>Copy the patch file to your Magento installation directory.</li>
+    <li>As the Magento file system owner, use one of the following commands to extract it:</li>
   </ol>
 
-  <h3 id="other-upgrades-1">Other upgrades</h3>
-  <p>Other types of upgrades are discussed in <a href="/guides/v2.0/comp-mgr/release-notes/tech_bull_21-upgrade.html">Upgrade to Magento version 2.1 (June 22, 2016)</a>.</p>
+  <table>
+<tbody>
+<tr> 
+	<th>Patch file format</th>
+	<th>Command to extract</th>
+</tr>
+<tr><td><code>.zip</code></td>
+	<td><code>unzip -o &lt;patch name&gt;.zip</code></td>
+</tr>
+<tr><td><code>.tar.gz</code></td>
+	<td><code>tar -zxf &lt;patch name&gt;.zip</code></td>
+</tr>
+<tr><td><code>.tar.bz2</code></td>
+	<td><code>tar -jxf &lt;patch name&gt;.zip</code></td>
+</tr>
+</tbody>
+</table>
 
-  <h2 id="migration-toolkits">Migration toolkits</h2>
-  <p>The <a href="/guides/v2.0/migration/migration-migrate.html" target="_blank">Data Migration Tool</a> helps transfer existing Magento 1.x store data to Magento 2.x. This command-line interface includes verification, progress tracking, logging, and testing functions. For installation instructions, see  <a href="/guides/v2.0/migration/migration-tool-install.html" target="_blank">Install the Data Migration Tool</a>. Consider exploring or contributing to the <a href="https://github.com/magento/data-migration-tool" target="_blank"> Magento Data Migration repository</a>.</p>
+  <div class="bs-callout bs-callout-info" id="info">
+<span class="glyphicon-class">
+   	<p>If you don't have command line access to your Magento server, extract the patch locally and transfer the files to the server using an FTP application.</p>   
+
+
+For example, to change to the `magento_user` and extract `MDVA-532.zip` into `/var/www/magento2`, enter:
+
+	su magento_user &amp;&amp; cd /var/www/magento2 &amp;&amp; unzip MDVA-532.zip
+</span></div>
+</div>
+</div></div>
+
+  <h4 id="fix-composerlock">Fix <code>composer.lock</code></h4>
+
+  <div class="collapsible"><h4 class="collapsible-title">To fix composer.lock: </h4><div class="collapsible-content"><ol>
+  <li>As the Magento file system owner, open <code>&lt;your Magento install dir&gt;/composer.lock</code> in a text editor.</li>
+  <li>
+    <p>Change the following entry.</p>
+
+    <p>from:</p>
+
+    <pre><code>"type": "magento2-module-customer-balance",
+</code></pre>
+
+    <p>to:</p>
+
+    <pre><code>"type": "magento2-module",
+</code></pre>
+  </li>
+</ol>
+</div></div>
+
+  <h4 id="manually-clear-directories">Manually clear directories</h4>
+  <p>Manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
+
+  <p>A sample command follows:</p>
+
+  <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
+</code></pre>
+
+  <h4 id="start-the-upgrade">Start the upgrade</h4>
+  <p>Start your upgrade as discussed in <a href="/guides/v2.0/comp-mgr/upgrader/upgrade-start.html">Start System Upgrade</a>.</p>
 </div>
 
 

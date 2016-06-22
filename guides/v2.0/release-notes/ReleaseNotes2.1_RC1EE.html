@@ -439,6 +439,14 @@
 
 									
 
+									<li class="level-2 "><a href="/guides/v2.0/release-notes/tech_bull_21-upgrade.html">Upgrade to Magento version 2.1 (June 22, 2016)</a></li>
+
+									
+
+								
+
+									
+
 									<li class="level-2 "><a href="/guides/v2.0/release-notes/tech_bull_207-upgrade.html">Required patch for PHP 5.5.x and Setup Application environments (June 6, 2016)</a></li>
 
 									
@@ -913,14 +921,16 @@ composer update
 
 <div>
 
+  <p>This topic discusses how to upgrade to Magento 2.1 (including a Release Candidate) using the command line.</p>
+
   <p>These instructions apply to Magento Community Edition (CE) and Magento Enterprise Edition (EE) users <em>only</em> if all of the following are true:</p>
 
   <ul>
     <li>You installed optional sample data</li>
-    <li>You’re upgrading to Magento 2.1 (including a Release Candidate) from version 2.0.7 or earlier using the command line</li>
+    <li>You’re upgrading to Magento 2.1 (including a Release Candidate) using the command line</li>
   </ul>
 
-  <h3 id="upgrade-cli-maint">Put your store in maintenance mode</h3>
+  <h4 id="upgrade-cli-maint">Put your store in maintenance mode</h4>
 
   <div class="collapsible"><h4 class="collapsible-title">To put your store in maintenance mode for the upgrade: </h4><div class="collapsible-content"><p>To prevent access to your store while it’s being upgraded, put your store in maintenance mode.</p>
 
@@ -943,7 +953,7 @@ composer update
 </ol>
 </div></div>
 
-  <h3 id="upgrade-with-sample-data">Upgrade with sample data</h3>
+  <h4 id="upgrade-with-sample-data">Upgrade with sample data</h4>
 
   <div class="collapsible"><h4 class="collapsible-title">To upgrade to Magento 2.1 with sample data: </h4><div class="collapsible-content"><ol>
   <li>Log in to your Magento server as, or switch to, the <a href="/guides/v2.0/install-gde/prereq/file-system-perms-over.html">Magento file system owner</a>.</li>
@@ -990,7 +1000,7 @@ composer require magento/module-bundle-sample-data:100.1.0-rc3 magento/module-wi
   <li>Wait for dependencies to update.</li>
 </ol>
 
-<h3 id="finish-your-upgrade">Finish your upgrade</h3>
+<h4 id="finish-your-upgrade">Finish your upgrade</h4>
 <p>After you’ve reset file system permissions:</p>
 
 <ol>
@@ -1055,7 +1065,7 @@ chmod u+x bin/magento
   <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \; &amp;&amp; chown -R :apache . &amp;&amp; chmod u+x bin/magento
 </code></pre>
 
-  <h3 id="upgrade-cli-maint">Disable maintenance mode</h3>
+  <h4 id="upgrade-cli-maint">Disable maintenance mode</h4>
 
   <p>Enter the following command:</p>
 
