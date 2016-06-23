@@ -1,49 +1,54 @@
-# Overview of this Vagrant project
+# Deploy devdocs locally
 
-You can deploy devdocs site locally using this vagrant project. Vagrant will do the following:
- 
- 1. Create a virtual machine with Ubuntu
- 
- 2. Install all the software needed
- 
- 3. Clone `devdocs` repo to the virtual machine in a shared folder (on VM: `/vagrant/devdocs`, on your machine: in the `vagrant/devdocs` directory)
- 
- 4. Run Jekyll to generate `magento.devdocs` website locally
- 
-The generated web-site is accessible through browser from your machine as localhost using IP: **127.0.0.1:4000** by default.
+You can deploy devdocs site locally using this Vagrant container. Vagrant enables you to crun the software needed to build the devdocs project in a self-contained virtual machine. Our Vagrant project clones the devdocs repository. You can run Jekyll from the `/vagrant/devdocs` project root.
 
-## Setup
+## Install required software
+Install the Virtual Box and Vagrant software for your operating system:
 
-1. Download [`devdocs/vagrant` directory](https://github.com/magento/devdocs/vagrant).
+1. [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads). 
+3. [Install Vagrant](https://www.vagrantup.com/).
 
-2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads). 
+## Customize the container
 
-3. Install [Vagrant](https://www.vagrantup.com/).
+You can change the following parameters in `Vagrantfile`:
 
-## Run Vagrant
+- `NAME` is a name of virtual machine (default: `magento.devdocs`).
+- `HOST_PORT` is a localhost port that enables you to observe the generated site from your host (default: `4000`). 
+- `RAM` is the amount of RAM used by the virtualVM (default: `1024` MB).
+- `CPU` is the maximum percentage of CPU used for the VM. (default: `50` percent).
 
-1. In your terminal, open the downloaded directory `vagrant` on your host. (The directory where this README is located.)
- 
-2. Enter `vagrant up`.
+## Windows only: Run the UNIX shell and Virtual Box as Administrator
+To enable symlinks to work, Windows users must run both the UNIX shell (for example, Git Bash) and the Virtual Box application as administrator. The easiest way to do that is to modify the applications' shortcuts as follows:
 
-3. Wait for some time while vagrant is creating a virtual machine, sets up environment, and runs Jekyll. You'll se the following test in your terminal:
+1.  Right-click the application on your desktop or under **Start** > **All Programs**
+2.  From the pop-up menu, click **Properties**.
+3.  In the Properties dialog box, click **Advanced**.
+4.  Select the **Run as administrator** check box.
+5.  Follow the prompts on your screen to save your changes.
 
-        Configuration file: /vagrant/devdocs/_config.yml
-        Server address: http://0.0.0.0:4000//
-        Server running... press ctrl-c to stop.
+## Create the VM and environment 
 
-## Browse magento.devdocs site locally
+1. Using a terminal, change to `devdocs/vagrant` on your host. (The directory where this README is located.) 
+ Example: `cd ~/vagrant/devdocs`
+2. Enter `vagrant up`
+3. Wait for the container to initialize and clone the repository.
 
-In your browser, visit http://127.0.0.1:4000/
+    This command takes some time to complete the first time you run it.
 
-## Customize environment
+## Enter Git commands and run Jekyll
+After your Vagrant container has started, enter `vagrant ssh` to connect to the container using SSH. From there, you can fork the devdocs repository and use any editor to make your changes.
 
-You can change the following parameters in `Vagrantfile`
+When you're ready to preview your changes, continue with the next section.
 
-- `NAME` is a name of virtual machine (default: "magento.devdocs").
-- `HOST_PORT` is a localhost port that enables you to observe the generated site from your host (default: "4000"). 
-- `RAM` is a RAM size on virtual machine (default:  "1024" MB).
-- `CPU` is a maximum percentage of a CPU used on your machine for VM needs. (default: "50" percent)
+## Run Jekyll
+Use the following command to run Jekyll:
+
+    bundle exec jekyll serve --watch
+
+For additional command options, see [Basic Usage](https://jekyllrb.com/docs/usage).
+
+After Jekyll has started, to go `http://127.0.0.1:4000` in a web browser.
+
 
 ## Useful CLI scripts and commands
 
@@ -51,26 +56,26 @@ All commands must be run in the terminal from the directory that contains `Vagra
 
 ### Scripts
 
-- Stop Jekyll server. (Stops magento.devdocs site generation.)
+- Stop Jekyll server. (Stops devdocs site generation.)
 
         vagrant ssh -c "kill $(ps aux | grep '[j]ekyll' | awk '{print $2}')"
 
-- Run Jekyll server. (Generates magento.devdocs site.)
+- Run Jekyll server. (Generates devdocs site.)
  
-        vagrant ssh -c 'cd /jekyll/devdocs; jekyll serve --host=0.0.0.0'
+        vagrant ssh -c 'cd /vagrant/devdocs; jekyll serve --host=0.0.0.0'
 
-- Reload Jekyll server. (Regenerates magento.devdocs site.)
+- Reload Jekyll server. (Regenerates devdocs site.)
 
-        vagrant ssh -c "kill $(ps aux | grep '[j]ekyll' | awk '{print $2}'); cd /jekyll/devdocs; jekyll serve --host=0.0.0.0"
+        vagrant ssh -c "kill $(ps aux | grep '[j]ekyll' | awk '{print $2}'); cd /vagrant/devdocs; jekyll serve --host=0.0.0.0"
  
     
 ### Commands
 
-- Connect to the running virtual machine. You can run Jekyll commands inside the virtual machine from the `/jekyll/devdocs` directory.
+- Connect to the running virtual machine. You can run Jekyll commands inside the virtual machine from the `/vagrant/devdocs` directory.
 
         vagrant ssh
 
-  To terminate the SSH connection, run the command:
+  To terminate the connection, run the command:
 
             exit
         

@@ -39,11 +39,29 @@
 
 		<div id="global-nav">
 			<div class="main-site-name">
-				<a class="logo pull-left" href="/guides/v2.0/"> </a>
+				<a class="logo pull-left" href="/"> </a>
 				<div class="sub-site-name">
-					<a href="/guides/v2.0/">Developer Documentation (2.0)</a>
+					<a href="/">Developer Documentation (2.0)</a>
 				</div>
 			</div>
+			
+<div class="version-switcher dropdown">
+	<button class="btn dropdown-toggle" data-toggle="dropdown">
+		Version 2.0
+	</button>
+
+
+	<ul class="dropdown-menu dropdown-menu-right">
+	
+		<li><a class="dropdown-item" href="/guides/v2.0/">Version 2.0</a></li>
+	
+		<li><a class="dropdown-item" href="/guides/v2.1/">Version 2.1</a></li>
+	
+  </ul>
+
+</div>
+
+
 		</div><!-- #global-nav -->
 	</nav>
 
@@ -60,8 +78,9 @@
          <li class="first">
             <a href="#">Get Started</a>
             <ul class="menu nav">
-               <li class="first leaf"><a href="/guides/v2.0/release-notes/bk-release-notes.html">Release Notes</a></li>
                <li class="leaf"><a href="/guides/v2.0/architecture/bk-architecture.html">Magento Architecture</a></li>
+               <li class="first leaf"><a href="/guides/v2.0/release-notes/bk-release-notes.html">Release Information</a></li>
+               
             </ul>
          </li>
          <li class="first">
@@ -79,11 +98,11 @@
             <ul class="menu nav">
                <li class="first leaf"><a href="/guides/v2.0/frontend-dev-guide/bk-frontend-dev-guide.html">Frontend Developer Guide</a>
                <li class="first leaf"><a href="/guides/v2.0/ui-components/ui-component.html">UI Components</a>
-               <li class="first leaf"><a href="/guides/v2.0/javascript-dev-guide/bk-javascript-dev-guide.html">JavaScript Developer Guide</a>
+   			   <li class="first leaf"><a href="/guides/v2.0/javascript-dev-guide/bk-javascript-dev-guide.html">JavaScript Developer Guide</a>
                <div class="divider"></div></li>
                <li class="first leaf"><a href="/guides/v2.0/extension-dev-guide/bk-extension-dev-guide.html">PHP Developer Guide</a></li>
 <li class="first leaf"><a href="/guides/v2.0/ext-best-practices/bk-ext-best-practices.html">Extension Developer Best Practices Guide</a></li>
-                <li class="leaf"><a href="/guides/v2.0/pattern-library/bk-pattern.html">Magento Admin Pattern Library</a></li>
+               <li class="leaf"><a href="/guides/v2.0/pattern-library/bk-pattern.html">Magento Admin Pattern Library</a></li>
                <div class="divider"></div></li>
                <li class="leaf"><a href="/guides/v2.0/get-started/bk-get-started-api.html">Get Started with Magento Web APIs</a></li>
                <li class="leaf"><a href="/guides/v2.0/rest/bk-rest.html">REST Reference</a></li>
@@ -135,6 +154,7 @@
 </div><!--End subnav-wrap -->
 <div class="nav-main-fader"></div>
 
+
 <div id="gl-wrapper">
 
 	<!-- /.main-container -->
@@ -148,12 +168,13 @@
 <section class="page-intro">
 	<div class="container">
 		<h1 class="page-heading">Technical Bulletin</h1>
-			
+		
 			<a class="improve-page" href="https://github.com/magento/devdocs/tree/2.0/guides/v2.0/comp-mgr/release-notes/tech_bull_21-upgrade.md" target="_blank">Edit this page on GitHub</a>
 		
 		
 	</div>
 </section>
+
 
 <div class="container">
 
@@ -163,7 +184,7 @@
 	<div class="sidebar-wrapper">
 
 
-<h4>Release Notes</h4>
+<h4>Release Information</h4>
 
 
 
@@ -231,14 +252,6 @@
 
 									
 
-									<li class="level-2 "><a href="/guides/v2.0/release-notes/backward-incompatible-changes-2.1.html">Version 2.1 incompatible changes</a></li>
-
-									
-
-								
-
-									
-
 									<li class="level-2 "><a href="/guides/v2.0/release-notes/changes/ce_changes.html">Magento CE</a></li>
 
 									
@@ -252,10 +265,10 @@
 									
 
 								
-								
-								
-							
-							
+
+
+
+
 						
 
 					
@@ -408,10 +421,10 @@
 									
 
 								
-								
-								
-							
-							
+
+
+
+
 						
 
 					
@@ -460,10 +473,10 @@
 									
 
 								
-								
-								
-							
-							
+
+
+
+
 						
 
 					
@@ -504,10 +517,10 @@
 									
 
 								
-								
-								
-							
-							
+
+
+
+
 						
 
 					
@@ -666,8 +679,7 @@
 
 	<section class="content">
 		<div class="content-wrap">
-
-      <p align="right"><i>Updated: 22 June 2016 (PDT)</i></p>
+			<p align="right"><i>Updated: 22 June 2016 (PDT)</i></p>
 		<h2 id="upgrade-to-magento-version-21">Upgrade to Magento version 2.1</h2>
 <p>These instructions apply to anyone upgrading to Magento Community Edition (CE) or Magento Enterprise Edition (EE) version 2.1 (including a Release Candidate). </p>
 
@@ -781,41 +793,16 @@
 
 <div>
 
-  <p>This topic discusses how to upgrade to Magento 2.1 (including a Release Candidate) using the command line.</p>
-
   <p>These instructions apply to Magento Community Edition (CE) and Magento Enterprise Edition (EE) users <em>only</em> if all of the following are true:</p>
 
   <ul>
-    <li>You installed optional sample data</li>
-    <li>You’re upgrading to Magento 2.1 (including a Release Candidate) using the command line</li>
+    <li>You have installed optional sample data</li>
+    <li>You’re upgrading to Magento RC1 or RC2 from any earlier version using the command line</li>
   </ul>
 
-  <h4 id="upgrade-cli-maint">Put your store in maintenance mode</h4>
-
-  <div class="collapsible"><h4 class="collapsible-title">To put your store in maintenance mode for the upgrade: </h4><div class="collapsible-content"><p>To prevent access to your store while it’s being upgraded, put your store in maintenance mode.</p>
-
-<div class="bs-callout bs-callout-info" id="info">
-  	<p>You can optionally create a <a href="/guides/v2.0/comp-mgr/trouble/cman/maint-mode.html">custom maintenance mode page</a>.</p>
-</div>
-
-<p>To enable maintenance mode:</p>
+  <div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><p>To upgrade to Magento 2 RC1 or RC2 sample data using the command line:</p>
 
 <ol>
-  <li>Log in to your Magento server as, or switch to, the Magento file system owner.</li>
-  <li>
-    <p>Enter the following command:</p>
-
-    <pre><code>php &lt;your Magento install dir&gt;/bin/magento magento maintenance:enable
-</code></pre>
-
-    <p>For additional options, see <a href="/guides/v2.0/install-gde/install/cli/install-cli-subcommands-maint.html">Enable or disable maintenance mode</a>.</p>
-  </li>
-</ol>
-</div></div>
-
-  <h4 id="upgrade-with-sample-data">Upgrade with sample data</h4>
-
-  <div class="collapsible"><h4 class="collapsible-title">To upgrade to Magento 2.1 with sample data: </h4><div class="collapsible-content"><ol>
   <li>Log in to your Magento server as, or switch to, the <a href="/guides/v2.0/install-gde/prereq/file-system-perms-over.html">Magento file system owner</a>.</li>
   <li>Change to the Magento installation directory.</li>
   <li>
@@ -825,7 +812,7 @@
 </code></pre>
   </li>
   <li>
-    <p>Enter the following commands to upgrade the Magento software version:</p>
+    <p>Enter one of the following commands to upgrade the Magento software version:</p>
 
     <pre><code>composer require &lt;product&gt; &lt;version&gt; --no-update
 composer require &lt;sample data module-1&gt;:&lt;version&gt; ... &lt;sample data module-n&gt;:&lt;version&gt; --no-update
@@ -833,22 +820,26 @@ composer require &lt;sample data module-1&gt;:&lt;version&gt; ... &lt;sample dat
 
     <ul>
       <li>
-        <p>To upgrade Magento CE to 2.1 RC3:</p>
+        <p>Magento CE:</p>
 
-        <pre><code>composer require magento/product-community-edition 2.1.0-rc3 --no-update
+        <pre><code>composer require magento/product-community-edition 2.1.0-rc2 --no-update
 
-composer require magento/module-bundle-sample-data:100.1.0-rc3 magento/module-widget-sample-data:100.1.0-rc3 magento/module-theme-sample-data:100.1.0-rc3 magento/module-catalog-sample-data:100.1.0-rc3 magento/module-customer-sample-data:100.1.0-rc3 magento/module-cms-sample-data:100.1.0-rc3  magento/module-catalog-rule-sample-data:100.1.0-rc3 magento/module-sales-rule-sample-data:100.1.0-rc3 magento/module-review-sample-data:100.1.0-rc3 magento/module-tax-sample-data:100.1.0-rc3 magento/module-sales-sample-data:100.1.0-rc3 magento/module-grouped-product-sample-data:100.1.0-rc3 magento/module-downloadable-sample-data:100.1.0-rc3 magento/module-msrp-sample-data:100.1.0-rc3 magento/module-configurable-sample-data:100.1.0-rc3 magento/module-product-links-sample-data:100.1.0-rc3 magento/module-wishlist-sample-data:100.1.0-rc3 magento/module-swatches-sample-data:100.1.0-rc3 magento/sample-data-media:100.1.0-rc3 magento/module-offline-shipping-sample-data:100.1.0-rc3 --no-update 
+composer require magento/module-bundle-sample-data:100.1.0-rc2 magento/module-widget-sample-data:100.1.0-rc2 magento/module-theme-sample-data:100.1.0-rc2 magento/module-catalog-sample-data:100.1.0-rc2 magento/module-customer-sample-data:100.1.0-rc2 magento/module-cms-sample-data:100.1.0-rc2  magento/module-catalog-rule-sample-data:100.1.0-rc2 magento/module-sales-rule-sample-data:100.1.0-rc2 magento/module-review-sample-data:100.1.0-rc2 magento/module-tax-sample-data:100.1.0-rc2 magento/module-sales-sample-data:100.1.0-rc2 magento/module-grouped-product-sample-data:100.1.0-rc2 magento/module-downloadable-sample-data:100.1.0-rc2 magento/module-msrp-sample-data:100.1.0-rc2 magento/module-configurable-sample-data:100.1.0-rc2 magento/module-product-links-sample-data:100.1.0-rc2 magento/module-wishlist-sample-data:100.1.0-rc2 magento/module-swatches-sample-data:100.1.0-rc2 magento/sample-data-media:100.1.0-rc2 magento/module-offline-shipping-sample-data:100.1.0-rc2 --no-update 
 </code></pre>
       </li>
       <li>
-        <p>To Magento EE to 2.1 RC3:</p>
+        <p>Magento EE:</p>
 
-        <pre><code>composer require magento/product-enterprise-edition 2.1.0-rc3 --no-update
+        <pre><code>composer require magento/product-enterprise-edition 2.1.0-rc2 --no-update
 
-composer require magento/module-bundle-sample-data:100.1.0-rc3 magento/module-widget-sample-data:100.1.0-rc3 magento/module-theme-sample-data:100.1.0-rc3 magento/module-catalog-sample-data:100.1.0-rc3 magento/module-customer-sample-data:100.1.0-rc3 magento/module-cms-sample-data:100.1.0-rc3  magento/module-catalog-rule-sample-data:100.1.0-rc3 magento/module-sales-rule-sample-data:100.1.0-rc3 magento/module-review-sample-data:100.1.0-rc3 magento/module-tax-sample-data:100.1.0-rc3 magento/module-sales-sample-data:100.1.0-rc3 magento/module-grouped-product-sample-data:100.1.0-rc3 magento/module-downloadable-sample-data:100.1.0-rc3 magento/module-msrp-sample-data:100.1.0-rc3 magento/module-configurable-sample-data:100.1.0-rc3 magento/module-product-links-sample-data:100.1.0-rc3 magento/module-wishlist-sample-data:100.1.0-rc3 magento/module-swatches-sample-data:100.1.0-rc3 magento/sample-data-media:100.1.0-rc3 magento/module-offline-shipping-sample-data:100.1.0-rc3 magento/module-gift-card-sample-data:100.1.0-rc3 magento/module-customer-balance-sample-data:100.1.0-rc3 magento/module-target-rule-sample-data:100.1.0-rc3 magento/module-gift-registry-sample-data:100.1.0-rc3 magento/module-multiple-wishlist-sample-data:100.1.0-rc3 --no-update
+composer require magento/module-bundle-sample-data:100.1.0-rc2 magento/module-widget-sample-data:100.1.0-rc2 magento/module-theme-sample-data:100.1.0-rc2 magento/module-catalog-sample-data:100.1.0-rc2 magento/module-customer-sample-data:100.1.0-rc2 magento/module-cms-sample-data:100.1.0-rc2  magento/module-catalog-rule-sample-data:100.1.0-rc2 magento/module-sales-rule-sample-data:100.1.0-rc2 magento/module-review-sample-data:100.1.0-rc2 magento/module-tax-sample-data:100.1.0-rc2 magento/module-sales-sample-data:100.1.0-rc2 magento/module-grouped-product-sample-data:100.1.0-rc2 magento/module-downloadable-sample-data:100.1.0-rc2 magento/module-msrp-sample-data:100.1.0-rc2 magento/module-configurable-sample-data:100.1.0-rc2 magento/module-product-links-sample-data:100.1.0-rc2 magento/module-wishlist-sample-data:100.1.0-rc2 magento/module-swatches-sample-data:100.1.0-rc2 magento/sample-data-media:100.1.0-rc2 magento/module-offline-shipping-sample-data:100.1.0-rc2 magento/module-gift-card-sample-data:100.1.0-rc2 magento/module-customer-balance-sample-data:100.1.0-rc2 magento/module-target-rule-sample-data:100.1.0-rc2 magento/module-gift-registry-sample-data:100.1.0-rc2 magento/module-multiple-wishlist-sample-data:100.1.0-rc2 --no-update
 </code></pre>
       </li>
     </ul>
+
+    <div class="bs-callout bs-callout-info" id="info">
+  		<p>To upgrade to RC1, replace <code>-rc2</code> with <code>-rc1</code> in the preceding examples.</p>
+</div>
   </li>
   <li>
     <p>Update dependencies:</p>
@@ -860,8 +851,8 @@ composer require magento/module-bundle-sample-data:100.1.0-rc3 magento/module-wi
   <li>Wait for dependencies to update.</li>
 </ol>
 
-<h4 id="finish-your-upgrade">Finish your upgrade</h4>
-<p>After you’ve updated dependencies:</p>
+<h3 id="finish-your-upgrade">Finish your upgrade</h3>
+<p>After you’ve reset file system permissions:</p>
 
 <ol>
   <li>If you haven’t done so already, log in to your Magento server as, or switch to, the Magento file system owner.</li>
@@ -923,13 +914,6 @@ chmod u+x bin/magento
   <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code> and the web server group name is <code>apache</code>:</p>
 
   <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \; &amp;&amp; chown -R :apache . &amp;&amp; chmod u+x bin/magento
-</code></pre>
-
-  <h4 id="upgrade-cli-maint">Disable maintenance mode</h4>
-
-  <p>Enter the following command:</p>
-
-  <pre><code>php &lt;your Magento install dir&gt;/bin/magento magento maintenance:disable
 </code></pre>
 </div>
 </div></div>
@@ -1183,7 +1167,7 @@ chmod u+x bin/magento
     })();
 </script>
 
-<script src="/js/app-min.js"></script>
+<script src="/js/app.js"></script>
 
 
 <!--Google Custom Search-->
