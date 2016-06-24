@@ -1006,211 +1006,24 @@
 
   <p>This Release Candidate is for test purposes only. Do not install it in a production environment.</p>
 
-  <p>See one of the following sections:</p>
-
-  <ul>
-    <li><a href="#install-rc-composer">Install using Composer</a></li>
-    <li><a href="#upgrade-rc-nosamp">Upgrade existing installations</a></li>
-    <li><a href="#upgrade-rc-samp">Upgrade to Magento 2.1 with sample data</a> </li>
-  </ul>
-
   <h3 id="install-rc-composer">Install using Composer</h3>
   <p>This Release Candidate is available from <code>repo.magento.com</code>. Before installing this Release Candidate using Composer,  familiarize yourself with these  <a href="/guides/v2.0/install-gde/prereq/integrator_install.html" target="_blank">prerequisites</a>, then run:</p>
 
   <pre><code>composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=&lt;version&gt; &lt;installation directory name&gt;
 </code></pre>
 
-  <p>where <code>&lt;version&gt;</code> is <code>2.1.0-rc1</code>, <code>2.1.0-rc2</code>, or <code>2.1.0-rc3</code></p>
+  <p>where <code>&lt;version&gt;</code> is <code>2.1.0</code> (GA release) or <code>2.1.0-rc3</code> for RC3</p>
 
-  <p>For example, to install 2.1 RC3 in the <code>magento2</code> directory:</p>
+  <p>For example, to install 2.1.0 in the <code>magento2</code> directory:</p>
 
-  <pre><code>composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.0.1-rc3 magento2
+  <pre><code>composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=2.1.0 magento2
 </code></pre>
 
-  <h2 id="upgrade-rc-nosamp">Upgrade existing installations</h2>
-  <p>This section discusses how to upgrade to Magento version 2.1 (including a Release Candidate) <em>without</em> sample data.</p>
+  <h3 id="upgrades">Upgrades</h3>
+  <p>To upgrade to Magento 2.1 (including a Release Candidate), see <a href="/guides/v2.0/comp-mgr/release-notes/tech_bull_21-upgrade.html">Upgrade to Magento version 2.1 (June 22, 2016)</a>.</p>
 
-  <p>If you installed optional sample data, see <a href="#upgrade-rc-samp">Upgrade to an RC with sample data</a> instead.</p>
-
-  <div class="bs-callout bs-callout-warning">
-    <p><em>Do not</em> upgrade to a Release Candidate on a production system. Upgrade to a Release Candidate on a development system only.</p>
-</div>
-
-  <h3 id="upgrade-using-the-setup-wizard">Upgrade using the Setup Wizard</h3>
-  <p>Use the instructions in <a href="/guides/v2.0/comp-mgr/upgrader/upgrade-start.html">Start System Upgrade</a>. When prompted to choose a version, choose a Release Candidate.</p>
-
-  <h3 id="upgrade-using-the-command-line">Upgrade using the command line</h3>
-
-  <div class="collapsible"><h4 class="collapsible-title">To upgrade to Magento 2.1 using the command line: </h4><div class="collapsible-content"><ol>
-  <li>Log in to your Magento server as, or switch to, the Magento file system owner.</li>
-  <li>
-    <p>Change to the directory in which you installed the Magento software.</p>
-
-    <p>For example, <code>cd /var/www/html/magento2</code></p>
-  </li>
-  <li>
-    <p>Enter the following commands in the order shown:</p>
-
-    <pre><code>composer require &lt;product&gt; &lt;version&gt; --no-update
-composer update
-</code></pre>
-
-    <p>To upgrade to Magento EE 2.1 RC3, enter:</p>
-
-    <pre><code>composer require magento/product-enterprise-edition 2.1.0-rc3 --no-update
-composer update
-</code></pre>
-  </li>
-  <li>If prompted, enter your <a href="/guides/v2.0/comp-mgr/prereq/prereq_auth-token.html">authentication keys</a>.</li>
-  <li>
-    <p>Update the database schema and data:</p>
-
-    <pre><code> php bin/magento setup:upgrade
-</code></pre>
-  </li>
-</ol>
-</div></div>
-
-  <h2 id="upgrade-rc-samp">Upgrade to Magento 2.1 with sample data</h2>
-  <p>This section discusses how to upgrade Magento with optional sample data using the command line.</p>
-
-  <div class="bs-callout bs-callout-warning">
-    <p>There is a known issue with upgrading Magento with sample data using the Setup Wizard. We're actively working on a solution to this issue.</p>
-</div>
-
-  <div>
-
-    <p>These instructions apply to Magento Community Edition (CE) and Magento Enterprise Edition (EE) users <em>only</em> if all of the following are true:</p>
-
-    <ul>
-      <li>You have installed optional sample data</li>
-      <li>You’re upgrading to Magento RC1 or RC2 from any earlier version using the command line</li>
-    </ul>
-
-    <div class="collapsible"><h4 class="collapsible-title">Click to expand/collapse content </h4><div class="collapsible-content"><p>To upgrade to Magento 2 RC1 or RC2 sample data using the command line:</p>
-
-<ol>
-  <li>Log in to your Magento server as, or switch to, the <a href="/guides/v2.0/install-gde/prereq/file-system-perms-over.html">Magento file system owner</a>.</li>
-  <li>Change to the Magento installation directory.</li>
-  <li>
-    <p>Back up your current <code>composer.json</code>:</p>
-
-    <pre><code>cp composer.json composer.json.bak
-</code></pre>
-  </li>
-  <li>
-    <p>Enter one of the following commands to upgrade the Magento software version:</p>
-
-    <pre><code>composer require &lt;product&gt; &lt;version&gt; --no-update
-composer require &lt;sample data module-1&gt;:&lt;version&gt; ... &lt;sample data module-n&gt;:&lt;version&gt; --no-update
-</code></pre>
-
-    <ul>
-      <li>
-        <p>Magento CE:</p>
-
-        <pre><code>composer require magento/product-community-edition 2.1.0-rc2 --no-update
-
-composer require magento/module-bundle-sample-data:100.1.0-rc2 magento/module-widget-sample-data:100.1.0-rc2 magento/module-theme-sample-data:100.1.0-rc2 magento/module-catalog-sample-data:100.1.0-rc2 magento/module-customer-sample-data:100.1.0-rc2 magento/module-cms-sample-data:100.1.0-rc2  magento/module-catalog-rule-sample-data:100.1.0-rc2 magento/module-sales-rule-sample-data:100.1.0-rc2 magento/module-review-sample-data:100.1.0-rc2 magento/module-tax-sample-data:100.1.0-rc2 magento/module-sales-sample-data:100.1.0-rc2 magento/module-grouped-product-sample-data:100.1.0-rc2 magento/module-downloadable-sample-data:100.1.0-rc2 magento/module-msrp-sample-data:100.1.0-rc2 magento/module-configurable-sample-data:100.1.0-rc2 magento/module-product-links-sample-data:100.1.0-rc2 magento/module-wishlist-sample-data:100.1.0-rc2 magento/module-swatches-sample-data:100.1.0-rc2 magento/sample-data-media:100.1.0-rc2 magento/module-offline-shipping-sample-data:100.1.0-rc2 --no-update 
-</code></pre>
-      </li>
-      <li>
-        <p>Magento EE:</p>
-
-        <pre><code>composer require magento/product-enterprise-edition 2.1.0-rc2 --no-update
-
-composer require magento/module-bundle-sample-data:100.1.0-rc2 magento/module-widget-sample-data:100.1.0-rc2 magento/module-theme-sample-data:100.1.0-rc2 magento/module-catalog-sample-data:100.1.0-rc2 magento/module-customer-sample-data:100.1.0-rc2 magento/module-cms-sample-data:100.1.0-rc2  magento/module-catalog-rule-sample-data:100.1.0-rc2 magento/module-sales-rule-sample-data:100.1.0-rc2 magento/module-review-sample-data:100.1.0-rc2 magento/module-tax-sample-data:100.1.0-rc2 magento/module-sales-sample-data:100.1.0-rc2 magento/module-grouped-product-sample-data:100.1.0-rc2 magento/module-downloadable-sample-data:100.1.0-rc2 magento/module-msrp-sample-data:100.1.0-rc2 magento/module-configurable-sample-data:100.1.0-rc2 magento/module-product-links-sample-data:100.1.0-rc2 magento/module-wishlist-sample-data:100.1.0-rc2 magento/module-swatches-sample-data:100.1.0-rc2 magento/sample-data-media:100.1.0-rc2 magento/module-offline-shipping-sample-data:100.1.0-rc2 magento/module-gift-card-sample-data:100.1.0-rc2 magento/module-customer-balance-sample-data:100.1.0-rc2 magento/module-target-rule-sample-data:100.1.0-rc2 magento/module-gift-registry-sample-data:100.1.0-rc2 magento/module-multiple-wishlist-sample-data:100.1.0-rc2 --no-update
-</code></pre>
-      </li>
-    </ul>
-
-    <div class="bs-callout bs-callout-info" id="info">
-  		<p>To upgrade to RC1, replace <code>-rc2</code> with <code>-rc1</code> in the preceding examples.</p>
-</div>
-  </li>
-  <li>
-    <p>Update dependencies:</p>
-
-    <pre><code>composer update
-</code></pre>
-  </li>
-  <li>If prompted, enter your <a href="/guides/v2.0/install-gde/prereq/connect-auth.html">authentication keys</a>.</li>
-  <li>Wait for dependencies to update.</li>
-</ol>
-
-<h3 id="finish-your-upgrade">Finish your upgrade</h3>
-<p>After you’ve reset file system permissions:</p>
-
-<ol>
-  <li>If you haven’t done so already, log in to your Magento server as, or switch to, the Magento file system owner.</li>
-  <li>Change to your Magento installation directory.</li>
-  <li>
-    <p>Manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
-
-    <p>A sample command follows:</p>
-
-    <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
-</code></pre>
-  </li>
-  <li>
-    <p>Enter the following command from your Magento installation directory:</p>
-
-    <pre><code>php bin/magento setup:upgrade
-</code></pre>
-  </li>
-</ol>
-
-<div>
-
-  <h3 id="rc1-samp-ownership">Apply file system permissions and ownership</h3>
-  <p>As part of the sample data upgrade process, you must apply current file system permission and ownership as discussed in the following sections. Failure to do so will cause your upgrade to fail.</p>
-
-  <p>For more information about file system ownership and permissions since the Magento 2.0.6 release, see <a href="/guides/v2.0/install-gde/prereq/file-sys-perms-over.html">Overview of ownership and permissions</a>.</p>
-
-  <h4 id="one-user-ownership-and-permissions">One-user ownership and permissions</h4>
-  <p>If you run the Magento application as one user (which is typical of shared hosting environments), change file system permissions and ownership as follows:</p>
-
-  <pre><code>cd &lt;your Magento install dir&gt;
-find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
-find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \;
-chmod u+x bin/magento
-</code></pre>
-
-  <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code>:</p>
-
-  <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+w {} \; &amp;&amp; chmod u+x bin/magento
-</code></pre>
-
-  <p>After you set file system permissions, manually clear the <code>var/cache</code>, <code>var/page_cache</code>, and <code>var/generation</code> directories.</p>
-
-  <p>A sample command follows:</p>
-
-  <pre><code>rm -rf var/cache/* var/page_cache/* var/generation/*
-</code></pre>
-
-  <h4 id="two-user-ownership-and-permissions">Two-user ownership and permissions</h4>
-  <p>If you run the Magento application with two users, enter the following commands as a user with <code>root</code> privileges:</p>
-
-  <pre><code>cd &lt;your Magento install dir&gt;
-find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \;
-find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \;
-chown -R :&lt;web server group&gt; .
-chmod u+x bin/magento
-</code></pre>
-
-  <p>To optionally enter all commands on one line, enter the following assuming Magento is installed in <code>/var/www/html/magento2</code> and the web server group name is <code>apache</code>:</p>
-
-  <pre><code>cd /var/www/html/magento2 &amp;&amp; find var vendor pub/static pub/media app/etc -type f -exec chmod g+w {} \; &amp;&amp; find var vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} \; &amp;&amp; chown -R :apache . &amp;&amp; chmod u+x bin/magento
-</code></pre>
-</div>
-</div></div>
-
-    <h3 id="upgrades">Upgrades</h3>
-    <p>To upgrade to Magento 2.1 (including a Release Candidate), see <a href="/guides/v2.0/comp-mgr/release-notes/tech_bull_21-upgrade.html">Upgrade to Magento version 2.1 (June 22, 2016)</a>.</p>
-
-    <h2 id="migration-toolkits">Migration toolkits</h2>
-    <p>The <a href="/guides/v2.0/migration/migration-migrate.html" target="_blank">Data Migration Tool</a> helps transfer existing Magento 1.x store data to Magento 2.x. This command-line interface includes verification, progress tracking, logging, and testing functions. For installation instructions, see  <a href="/guides/v2.0/migration/migration-tool-install.html" target="_blank">Install the Data Migration Tool</a>. Consider exploring or contributing to the <a href="https://github.com/magento/data-migration-tool" target="_blank"> Magento Data Migration repository</a>.</p>
-  </div>
+  <h2 id="migration-toolkits">Migration toolkits</h2>
+  <p>The <a href="/guides/v2.0/migration/migration-migrate.html" target="_blank">Data Migration Tool</a> helps transfer existing Magento 1.x store data to Magento 2.x. This command-line interface includes verification, progress tracking, logging, and testing functions. For installation instructions, see  <a href="/guides/v2.0/migration/migration-tool-install.html" target="_blank">Install the Data Migration Tool</a>. Consider exploring or contributing to the <a href="https://github.com/magento/data-migration-tool" target="_blank"> Magento Data Migration repository</a>.</p>
 </div>
 
 
